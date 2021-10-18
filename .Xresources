@@ -1,0 +1,46 @@
+*background: #1f1f1f
+*foreground: #c6c6c6
+*cursorColor: #c6c6c6
+
+*color0: #828282
+*color8: #828282
+*color1: #cc6666
+*color9: #cc6666
+*color2: #8abeb7
+*color10: #8abeb7
+*color3: #f0c674
+*color11: #f0c674
+*color4: #8abeb7
+*color12: #8abeb7
+*color5: #b294bb
+*color13: #b294bb
+*color6: #8abeb7
+*color14: #8abeb7
+*color7: #828282
+*color15: #c6c6c6
+
+URxvt*font: xft:Noto Sans Mono:style=Regular:size=10.5, \
+            xft:DejaVu Sans:style=Book:antialias=false:size=10, \
+	    xft:Material Icons:style=Regular:10
+
+URxvt.letterSpace: 1
+URxvt.scrollBar: false
+URxvt.mouseWheelScrollPage: false
+URxvt.saveLines: 5000
+URxvt.internalBorder: 5
+
+rofi.color-enabled: true
+rofi.color-window: #828282, #8abeb7, #8abeb7
+rofi.color-normal: #828282, #c6c6c6, #8abeb7, #c6c6c6, #78824B
+rofi.color-active: #828282, #c6c6c6, #8abeb7, #c6c6c6, #78824B
+rofi.color-urgent: #828282, #c6c6c6, #8abeb7, #c6c6c6, #78824B
+
+rofi.separator-style: solid
+rofi.sidebar-mode: false
+rofi.lines: 5
+rofi.font: Source Code Pro Semibold 10.5
+rofi.bw: 1
+rofi.columns: 2
+rofi.padding: 5
+rofi.fixed-num-lines: true
+rofi.hide-scrollbar: true
