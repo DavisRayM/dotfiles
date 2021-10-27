@@ -2,7 +2,7 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x polybar > /dev/null || polybar top &
-~/.fehbg &
+feh --no-fehbg --bg-fill --randomize $HOME/.config/polybar/wallpapers/* &
 picom &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
