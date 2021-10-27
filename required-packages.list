@@ -1,0 +1,28 @@
+# List of all Arch Linux packages need for the dotfiles
+# Should perhaps create an installation list for this....
+
+# Sytem brightness
+brigntessctl
+
+# Fonts
+ttf-font-awesome-4
+noto-fonts
+noto-fonts-emoji
+ttf-dejavu
+
+# X11 Compositor
+picom
+
+# Image viewer and cataloguer; Using for wallpaper
+feh
+
+# Terminal emulator
+urvxt
+
+# Windows & tile managers
+sxhkd
+bspwm
+
+# Code editor
+neovim
+
