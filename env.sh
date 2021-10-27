@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Add Rust binaries to path
 export PATH=$PATH:~/.cargo/bin

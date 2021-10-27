@@ -26,3 +26,11 @@ bspwm
 # Code editor
 neovim
 
+# Easy file exploration & program running
+zoxide
+rofi
+
+# Programming languages
+python3
+rust # Installation using `curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh`
+
