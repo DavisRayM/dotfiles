@@ -131,6 +131,12 @@ XF86AudioMute
         amixer set Master toggle
 
 #
+# Microphone control
+#
+XF86AudioMicMute
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+#
 # Brightness control
 #
 XF86MonBrightness{Up,Down}
