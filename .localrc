@@ -1,0 +1,25 @@
+export AWS_IAM_MFA_DEVICE_ARN="arn:aws:iam::447036922786:mfa/dmuro"
+
+export PATH="/home/dave/.krew/bin:$PATH"
+export PATH="/home/dave/.kube/plugins/jordanwilson230:$PATH"
+export PATH="/home/dave/.local/bin/:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+
+export VIRTUALENVWRAPPER_SCRIPT=/home/dave/.local/bin/virtualenvwrapper.sh
+source <(kubectl completion zsh)
+source /home/dave/.local/bin/virtualenvwrapper_lazy.sh
+
+export VAULT_ADDR=https://vault.onalabs.org
+export VAULT_LOGIN_USER=dmuro
+export VAULT_BIN_PATH=/usr/bin/vault
+
+alias haven="ssh dmuro@ah-eu-west.onalabs.org"
+alias night="brightnessctl s 600"
+alias refresh="source ~/.localrc"
+alias vim="nvim"
+
+source /usr/share/nvm/init-nvm.sh
+
+source ~/ona-aws-mfa-renew
+source ~/ona-ssh-certificates
+eval $(keychain --eval --quiet ~/.ssh/id_ed25519_main ~/.ssh/ona-production ~/.ssh/ona-staging)

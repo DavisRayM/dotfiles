@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# Initiates the process of renewing AWS sessions for when you need to
+# use MFA authentication with the AWS CLI (or any tool that relies on the
+# AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_SESSION_TOKEN env vars).
+# The script assumes Python3 is installed.
+#
+# This script expects the following variables have been exported and
+# are avilable to it:
+#  1. AWS_IAM_MFA_DEVICE_ARN
+#
+# To use the script, add the following lines to your shell startup scripts
+# (e.g. ~/.bashrc):
+#
+#   export AWS_IAM_MFA_DEVICE_ARN=<your MFA device's ARN e.g. "arn:aws:iam::000000000000:mfa/test">
+#   source /path/to/script
+#
+# The script should fire whenever you open a terminal. You can also manually fire the script by running:
+#
+#   activate-aws-mfa
+#
+# To undo the environment changes made by the script in a terminal, run:
+#
+#   deactivate-aws-mfa
+#
+
+CURRENT_AWS_PROFILE=${AWS_PROFILE:="default"}
+MFA_VARS_FILE_PATH="${HOME}/.aws/mfa-${CURRENT_AWS_PROFILE}"
+SESSION_EXPIRY_GRACE_PERIOD_SEC=3600
+
+mfaSessionTokenNeedsRenewal() {
+  source "${MFA_VARS_FILE_PATH}"
+  local expiryEpoch=$(date -d "${AWS_SESSION_EXPIRY_TIME}" +%s)
+  local curTimeEpoch=$(date +%s)
+  expiryEpoch=${expiryEpoch:=$curTimeEpoch}
+  local timeDiff=$((expiryEpoch-curTimeEpoch))
+  if [[ "$timeDiff" -lt "$SESSION_EXPIRY_GRACE_PERIOD_SEC" ]]; then
+    echo "The last session for the '${CURRENT_AWS_PROFILE}' AWS profile will expire in ${timeDiff} seconds"
+    return 0
+  fi
+
+  return 1
+}
+
+renewMFASessionToken() {
+  deactivate-aws-mfa
+
+  if [[ -z ${AWS_IAM_MFA_DEVICE_ARN} ]] ; then
+    echo "AWS_IAM_MFA_DEVICE_ARN is not set. To enable AWS MFA session, add 'export AWS_IAM_MFA_DEVICE_ARN=<your MFA device's ARN>' in your .bashrc script. "
+    echo "You can access your MFA device's ARN from https://console.aws.amazon.com/iam/home#/security_credentials and navigating to Multi Factor Authentication section."
+    return 0
+  fi
+  rm -rf $MFA_VARS_FILE_PATH
+  # Use version 2 tokens that are supported by all regions
+  aws iam set-security-token-service-preferences --global-endpoint-token-version v2Token
+  echo "Enter the 2FA code for the '${CURRENT_AWS_PROFILE}' AWS profile:"
+  read generatedCode
+  local output=$(aws sts get-session-token --serial-number "${AWS_IAM_MFA_DEVICE_ARN}" --token-code "${generatedCode}")
+  if [[ -z "$output" ]] ; then
+    echo "Got nothing from AWS. Session could not be renewed."
+    return 1
+  fi
+
+  local accessKeyId=$(echo "$output" | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["Credentials"]["AccessKeyId"])')
+  local secretAccessKey=$(echo "$output" | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["Credentials"]["SecretAccessKey"])')
+  local sessionToken=$(echo "$output" | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["Credentials"]["SessionToken"])')
+  local expiration=$(echo "$output" | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["Credentials"]["Expiration"])')
+
+  cat <<EOF > "${MFA_VARS_FILE_PATH}"
+export AWS_ACCESS_KEY_ID="$accessKeyId"
+export AWS_SECRET_ACCESS_KEY="$secretAccessKey"
+export AWS_SESSION_TOKEN="$sessionToken"
+export AWS_SESSION_EXPIRY_TIME="$expiration"
+EOF
+}
+
+activate-aws-mfa() {
+  if [[ -t 1 ]] ; then
+    if [[ ! -e "${MFA_VARS_FILE_PATH}"  ]] || mfaSessionTokenNeedsRenewal ; then
+      renewMFASessionToken
+      if [[ ! -e "${MFA_VARS_FILE_PATH}"  ]] ; then
+        echo "Failed to retrieve AWS environment variables for '${CURRENT_AWS_PROFILE}' AWS profile in '${MFA_VARS_FILE_PATH}' "
+        return 0
+      fi
+    fi 
+    source "${MFA_VARS_FILE_PATH}"   
+  fi
+}
+
+deactivate-aws-mfa() {
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SECRET_ACCESS_KEY
+  unset AWS_SESSION_TOKEN
+  unset AWS_SESSION_EXPIRY_TIME
+}
+
+activate-aws-mfa

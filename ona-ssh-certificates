@@ -1,0 +1,75 @@
+#! /bin/bash
+
+ONA_SSH_KEYS_REGEX="^.+-(staging|preview|production)$"
+
+renew-ssh-cert() {
+  local key=$1
+  local logIn=$2
+
+  if [ "$logIn" = true ] ; then
+    $VAULT_BIN_PATH login -method=aws
+
+    if [ $? -ne 0 ]; then
+      return 1
+    fi
+  fi
+  $VAULT_BIN_PATH write -field=signed_key ssh/${key/\-/\/}/sign/$VAULT_LOGIN_USER public_key=@$HOME/.ssh/$key.pub > ~/.ssh/$key-cert.pub
+
+  return $?
+}
+
+cert-needs-renewal() {
+  local key=$1
+
+  if [ ! -f "$HOME/.ssh/$key-cert.pub" ] || [[ $(find "$HOME/.ssh/$key-cert.pub" -mtime +7 -print) ]]; then
+    return 0
+  fi
+
+  return 1
+}
+
+add-all-ssh-keys() {
+  local sshKeys=($(ls $HOME/.ssh | grep -E "$ONA_SSH_KEYS_REGEX"))
+  local logIntoVault=true
+
+  for curKey in "${sshKeys[@]}"
+  do
+    if cert-needs-renewal "$curKey" ; then
+      renew-ssh-cert "$curKey" "$logIntoVault"
+
+      if [ $? -ne 0 ]; then
+        return 1
+      fi
+
+      logIntoVault=false
+    fi
+
+  done
+
+  return 0
+}
+
+certs-need-renewal() {
+  local sshKeys=($(ls $HOME/.ssh | grep -E "$ONA_SSH_KEYS_REGEX"))
+
+  for curKey in "${sshKeys[@]}"
+  do
+    if cert-needs-renewal "$curKey" ; then
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+if [ -t 1 ] ; then
+  if [ ! -e "$HOME/.ssh/auth_sock" ] || certs-need-renewal ; then
+    echo "Creating a new SSH Agent"
+    eval `ssh-agent -s`
+    rm -f $HOME/.ssh/auth_sock
+    ln -sf $SSH_AUTH_SOCK $HOME/.ssh/auth_sock
+    add-all-ssh-keys
+  fi
+fi
+
+export SSH_AUTH_SOCK=$HOME/.ssh/auth_sock
