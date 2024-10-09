@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xe
+
 # Inspired by: https://github.com/SolDoesTech/hyprland/blob/main/set-hypr
 # This script attempts to setup a Hyprland environment on an Arch Linux Installation.
 # Installs:
