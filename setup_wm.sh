@@ -6,6 +6,7 @@ set -xe
 # This script attempts to setup a Hyprland environment on an Arch Linux Installation.
 # Installs:
 # - fd: Find alternative; Doomemacs requirement
+# - mako: Notification daemon for Wayland
 # - ripgrep: Search tool
 # - zoxide: Smarter cd
 # - ispell: Spelling checker
@@ -51,15 +52,16 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     ripgrep zoxide openssh ispell cmake nvm clang shellcheck \
     shfmt gcc fd uv python-pip python-black python-pyflakes \
     python-isort python-pipenv python-nose python-pytest \
-    python-setuptools
+    python-setuptools mako
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
 sleep 5
 
-echo -e "-> Copying configuration files for Hyprland & Waybar...\n"
-cp -R hypr ~/.config/
-cp -R waybar ~/.config/
+echo -e "-> Copying configuration files for Hyprland, Mako & Waybar...\n"
+cp --update=all -R hypr ~/.config/
+cp --update=all -R waybar ~/.config/
+cp --update=all -R mako ~/.config/
 chmod +x ~/.config/hypr/xdg-portal-hyprland
 sleep 5
 
