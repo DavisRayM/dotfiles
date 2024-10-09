@@ -61,7 +61,8 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     python-isort python-pipenv python-nose python-pytest \
     python-setuptools mako libnotify inetutils dig wget \
     thunar dracula-gtk-theme dracula-icons-git xfce4-settings \
-    lxappearance greetd greetd-regreet wlogout swaylock-effects
+    lxappearance greetd greetd-regreet wlogout swaylock-effects \
+    slurp grim
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service

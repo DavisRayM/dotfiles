@@ -75,6 +75,12 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Less annoying C++ idents
+(defun c++-mode-hook ()
+  (setq c-basic-offset 4)
+  (c-set-offset 'substatement-open 0))
+(add-hook 'c++-mode-hook 'c++-mode-hook)
+
 ;; Disable quit confirmation prompt
 (setq! confirm-kill-emacs nil)
 
