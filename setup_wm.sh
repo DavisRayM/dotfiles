@@ -6,6 +6,8 @@ set -xe
 # This script attempts to setup a Hyprland environment on an Arch Linux Installation.
 # Installs:
 # - fd: Find alternative; Doomemacs requirement
+# - libnotify: Notification library
+# - Network utilities (inetutils, bind, wget)
 # - mako: Notification daemon for Wayland
 # - ripgrep: Search tool
 # - zoxide: Smarter cd
@@ -52,7 +54,7 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     ripgrep zoxide openssh ispell cmake nvm clang shellcheck \
     shfmt gcc fd uv python-pip python-black python-pyflakes \
     python-isort python-pipenv python-nose python-pytest \
-    python-setuptools mako
+    python-setuptools mako libnotify inetutils dig wget
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
