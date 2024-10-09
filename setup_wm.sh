@@ -19,6 +19,7 @@ set -xe
 # - swagbg: Wallpaper tool for Wayland compositors; https://github.com/swaywm/swaybg
 # - emacs-nativecomp: EVIL Mode ❤
 # - wofi: Application launcher
+# - thunar: File manager
 # - ttf-jetbrains-mono-nerd: Font
 # - noto-fonts-emoji: Emoji font
 # - polkit-gnome: authentication utility
@@ -32,6 +33,7 @@ set -xe
 # - tldr: Man pages are too long!!; https://github.com/tldr-pages/tldr
 # - Coding tools: clang, shellcheck, shfmt, gcc, nvm, uv, pip, python-black,
 #   python-pyflakes python-isort python-pipenv python-nose python-pytest python-setuptools
+# - Theming (dracula theme, icons & lxappearance)
 # - [Optional] Asus ROG Utilities
 #   (asusctl, supergfxctl, rog-control-center, power-profiles-daemon); https://asus-linux.org/guides/arch-guide/
 
@@ -54,7 +56,9 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     ripgrep zoxide openssh ispell cmake nvm clang shellcheck \
     shfmt gcc fd uv python-pip python-black python-pyflakes \
     python-isort python-pipenv python-nose python-pytest \
-    python-setuptools mako libnotify inetutils dig wget
+    python-setuptools mako libnotify inetutils dig wget \
+    thunar dracula-gtk-theme dracula-icons-git xfce4-settings \
+    lxappearance
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
