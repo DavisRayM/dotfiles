@@ -34,6 +34,9 @@ set -xe
 # - Coding tools: clang, shellcheck, shfmt, gcc, nvm, uv, pip, python-black,
 #   python-pyflakes python-isort python-pipenv python-nose python-pytest python-setuptools
 # - Theming (dracula theme, icons & lxappearance)
+# - greetd & regreet: Login manager; https://github.com/rharish101/ReGreet
+# - wlogout: Logout menu
+# - swaylock-effects: Screen locking utility
 # - [Optional] Asus ROG Utilities
 #   (asusctl, supergfxctl, rog-control-center, power-profiles-daemon); https://asus-linux.org/guides/arch-guide/
 
@@ -58,7 +61,7 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     python-isort python-pipenv python-nose python-pytest \
     python-setuptools mako libnotify inetutils dig wget \
     thunar dracula-gtk-theme dracula-icons-git xfce4-settings \
-    lxappearance
+    lxappearance greetd greetd-regreet wlogout swaylock-effects
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
@@ -68,11 +71,22 @@ echo -e "-> Copying configuration files for Hyprland, Mako & Waybar...\n"
 cp --update=all -R hypr ~/.config/
 cp --update=all -R waybar ~/.config/
 cp --update=all -R mako ~/.config/
+cp --update=all -R wlogout ~/.config/
+cp --update=all -R swaylock ~/.config/
 chmod +x ~/.config/hypr/xdg-portal-hyprland
+sleep 5
+
+echo -e "-> Configuring ReGreet as greeter...\n"
+sudo systemctl enable greetd.service
+sudo sed -i 's/agreety --cmd .*/Hyprland --config /etc/greetd/hyprland.conf"/' /etc/greetd/config.toml
+echo "exec-once = regreet --config /etc/greetd/regreet.toml; hyprctl dispatch exit" | sudo tee -a /etc/greetd/hyprland.conf
+sudo cp ./regreet/grant-ritchie-x1w_Q78xNEY-unsplash.jpg /opt/
+sudo cp --update=all ./regreet/regreet.toml /etc/greetd/
 sleep 5
 
 echo -e "-> Setting zsh as default shell...\n"
 chsh --shell /usr/bin/zsh
+sleep 5
 
 echo -e "-> Installing Oh-My-Zsh...\n"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -123,7 +137,7 @@ sleep 10
 
 read -n1 -rep 'Would you like to start Hyprland ? (Y|N)' START
 if [[ $START == "Y" || $START == "y" ]]; then
-    exec Hyprland
+    systemctl start greetd.service
 else
     exit
 fi
