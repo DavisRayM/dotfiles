@@ -75,6 +75,7 @@ cp --update=all -R mako ~/.config/
 cp --update=all -R wlogout ~/.config/
 cp --update=all -R swaylock ~/.config/
 chmod +x ~/.config/hypr/xdg-portal-hyprland
+chmod +x ~/.config/hypr/battery_notification.sh
 sleep 5
 
 echo -e "-> Configuring ReGreet as greeter...\n"
