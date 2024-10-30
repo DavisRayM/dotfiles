@@ -1,4 +1,4 @@
-export PATH=$HOME/.cargo/env:$HOME/.config/emacs/bin:$PATH
+export PATH=$HOME/.cargo/env:$HOME/.config/emacs/bin:$HOME/.dotnet/tools:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

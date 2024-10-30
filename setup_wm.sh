@@ -62,7 +62,7 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     python-setuptools mako libnotify inetutils dig wget \
     thunar dracula-gtk-theme dracula-icons-git xfce4-settings \
     lxappearance greetd greetd-regreet wlogout swaylock-effects \
-    slurp grim
+    slurp grim dotnet-sdk
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
