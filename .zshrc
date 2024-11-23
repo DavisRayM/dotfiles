@@ -34,7 +34,7 @@ plugins=(git history history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
+alias cudaenv="source /etc/profile.d/cuda.sh"
 export EDITOR=emacs
 export GPG_TTY=$(tty)
 
