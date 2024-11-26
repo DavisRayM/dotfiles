@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Davis Muro"
@@ -21,8 +20,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12 :weight 'bold)
-      doom-variable-pitch-font (font-spec :family "JetBrains Mono Nerd Font" :size 13))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 13 :weight 'bold)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'bold)
+      doom-variable-pitch-font (font-spec :family "SF Pro Text"))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -88,3 +88,24 @@
 (after! projectile
   (map! :leader :desc "Update project index" :n "p l" #'projectile-discover-projects-in-search-path)
   (setq! projectile-project-search-path '("~/workspace" "~/workspace/school")))
+
+;; Always show workspaces
+(after! persp-mode
+  (defun display-workspaces-in-minibuffer ()
+    (with-current-buffer " *Minibuf-0*"
+      (erase-buffer)
+      (insert (+workspace--tabline))))
+  (run-with-idle-timer 1 t #'display-workspaces-in-minibuffer)
+  (+workspace/display))
+
+;; Zen mode customization
+(setq! +zen-text-scale 1.2)
+
+;; Org mode customization
+(add-hook! 'org-mode-hook #'+org-pretty-mode #'mixed-pitch-mode)
+
+;; Modeline customization
+(after! doom-modeline
+  (remove-hook 'doom-modeline-mode-hook #'size-indication-mode)
+  (remove-hook 'doom-modeline-mode-hook #'column-number-mode)
+  (line-number-mode -1))

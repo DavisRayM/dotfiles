@@ -37,6 +37,7 @@ set -xe
 # - greetd & regreet: Login manager; https://github.com/rharish101/ReGreet
 # - wlogout: Logout menu
 # - swaylock-effects: Screen locking utility
+# - apple-fonts: Some neat fonts for writing and stuff
 # - [Optional] Nvidia drivers, utilities & GPU toolkit
 # - [Optional] Asus ROG Utilities
 #   (asusctl, supergfxctl, rog-control-center, power-profiles-daemon); https://asus-linux.org/guides/arch-guide/
@@ -63,7 +64,7 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     python-setuptools mako libnotify inetutils dig wget \
     thunar dracula-gtk-theme dracula-icons-git xfce4-settings \
     lxappearance greetd greetd-regreet wlogout swaylock-effects \
-    slurp grim dotnet-sdk
+    slurp grim dotnet-sdk apple-fonts
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
