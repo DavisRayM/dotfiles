@@ -37,6 +37,7 @@ set -xe
 # - greetd & regreet: Login manager; https://github.com/rharish101/ReGreet
 # - wlogout: Logout menu
 # - swaylock-effects: Screen locking utility
+# - Nvidia Driver Utilities & CUDA
 # - [Optional] Asus ROG Utilities
 #   (asusctl, supergfxctl, rog-control-center, power-profiles-daemon); https://asus-linux.org/guides/arch-guide/
 
