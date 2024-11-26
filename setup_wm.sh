@@ -37,7 +37,7 @@ set -xe
 # - greetd & regreet: Login manager; https://github.com/rharish101/ReGreet
 # - wlogout: Logout menu
 # - swaylock-effects: Screen locking utility
-# - Nvidia Driver Utilities & CUDA
+# - [Optional] Nvidia drivers, utilities & GPU toolkit
 # - [Optional] Asus ROG Utilities
 #   (asusctl, supergfxctl, rog-control-center, power-profiles-daemon); https://asus-linux.org/guides/arch-guide/
 
@@ -63,7 +63,7 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     python-setuptools mako libnotify inetutils dig wget \
     thunar dracula-gtk-theme dracula-icons-git xfce4-settings \
     lxappearance greetd greetd-regreet wlogout swaylock-effects \
-    slurp grim dotnet-sdk nvidia nvidia-utils opencl-nvidia cuda
+    slurp grim dotnet-sdk
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
@@ -110,7 +110,13 @@ source /usr/share/nvm/init-nvm.sh
 nvm install stable
 sleep 5
 
-read -n1 -rep 'Would you like to install Asus ROG software support? (y,n)' ROG
+read -n1 -rep 'Would you like to install Nvidia drivers & CUDA toolkit? (y,n)' NVIDIA
+if [[ $NVIDIA == "Y" || $NVIDIA == "y" ]]; then
+    echo -e "-> Installing Nvidia pacakges...\n"
+    yay -S --noconfirm nvidia nvidia-utils opencl-nvidia cuda
+fi
+
+read -n1 -rep 'Would you like to install Asus ROG support software? (y,n)' ROG
 if [[ $ROG == "Y" || $ROG == "y" ]]; then
     echo -e "-> Adding g14 repo sign keys...\n"
     sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
