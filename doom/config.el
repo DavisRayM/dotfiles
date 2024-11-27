@@ -115,4 +115,5 @@
 ;; Deft customization
 (setq! deft-extensions '("txt" "org")
        deft-directory "~/Notes"
-       deft-recursive t)
+       deft-recursive t
+       deft-use-filename-as-title t)
