@@ -82,7 +82,7 @@ sleep 5
 
 echo -e "-> Configuring ReGreet as greeter...\n"
 sudo systemctl enable greetd.service
-sudo sed -i 's/agreety --cmd .*/Hyprland --config /etc/greetd/hyprland.conf"/' /etc/greetd/config.toml
+sudo sed -i 's/agreety --cmd .*/Hyprland --config \/etc\/greetd\/hyprland.conf"/' /etc/greetd/config.toml
 echo "monitor = , preferred, auto, 1\nexec-once = regreet --config /etc/greetd/regreet.toml; hyprctl dispatch exit" | sudo tee /etc/greetd/hyprland.conf
 sudo cp ./regreet/grant-ritchie-x1w_Q78xNEY-unsplash.jpg /opt/
 sudo cp --update=all ./regreet/regreet.toml /etc/greetd/
