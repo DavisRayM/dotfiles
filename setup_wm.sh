@@ -99,6 +99,8 @@ sleep 5
 echo -e "-> Installing doomemacs...\n"
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 ~/.config/emacs/bin/doom install
+~/.config/emacs/bin/doom sync
+systemctl --user enable --now emacs.service
 sleep 5
 
 echo -e "-> Copying configuration files for zsh and emacs...\n"

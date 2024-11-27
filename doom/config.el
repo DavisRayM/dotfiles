@@ -20,8 +20,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 13 :weight 'bold)
-      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'bold)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :weight 'bold)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 18 :weight 'bold)
       doom-variable-pitch-font (font-spec :family "SF Pro Text"))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -100,6 +100,8 @@
 
 ;; Zen mode customization
 (setq! +zen-text-scale 1.2)
+(after! mixed-pitch-mode
+  (setq mixed-pitch-set-height t))
 
 ;; Org mode customization
 (add-hook! 'org-mode-hook #'+org-pretty-mode #'mixed-pitch-mode)
