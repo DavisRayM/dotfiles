@@ -111,3 +111,8 @@
   (remove-hook 'doom-modeline-mode-hook #'size-indication-mode)
   (remove-hook 'doom-modeline-mode-hook #'column-number-mode)
   (line-number-mode -1))
+
+;; Deft customization
+(setq! deft-extensions '("txt" "org")
+       deft-directory "~/Notes"
+       deft-recursive t)
