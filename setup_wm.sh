@@ -39,6 +39,7 @@ shopt -s xpg_echo
 # - wlogout: Logout menu
 # - swaylock-effects: Screen locking utility
 # - apple-fonts: Some neat fonts for writing and stuff
+# - texlive: Latex
 # - [Optional] Nvidia drivers, utilities & GPU toolkit
 # - [Optional] Asus ROG Utilities
 #   (asusctl, supergfxctl, rog-control-center, power-profiles-daemon); https://asus-linux.org/guides/arch-guide/
@@ -65,7 +66,9 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     python-setuptools mako libnotify inetutils dig wget \
     thunar dracula-gtk-theme dracula-icons-git xfce4-settings \
     lxappearance greetd greetd-regreet wlogout swaylock-effects \
-    slurp grim dotnet-sdk apple-fonts
+    slurp grim dotnet-sdk apple-fonts hyprland-qtutils \
+    texlive-basic texlive-latex texlive-latexrecommended \
+    texlive-mathscience texlive-latexextra
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
