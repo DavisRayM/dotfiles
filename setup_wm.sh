@@ -72,7 +72,7 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     lxappearance greetd greetd-regreet wlogout swaylock-effects \
     slurp grim dotnet-sdk apple-fonts hyprland-qtutils \
     texlive-basic texlive-latex texlive-latexrecommended \
-    texlive-mathscience texlive-latexextra udiskie
+    texlive-mathscience texlive-latexextra udiskie libappindicator-gtk3
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
