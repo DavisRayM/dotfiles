@@ -33,7 +33,7 @@
 ;; `load-theme' function.
 ;;
 ;; My current favorites: doom-homage-black
-(setq doom-theme 'doom-monokai-spectrum)
+(setq doom-theme 'doom-nord)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -88,15 +88,6 @@
 (after! projectile
   (map! :leader :desc "Update project index" :n "p l" #'projectile-discover-projects-in-search-path)
   (setq! projectile-project-search-path '("~/workspace" "~/workspace/school")))
-
-;; Always show workspaces
-(after! persp-mode
-  (defun display-workspaces-in-minibuffer ()
-    (with-current-buffer " *Minibuf-0*"
-      (erase-buffer)
-      (insert (+workspace--tabline))))
-  (run-with-idle-timer 1 t #'display-workspaces-in-minibuffer)
-  (+workspace/display))
 
 ;; Zen mode customization
 (setq! +zen-text-scale 1.2)

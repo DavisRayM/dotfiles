@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -xe
+set -e
 shopt -s xpg_echo
 
 # Inspired by: https://github.com/SolDoesTech/hyprland/blob/main/set-hypr
@@ -45,14 +45,18 @@ shopt -s xpg_echo
 #   (asusctl, supergfxctl, rog-control-center, power-profiles-daemon); https://asus-linux.org/guides/arch-guide/
 
 YAY=/sbin/yay
+mkdir -p ~/workspace/thirdparty
 
-if [ -f "$YAY" ]; then
-    echo -e "-> Updating local pacman database...\n"
-    yay -Syu
-else
-    echo -e "yay has not been installed!\n"
-    exit
-fi
+echo -e "-> Installing yay"
+sudo pacman -Sy
+sudo pacman -S --needed --noconfirm git base-devel
+git clone https://aur.archlinux.org/yay.git ~/workspace/thirdparty/yay
+cd ~/workspace/thirdparty/yay
+makepkg -si
+cd -
+
+echo -e "-> Updating local pacman database...\n"
+yay -Syu
 
 echo -e "-> Installing required packages; See script for list of installed packages...\n"
 sleep 5
@@ -68,7 +72,7 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     lxappearance greetd greetd-regreet wlogout swaylock-effects \
     slurp grim dotnet-sdk apple-fonts hyprland-qtutils \
     texlive-basic texlive-latex texlive-latexrecommended \
-    texlive-mathscience texlive-latexextra
+    texlive-mathscience texlive-latexextra udiskie
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
@@ -80,6 +84,7 @@ cp --update=all -R waybar ~/.config/
 cp --update=all -R mako ~/.config/
 cp --update=all -R wlogout ~/.config/
 cp --update=all -R swaylock ~/.config/
+cp --update=all -R udiskie ~/.config/
 chmod +x ~/.config/hypr/xdg-portal-hyprland
 chmod +x ~/.config/hypr/battery_notification.sh
 sleep 5
@@ -97,31 +102,25 @@ chsh --shell /usr/bin/zsh
 sleep 5
 
 echo -e "-> Installing Oh-My-Zsh...\n"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 sleep 5
 
 echo -e "-> Installing doomemacs...\n"
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 ~/.config/emacs/bin/doom install
+cp --update=all -R doom ~/.config/
 ~/.config/emacs/bin/doom sync
 systemctl --user enable --now emacs.service
 sleep 5
 
-echo -e "-> Copying configuration files for zsh and emacs...\n"
+echo -e "-> Copying configuration files for zsh...\n"
 cp .zshrc ~/
-cp --update=all -R doom ~/.config/
 sleep 5
 
 echo -e "-> Installing latest stable node version...\n"
 source /usr/share/nvm/init-nvm.sh
 nvm install stable
 sleep 5
-
-read -n1 -rep 'Would you like to install Nvidia drivers & CUDA toolkit? (y,n)' NVIDIA
-if [[ $NVIDIA == "Y" || $NVIDIA == "y" ]]; then
-    echo -e "-> Installing Nvidia pacakges...\n"
-    yay -S --noconfirm nvidia nvidia-utils opencl-nvidia cuda
-fi
 
 read -n1 -rep 'Would you like to install Asus ROG support software? (y,n)' ROG
 if [[ $ROG == "Y" || $ROG == "y" ]]; then
@@ -148,7 +147,13 @@ if [[ $ROG == "Y" || $ROG == "y" ]]; then
     sleep 5
 fi
 
-echo -e "\n\n-> Setup complete!! Remember to run $(doom sync)"
+read -n1 -rep 'Would you like to install Nvidia drivers & CUDA toolkit? (y,n)' NVIDIA
+if [[ $NVIDIA == "Y" || $NVIDIA == "y" ]]; then
+    echo -e "-> Installing Nvidia pacakges...\n"
+    yay -S --noconfirm nvidia nvidia-utils opencl-nvidia cuda
+fi
+
+echo -e "\n\n-> Setup complete!!"
 sleep 10
 
 read -n1 -rep 'Would you like to start Hyprland ? (Y|N)' START
