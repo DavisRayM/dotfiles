@@ -76,7 +76,7 @@ yay -S --noconfirm hyprland kitty waybar \
     slurp grim dotnet-sdk apple-fonts hyprland-qtutils \
     texlive-basic texlive-latex texlive-latexrecommended \
     texlive-mathscience texlive-latexextra udiskie libappindicator-gtk3 \
-    swaybg keychain nordic hyprpaper
+    swaybg keychain nordic hyprpaper brightnessctl
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service

@@ -116,3 +116,9 @@
 (load! "thirdparty/keychain-environment.el")
 (keychain-refresh-environment)
 (map! :leader :desc "Refresh keychain variables" :n "@ k" #'keychain-refresh-environment)
+
+;; Limit lookup configurations
++lookup-provider-url-alist
+(setq! +lookup-provider-url-alist '( ("Google" +lookup--online-backend-google)
+                                     ("Rust Docs" "https://doc.rust-lang.org/std/?search=%s")
+                                     ("MDN" "https://developer.mozilla.org/en-US/search?q=%s")))
