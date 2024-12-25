@@ -111,6 +111,7 @@ sleep 5
 echo -e "-> Configuring git...\n"
 git config --global user.email "davis.ray.muro@gmail.com"
 git config --global user.name "Davis Muro"
+git config --global init.defaultBranch main
 
 echo -e "-> Installing doomemacs...\n"
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
