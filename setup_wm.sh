@@ -64,7 +64,7 @@ echo -e "-> Installing required packages; See script for list of installed packa
 sleep 5
 yay -S --noconfirm hyprland kitty waybar swagbg \
     emacs-nativecomp wofi ttf-jetbrains-mono-nerd \
-    noto-fonts-emoji pamixer bluez blues-utils \
+    noto-fonts-emoji pamixer bluez bluez-utils \
     xdg-desktop-portal-hyprland zsh google-chrome man tldr \
     ripgrep zoxide openssh ispell cmake nvm clang shellcheck \
     shfmt gcc fd uv python-pip python-black python-pyflakes \
