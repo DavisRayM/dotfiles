@@ -1,5 +1,5 @@
 [background]
-path = "/opt/grant-ritchie-x1w_Q78xNEY-unsplash.jpg"
+path = "/opt/ign_mountains.png"
 fit = "Fill"
 
 # The entries defined in this section will be passed to the session as environment variables when it is started
@@ -9,16 +9,16 @@ fit = "Fill"
 application_prefer_dark_theme = true
 
 # Cursor theme name
-cursor_theme_name = "Adwaita"
+cursor_theme_name = "elementary"
 
 # Font name and size
 font_name = "JetBrainsMono Nerd Font Mono 11"
 
 # Icon theme name
-icon_theme_name = "Dracula"
+icon_theme_name = "Breeze Dark"
 
 # GTK theme name
-theme_name = "Dracula"
+theme_name = "Nordic"
 
 [commands]
 # The command used to reboot the system

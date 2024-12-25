@@ -6,30 +6,30 @@
     "mode": "dock",
     "passthrough": true,
     "modules-left": [
-	"clock",
+        "clock",
         "hyprland/workspaces"
     ],
     "modules-center": [],
     "modules-right": [
-	"network",
-	"bluetooth",
-	"temperature",
-	"custom/power_profile",
-	"battery",
-	"backlight",
-	"pulseaudio",
-	"pulseaudio#microphone",
-	"tray"
+        "network",
+        "bluetooth",
+        "temperature",
+        "custom/power_profile",
+        "battery",
+        "backlight",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "tray"
     ],
     "custom/power_profile": {
         "exec": "asusctl profile -p | tail -n 1 | sed s:'Active profile is'::",
         "interval": 30,
         "format": "󰈐{}", 
         "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
-        "signal": 8	
+        "signal": 8
     },
     "hyprland/window": {
-	"format": "{}"
+        "format": "{}"
     },
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -46,7 +46,7 @@
             "8": [],
             "9": [],
             "10": []
-        }	
+        }
     },
     "temperature": {
         "thermal-zone": 0,
@@ -91,15 +91,14 @@
         "scroll-step": 5
     },
     "bluetooth": {
-	    "format": " {status}",
-	    "format-disabled": "", // an empty format will hide the module
-	    "format-connected": " {num_connections}",
-	    "tooltip-format": "{device_alias}",
-	    "tooltip-format-connected": " {device_enumerate}",
-	    "tooltip-format-enumerate-connected": "{device_alias}"
+        "format": " {status}",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": "🔗 {num_connections}",
+        "tooltip-format": "{device_alias}",
+        "tooltip-format-connected": " {device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}"
     },
     "backlight": {
-        // "device": "acpi_video1",
         "format": "{percent}% {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
@@ -115,21 +114,9 @@
         "format-alt": "{time} {icon}",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-      "tooltip": true,
-      "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
-      }
-    },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "{ipaddr}/{cidr}",
+        "format-ethernet": "E: {ipaddr}/{cidr}",
         "tooltip-format": "{essid} - {ifname} via {gwaddr}",
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",

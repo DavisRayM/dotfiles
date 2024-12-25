@@ -108,3 +108,11 @@
        deft-directory "~/Notes"
        deft-recursive t
        deft-use-filename-as-title t)
+
+;; Vterm Configuration
+(setq! vterm-shell "/bin/zsh")
+
+;; Keychain
+(load! "thirdparty/keychain-environment.el")
+(keychain-refresh-environment)
+(map! :leader :desc "Refresh keychain variables" :n "@ k" #'keychain-refresh-environment)

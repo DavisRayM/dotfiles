@@ -5,6 +5,7 @@ shopt -s xpg_echo
 
 # Inspired by: https://github.com/SolDoesTech/hyprland/blob/main/set-hypr
 # This script attempts to setup a Hyprland environment on an Arch Linux Installation.
+# Wallpapers from: https://github.com/linuxdotexe/nordic-wallpapers & Unsplash
 # Installs:
 # - fd: Find alternative; Doomemacs requirement
 # - libnotify: Notification library
@@ -16,9 +17,9 @@ shopt -s xpg_echo
 # - cmake: Build tool
 # - hyprland: Tiling wayland compositor; https://github.com/hyprwm/Hyprland
 # - kitty: GPU based terminal emulator; https://github.com/kovidgoyal/kitty
-# - waybar: Wayland bar for compositors; https://github.com/Alexays/Waybar
-# - swagbg: Wallpaper tool for Wayland compositors; https://github.com/swaywm/swaybg
-# - emacs-nativecomp: EVIL Mode ❤
+# - waybar: https://github.com/Alexays/Waybar
+# - hyprpaper: Wallpaper utility
+# - emacs-nativecomp
 # - wofi: Application launcher
 # - thunar: File manager
 # - ttf-jetbrains-mono-nerd: Font
@@ -62,7 +63,7 @@ yay -Syu
 
 echo -e "-> Installing required packages; See script for list of installed packages...\n"
 sleep 5
-yay -S --noconfirm hyprland kitty waybar swagbg \
+yay -S --noconfirm hyprland kitty waybar \
     emacs-nativecomp wofi ttf-jetbrains-mono-nerd \
     noto-fonts-emoji pamixer bluez bluez-utils \
     xdg-desktop-portal-hyprland zsh google-chrome man tldr \
@@ -75,19 +76,20 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     slurp grim dotnet-sdk apple-fonts hyprland-qtutils \
     texlive-basic texlive-latex texlive-latexrecommended \
     texlive-mathscience texlive-latexextra udiskie libappindicator-gtk3 \
-    swaybg keychain
+    swaybg keychain nordic hyprpaper
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
 sleep 5
 
-echo -e "-> Copying configuration files for Hyprland, Mako & Waybar...\n"
+echo -e "-> Copying configuration files for Hyprland, Mako, Eww, e.t.c\n"
 cp --update=all -R hypr ~/.config/
-cp --update=all -R waybar ~/.config/
 cp --update=all -R mako ~/.config/
 cp --update=all -R wlogout ~/.config/
 cp --update=all -R swaylock ~/.config/
 cp --update=all -R udiskie ~/.config/
+cp --update=all -R kitty ~/.config/
+cp --update=all -R waybar ~/.config/
 chmod +x ~/.config/hypr/xdg-portal-hyprland
 chmod +x ~/.config/hypr/battery_notification.sh
 sleep 5
@@ -96,7 +98,7 @@ echo -e "-> Configuring ReGreet as greeter...\n"
 sudo systemctl enable greetd.service
 sudo sed -i 's/agreety --cmd .*/Hyprland --config \/etc\/greetd\/hyprland.conf"/' /etc/greetd/config.toml
 echo "monitor = , preferred, auto, 1\nexec-once = regreet --config /etc/greetd/regreet.toml; hyprctl dispatch exit" | sudo tee /etc/greetd/hyprland.conf
-sudo cp ./regreet/grant-ritchie-x1w_Q78xNEY-unsplash.jpg /opt/
+sudo cp ./regreet/ign_mountains.png /opt/
 sudo cp --update=all ./regreet/regreet.toml /etc/greetd/
 sleep 5
 
