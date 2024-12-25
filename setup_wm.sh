@@ -45,15 +45,17 @@ shopt -s xpg_echo
 #   (asusctl, supergfxctl, rog-control-center, power-profiles-daemon); https://asus-linux.org/guides/arch-guide/
 
 YAY=/sbin/yay
-mkdir -p ~/workspace/thirdparty
 
-echo -e "-> Installing yay"
-sudo pacman -Sy
-sudo pacman -S --needed --noconfirm git base-devel
-git clone https://aur.archlinux.org/yay.git ~/workspace/thirdparty/yay
-cd ~/workspace/thirdparty/yay
-makepkg -si
-cd -
+if [ ! -f "$YAY" ]; then
+    mkdir -p ~/workspace/thirdparty
+    echo -e "-> Installing yay"
+    sudo pacman -Sy
+    sudo pacman -S --needed --noconfirm git base-devel
+    git clone https://aur.archlinux.org/yay.git ~/workspace/thirdparty/yay
+    cd ~/workspace/thirdparty/yay
+    makepkg -si
+    cd -
+fi
 
 echo -e "-> Updating local pacman database...\n"
 yay -Syu
@@ -72,7 +74,8 @@ yay -S --noconfirm hyprland kitty waybar swagbg \
     lxappearance greetd greetd-regreet wlogout swaylock-effects \
     slurp grim dotnet-sdk apple-fonts hyprland-qtutils \
     texlive-basic texlive-latex texlive-latexrecommended \
-    texlive-mathscience texlive-latexextra udiskie libappindicator-gtk3
+    texlive-mathscience texlive-latexextra udiskie libappindicator-gtk3 \
+    swaybg keychain
 
 echo -e "-> Starting bluetooth service...\n"
 sudo systemctl enable --now bluetooth.service
@@ -162,7 +165,7 @@ sleep 10
 
 read -n1 -rep 'Would you like to start Hyprland ? (Y|N)' START
 if [[ $START == "Y" || $START == "y" ]]; then
-    systemctl start greetd.service
+    sudo systemctl start greetd.service
 else
     exit
 fi

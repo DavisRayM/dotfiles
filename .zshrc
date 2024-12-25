@@ -41,3 +41,5 @@ export GPG_TTY=$(tty)
 eval "$(zoxide init zsh)"
 
 source /usr/share/nvm/init-nvm.sh
+
+eval "$(keychain --eval --quiet --agents ssh,gpg ~/.ssh/git)"
