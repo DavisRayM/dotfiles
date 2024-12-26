@@ -87,7 +87,7 @@
 
 (after! projectile
   (map! :leader :desc "Update project index" :n "p l" #'projectile-discover-projects-in-search-path)
-  (setq! projectile-project-search-path '("~/workspace" "~/workspace/school")))
+  (setq! projectile-project-search-path '("~/workspace")))
 
 ;; Zen mode customization
 (setq! +zen-text-scale 1.2)

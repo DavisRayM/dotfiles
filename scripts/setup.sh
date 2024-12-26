@@ -51,6 +51,7 @@ install_required() {
     CreateDir "$HOME/workspace/thirdparty"
     CreateDir "$HOME/Notes"
     CreateDir "$HOME/Books"
+    CreateDir "$HOME/Pictures"
 
     if [[ ! -x $YAY ]]; then
         echo "=> $(ColorBlue 'Installing Yay')..."
