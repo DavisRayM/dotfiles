@@ -67,7 +67,7 @@ InstallPackages() {
 
 EnableStartService() {
     echo "=> $(ColorYellow 'Starting & enabling service(s)'): $*"
-    sudo systemctl enable --now "$@"
+    sudo systemctl enable "$@"
 }
 
 UpdateCopy() {

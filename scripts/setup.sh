@@ -57,9 +57,9 @@ install_required() {
         echo "=> $(ColorBlue 'Installing Yay')..."
         UpdatePacmanDB
         InstallPackages git base-devel
-        git clone https://aur.archlinux.org/yay.git ~/workspace/thirdparty/yay >/dev/null
+        git clone https://aur.archlinux.org/yay.git ~/workspace/thirdparty/yay >/dev/null 2>&1
         cd ~/workspace/thirdparty/yay || return 1
-        makepkg -si --noconfirm >/dev/null
+        makepkg -si --noconfirm >/dev/null 2>&1
         cd - || return 1
     fi
 }
@@ -68,8 +68,9 @@ install_rog() {
     packages=(
         "asusctl" "power-profiles-daemon" "supergfxctl" "rog-control-center"
     )
-    pacman-conf --repo-list | grep -q 'g14'
-    if [[ $? -ne 0 ]]; then
+    if pacman-conf --repo-list | grep -q 'g14'; then
+        echo "=> $(ColorGreen 'g14 repository already configured')."
+    else
         echo "=> $(ColorYellow 'Adding g14 repository')..."
         sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
         sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
@@ -87,7 +88,7 @@ install_hypr() {
     packages=(
         "brightnessctl" "greetd" "greetd-regreet" "grim" "hyprland"
         "hyprland-qtutils" "hyprpaper" "libnotify" "lxappearance" "mako"
-        "nordic" "slurp" "swaylock-effects" "waybar" "wlogout"
+        "nordic-theme" "slurp" "swaylock-effects" "waybar" "wlogout"
         "xdg-desktop-portal-hyprland" "xfce4-settings"
     )
 
@@ -128,7 +129,7 @@ install_base() {
     if [[ ! -x "$HOME/.config/emacs/bin/doom" ]]; then
         echo "=> $(ColorBlue 'Installing doomemacs')..."
         git clone --depth 1 https://github.com/doomemacs/doomemacs.git ~/.config/emacs >/dev/null 2>&1
-        ~/.config/emacs/bin/doom install >/dev/null
+        ~/.config/emacs/bin/doom install
         ~/.config/emacs/bin/doom sync >/dev/null
     fi
 
@@ -176,7 +177,7 @@ install_base() {
 
     EnableStartService bluetooth.service
     echo "=> $(ColorYellow 'Starting & enabling service'): emacs.service"
-    systemctl --user enable --now emacs.service
+    systemctl --user enable emacs.service
 }
 
 main() {
