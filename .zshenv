@@ -15,3 +15,5 @@ export PATH=$PATH:$HOME/.cargo/env
 export PATH=$PATH:$HOME/.config/emacs/bin
 # .NET
 export PATH=$PATH:$HOME/.dotnet/tools
+# User-specific binaries
+export PATH=$PATH:$HOME/.local/bin
