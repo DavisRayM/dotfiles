@@ -121,4 +121,5 @@
 +lookup-provider-url-alist
 (setq! +lookup-provider-url-alist '( ("Google" +lookup--online-backend-google)
                                      ("Rust Docs" "https://doc.rust-lang.org/std/?search=%s")
-                                     ("MDN" "https://developer.mozilla.org/en-US/search?q=%s")))
+                                     ("MDN" "https://developer.mozilla.org/en-US/search?q=%s")
+                                     ("Crate Docs" "https://docs.rs/releases/search?query=%s")))
