@@ -164,6 +164,13 @@ install_base() {
         echo "=> $(ColorBlue 'Installing prezto')..."
         git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto" >/dev/null 2>&1
     fi
+    echo "=> $(ColorBlue 'Configuring Zsh')..."
+    UpdateCopy "${PROGRAM_DIR}/../.zshrc" ~/
+    UpdateCopy "${PROGRAM_DIR}/../.zlogin" ~/
+    UpdateCopy "${PROGRAM_DIR}/../.zlogout" ~/
+    UpdateCopy "${PROGRAM_DIR}/../.zpreztorc" ~/
+    UpdateCopy "${PROGRAM_DIR}/../.zprofile" ~/
+    UpdateCopy "${PROGRAM_DIR}/../.zshenv" ~/
 
     EnableStartService bluetooth.service
     echo "=> $(ColorYellow 'Starting & enabling service'): emacs.service"

@@ -23,6 +23,11 @@ CONFIGS=(
 # Files/Folders that reside in "$HOME".
 DOTFILES=(
     ".zshrc"
+    ".zlogin"
+    ".zlogout"
+    ".zpreztorc"
+    ".zprofile"
+    ".zshenv"
 )
 
 source "${PROGRAM_DIR}/helpers.sh"
