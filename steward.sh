@@ -28,6 +28,7 @@ DOTFILES=(
     ".zpreztorc"
     ".zprofile"
     ".zshenv"
+    ".p10k.zsh"
 )
 
 source "${PROGRAM_DIR}/helpers.sh"

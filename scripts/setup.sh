@@ -171,6 +171,7 @@ install_base() {
     UpdateCopy "${PROGRAM_DIR}/../.zpreztorc" ~/
     UpdateCopy "${PROGRAM_DIR}/../.zprofile" ~/
     UpdateCopy "${PROGRAM_DIR}/../.zshenv" ~/
+    UpdateCopy "${PROGRAM_DIR}/../.p10k.zsh" ~/
 
     EnableStartService bluetooth.service
     echo "=> $(ColorYellow 'Starting & enabling service'): emacs.service"
