@@ -1,57 +1,51 @@
 * {
     background-image: none;
-	box-shadow: none;
+    box-shadow: none;
     font-family: "MesloLGS NF";
     font-weight: normal;
     font-size: 13px;
 }
 
 window {
-	background-color: rgba(12, 12, 12, 0.9);
+    background-color: rgba(12, 12, 12, 0.9);
 }
 
 button {
-    background-color: #2e3440;
     border-width: 0px;
     border-radius: 0;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 25%;
-    color: #5e81ac;
+    background-color: #2e3440;
+    color: #eceff4;
 }
 
 button:active, button:hover {
-    background-color: #4c566a;
-    color: #81a1c1;
+    background-color: #eceff4;
+    color: #2e3440;
     outline-style: none;
 }
 
 #lock {
-    opacity: 0.9;
-    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/share/wlogout/icons/logout.png"));
+    background-image: url("/usr/share/wlogout/assets/logout.svg");
 }
 
 #logout {
-    opacity: 0.9;
-    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+    background-image: url("/usr/share/wlogout/assets/logout.svg");
 }
 
 #suspend {
-    opacity: 0.9;
-    background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+    background-image: url("/usr/share/wlogout/assets/suspend.svg");
 }
 
 #hibernate {
-    opacity: 0.9;
-    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+    background-image: url("/usr/share/wlogout/assets/hibernate.svg");
 }
 
 #shutdown {
-    opacity: 0.9;
-    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    background-image: url("/usr/share/wlogout/assets/shutdown.svg");
 }
 
 #reboot {
-    opacity: 0.9;
-    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+    background-image: url("/usr/share/wlogout/assets/reboot.svg");
 }
