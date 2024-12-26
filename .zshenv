@@ -4,7 +4,7 @@ if [[ ("$SHLVL" -eq 1 && ! -o LOGIN) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; the
     source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export EDITOR="emacsclient -c -n"
+export EDITOR=emacs
 export GPG_TTY=$(tty)
 
 typeset -U PATH path
