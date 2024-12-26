@@ -22,7 +22,7 @@ UTILITIES=(
     "python-pip" "inetutils" "gnu-netcat" "net-tools" "bind" "wget" "dotnet-sdk"
     "texlive-basic" "texlive-latex" "texlive-latexrecommended"
     "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3"
-    "bottom-git" "keychain"
+    "bottom-git" "keychain" "fzf"
 )
 FONTS=(
     "ttf-meslo-nerd-font-powerlevel10k" "noto-fonts-emoji"

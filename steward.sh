@@ -51,6 +51,7 @@ Commands:
                                    - "amdcpu": Install AMD CPU microcode.
                                    - "intelcpu": Install Intel CPU microcode.
                                    - "amdgpu": Install AMD GPU packages.
+    execute SCRIPT               Execute one of the scripts in the repository.
 Options:
     -h                           Display this help message.
     -V                           Show the program version.
@@ -82,6 +83,33 @@ install() {
     fi
     echo "=> $(ColorGreen 'Done'). Installed at $dest"
     return 0
+}
+
+####################################################################
+# Description: Execute script; Fuzzy finds closest script matching
+#              the query.
+# Arguments:
+#    Script to search for and execute
+####################################################################
+execute() {
+    script=$1
+
+    if [[ -z $script ]]; then
+        echo "$(ColorRed 'Script search string missing')."
+    fi
+
+    readarray -t script < <(fd -t f -e sh -E setup.sh . "${PROGRAM_DIR}/scripts/" | fzf -q -1 --print0 -f "$script" | xargs -0 -n1)
+    if [[ -n "${script[0]}" ]]; then
+        echo "$(ColorYellow "Executing $(basename "${script[0]}")")"
+        read -n1 -rp "Continue [Y|N]? " con
+        echo
+
+        if [[ $con == 'Y' ]] || [[ $con == 'y' ]]; then
+            "${script[0]}"
+        fi
+    else
+        echo "$(ColorRed "Script not found")."
+    fi
 }
 
 ####################################################################
@@ -174,6 +202,10 @@ main() {
         ;;
     setup)
         bash "${SCRIPTS_DIR}/setup.sh" "${@:2}"
+        exit $?
+        ;;
+    execute)
+        execute "${@:2}"
         exit $?
         ;;
     *)
