@@ -12,7 +12,7 @@ application_prefer_dark_theme = true
 cursor_theme_name = "elementary"
 
 # Font name and size
-font_name = "JetBrainsMono Nerd Font Mono 11"
+font_name = "MesloLGS NF 14"
 
 # Icon theme name
 icon_theme_name = "Breeze Dark"
