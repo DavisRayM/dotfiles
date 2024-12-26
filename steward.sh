@@ -15,7 +15,6 @@ CONFIGS=(
     "mako"
     "wlogout"
     "swaylock"
-    "udiskie"
     "kitty"
     "waybar"
     "doom"
