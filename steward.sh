@@ -5,6 +5,8 @@
 # stored within the dotfiles.
 set -e
 
+PROGRAM_DIR=$(realpath "$0" | xargs dirname)
+SCRIPTS_DIR="${PROGRAM_DIR}/scripts"
 VERSION=0.0.1
 
 # Files/Folders that reside in "$HOME/.config/".
@@ -23,36 +25,7 @@ DOTFILES=(
     ".zshrc"
 )
 
-####
-# Helper functions
-####
-
-# COLORS
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-YELLOW="\e[33m"
-RESET="\e[0m"
-
-ColorRed() {
-    echo -ne "${RED}${1}${RESET}"
-}
-
-ColorGreen() {
-    echo -ne "${GREEN}${1}${RESET}"
-}
-
-ColorBlue() {
-    echo -ne "${BLUE}${1}${RESET}"
-}
-
-ColorYellow() {
-    echo -ne "${YELLOW}${1}${RESET}"
-}
-
-####
-# Program functions
-####
+source "${PROGRAM_DIR}/helpers.sh"
 
 # Prints out usage information
 usage() {
@@ -62,9 +35,16 @@ Usage: ${0} COMMAND [OPTIONS]
 Commands:
     install                      Installs the script to "$HOME/.local/bin".
     sync [local|remote]          Synchronizes state [Default: local]:
-                                   - "local" copies the local machine state to the repository.
-                                   - "remote" copies the repository files to the local machine.
-
+                                   - "local": Copies the local machine state to the repository.
+                                   - "remote": Copies the repository files to the local machine.
+    setup [OPTIONS]              Setup local machine. Supported options:
+                                   - "base": Install my must-have packages (Yay, Emacs, Chrome, Rust, etc.).
+                                   - "rog": Install Asus ROG ArchLinux packages.
+                                   - "hypr": Install Hyprland environment.
+                                   - "nvidia": Install Nvidia Graphics card packages.
+                                   - "amdcpu": Install AMD CPU microcode.
+                                   - "intelcpu": Install Intel CPU microcode.
+                                   - "amdgpu": Install AMD GPU packages.
 Options:
     -h                           Display this help message.
     -V                           Show the program version.
@@ -77,9 +57,8 @@ EOF
 #    None
 ###################################################################
 install() {
-    echo "$(ColorBlue 'Installing script')..."
+    echo "=> $(ColorBlue 'Installing script')..."
     dest="$HOME/.local/bin"
-    mkdir -p "$dest"
     dest="$dest/steward"
     src=$(realpath "$0")
 
@@ -95,7 +74,7 @@ install() {
     else
         ln -s "$src" "$dest"
     fi
-    echo "$(ColorGreen 'Done'). Installed at $dest"
+    echo "=> $(ColorGreen 'Done'). Installed at $dest"
     return 0
 }
 
@@ -110,22 +89,22 @@ sync() {
     local remotepath
     case $1 in
     "local")
-        echo "$(ColorBlue 'Synchronizing'): Local -> Remote"
+        echo "=> $(ColorBlue 'Synchronizing'): Local -> Remote"
         remote=0
         ;;
     remote)
-        echo "$(ColorBlue 'Synchronizing'): Remote -> Local"
+        echo "=> $(ColorBlue 'Synchronizing'): Remote -> Local"
         remote=1
         ;;
     *)
         echo "$(ColorYellow 'Direction not specified')."
-        echo "$(ColorBlue 'Synchronizing'): Local -> Remote"
+        echo "=> $(ColorBlue 'Synchronizing'): Local -> Remote"
         remote=0
         ;;
     esac
 
     localpath="$HOME"
-    remotepath="$(realpath "$0" | xargs dirname)"
+    remotepath="$PROGRAM_DIR"
 
     for f in "${CONFIGS[@]}"; do
         if [[ $remote -eq 0 ]]; then
@@ -135,8 +114,7 @@ sync() {
             to="${localpath}/.config/"
             from="${remotepath}/${f}"
         fi
-        echo "$(ColorBlue 'Sync'): $(ColorRed "$from -> $to/$f")"
-        cp --update=all -R "$from" "$to"
+        UpdateCopy "$from" "$to"
     done
 
     for f in "${DOTFILES[@]}"; do
@@ -147,11 +125,10 @@ sync() {
             to="${localpath}/"
             from="${remotepath}/${f}"
         fi
-        echo "$(ColorBlue 'Sync'): $(ColorRed "$from -> $to/$f")"
-        cp --update=all -R "$from" "$to"
+        UpdateCopy "$from" "$to"
     done
 
-    echo "$(ColorGreen 'Done')."
+    echo "=> $(ColorGreen 'Done')."
     return 0
 }
 
@@ -187,6 +164,10 @@ main() {
         ;;
     sync)
         sync "${@:2}"
+        exit $?
+        ;;
+    setup)
+        bash "${SCRIPTS_DIR}/setup.sh" "${@:2}"
         exit $?
         ;;
     *)
