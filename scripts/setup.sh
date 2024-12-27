@@ -33,9 +33,9 @@ FONTS=(
 # Prints out usage information
 usage() {
     cat <<EOF
-Usage: $(realpath --relative-to "$(pwd)" "$0") [OPTIONS]
+Usage: $(realpath --relative-to "$(pwd)" "$0") [GROUP] [OPTION]
 
-Options:
+Available Groups:
   base        Install must-have packages (Yay, Emacs, Chrome, Rust, etc.) & setup environment.
   rog         Install Asus ROG ArchLinux packages.
   hypr        Install Hyprland environment.
@@ -43,6 +43,9 @@ Options:
   amdcpu      Install AMD CPU microcode.
   intelcpu    Install Intel CPU microcode.
   amdgpu      Install AMD GPU packages.
+
+Options:
+  -h          Print this help message
 EOF
 }
 
@@ -182,6 +185,19 @@ install_base() {
 }
 
 main() {
+    while getopts "h" opt; do
+        case $opt in
+        h)
+            usage
+            exit 0
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+        esac
+    done
+
     install_required
 
     for option in "$@"; do
