@@ -9,6 +9,7 @@
 #  - intelcpu
 #  - nvidia
 #  - rog
+#  - rust
 set -e
 shopt -s xpg_echo
 PROGRAM_DIR=$(realpath "$0" | xargs dirname)
@@ -17,12 +18,12 @@ APPLICATIONS=(
     "emacs-nativecomp" "kitty" "wofi" "google-chrome" "thunar" "udiskie"
 )
 UTILITIES=(
-    "pamixer" "bluez" "bluez-utils" "zsh" "man" "tldr" "ripgrep" "zoxide"
-    "openssh" "ispell" "cmake" "nvm" "clang" "shellcheck" "shfmt" "gcc" "fd"
-    "python-pip" "inetutils" "gnu-netcat" "net-tools" "bind" "wget" "dotnet-sdk"
+    "pamixer" "bluez" "bluez-utils" "zsh" "man" "tldr" "zoxide" "openssh"
+    "ispell" "cmake" "nvm" "clang" "shellcheck" "shfmt" "gcc" "python-pip"
+    "inetutils" "gnu-netcat" "net-tools" "bind" "wget" "dotnet-sdk"
     "texlive-basic" "texlive-latex" "texlive-latexrecommended"
-    "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3"
-    "bottom-git" "keychain" "fzf"
+    "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3" "keychain"
+    "fzf"
 )
 FONTS=(
     "ttf-meslo-nerd-font-powerlevel10k" "noto-fonts-emoji"
@@ -205,6 +206,14 @@ main() {
             ;;
         rog)
             install_rog
+            ;;
+        rust)
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+            source "${HOME}/.cargo/env"
+            rustup component add rust-analyzer rustfmt
+            cargo install fd-find --locked
+            cargo install ripgrep --locked
+            cargo install bottom --locked
             ;;
         *)
             echo "$(ColorRed 'Unknown option'): $option"

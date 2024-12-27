@@ -10,7 +10,7 @@ export GPG_TTY=$(tty)
 typeset -U PATH path
 
 # Rust/Cargo
-export PATH=$PATH:$HOME/.cargo/env
+export PATH=$PATH:$HOME/.cargo/bin
 # DoomEmacs
 export PATH=$PATH:$HOME/.config/emacs/bin
 # .NET
