@@ -1,0 +1,36 @@
+# -*- mode: snippet -*-
+# name: Generic bash script template
+# key: script
+# uuid: script
+# --
+set -e
+PROGRAM_DIR=$(realpath "\$0" | xargs dirname)
+
+#Prints out usage information
+usage() {
+    cat <<EOF
+Usage: $(basename "\$0") [OPTION]
+
+Options:
+  -h          Print this help message
+EOF
+}
+
+$0
+
+main() {
+    while getopts "h" opt; do
+        case $opt in
+        h)
+            usage
+            exit 0
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+        esac
+    done
+}
+
+main "\$@"
