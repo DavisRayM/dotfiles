@@ -43,6 +43,7 @@ Available Groups:
   amdcpu      Install AMD CPU microcode.
   intelcpu    Install Intel CPU microcode.
   amdgpu      Install AMD GPU packages.
+  rust        Install and configure rust and a few rust applications
 
 Options:
   -h          Print this help message
