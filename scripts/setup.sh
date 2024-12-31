@@ -23,7 +23,7 @@ UTILITIES=(
     "inetutils" "gnu-netcat" "net-tools" "bind" "wget" "dotnet-sdk"
     "texlive-basic" "texlive-latex" "texlive-latexrecommended"
     "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3" "keychain"
-    "fzf"
+    "fzf" "texlive-binextra"
 )
 FONTS=(
     "ttf-meslo-nerd-font-powerlevel10k" "noto-fonts-emoji"
