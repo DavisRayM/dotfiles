@@ -44,6 +44,7 @@ Available Groups:
   intelcpu    Install Intel CPU microcode.
   amdgpu      Install AMD GPU packages.
   rust        Install and configure rust and a few rust applications
+  web         Install common web dev packages; SuperHTML, Zola, Prettier
 
 Options:
   -h          Print this help message
@@ -231,6 +232,10 @@ main() {
             cargo install fd-find --locked
             cargo install ripgrep --locked
             cargo install bottom --locked
+            cargo install bacon --locked
+            ;;
+        web)
+            InstallPackages zola prettier superhtml
             ;;
         *)
             echo "$(ColorRed 'Unknown option'): $option"

@@ -7,6 +7,7 @@ set -e
 
 PROGRAM_DIR=$(realpath "$0" | xargs dirname)
 SCRIPTS_DIR="${PROGRAM_DIR}/scripts"
+CONFIRM_BEFORE_EXECUTE="${STEWARD_CONFIRM_EXECUTE:-false}"
 VERSION=0.0.1
 
 # Files/Folders that reside in "$HOME/.config/".
@@ -99,12 +100,16 @@ execute() {
 
     readarray -t script < <(fd -t f -e sh -E setup.sh . "${PROGRAM_DIR}/scripts/" | fzf -q -1 --print0 -f "$script" | xargs -0 -n1)
     if [[ -n "${script[0]}" ]]; then
-        echo "$(ColorYellow "Executing $(basename "${script[0]}")")"
-        read -n1 -rp "Continue [Y|N]? " con
-        echo
+        if [[ "${CONFIRM_BEFORE_EXECUTE}" = "true" ]]; then
+            echo "$(ColorYellow "Executing $(basename "${script[0]}")")"
+            read -n1 -rp "Continue [Y|N]? " con
+            echo
 
-        if [[ $con == 'Y' ]] || [[ $con == 'y' ]]; then
-            "${script[0]}"
+            if [[ $con == 'Y' ]] || [[ $con == 'y' ]]; then
+                "${script[0]}" "${@:2}"
+            fi
+        else
+            "${script[0]}" "${@:2}"
         fi
     else
         echo "$(ColorRed "Script not found")."

@@ -123,3 +123,7 @@
                                      ("Rust Docs" "https://doc.rust-lang.org/std/?search=%s")
                                      ("MDN" "https://developer.mozilla.org/en-US/search?q=%s")
                                      ("Crate Docs" "https://docs.rs/releases/search?query=%s")))
+
+;; Magit
+(after! magit
+  (map! :map magit-log-mode-map :n "X" #'magit-reset-quickly))
