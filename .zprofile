@@ -10,20 +10,6 @@ if [[ -z "$BROWSER" && "$OSTYPE" == darwin* ]]; then
 fi
 
 #
-# Editors
-#
-
-if [[ -z "$EDITOR" ]]; then
-  export EDITOR='nano'
-fi
-if [[ -z "$VISUAL" ]]; then
-  export VISUAL='nano'
-fi
-if [[ -z "$PAGER" ]]; then
-  export PAGER='less'
-fi
-
-#
 # Language
 #
 
