@@ -12,6 +12,9 @@ if [[ -s "$HOME/.zprezto/init.zsh" ]]; then
     source "$HOME/.zprezto/init.zsh"
 fi
 
+# Completions
+fpath+=~/.zsh_functions
+
 # Aliases
 alias ce="source /etc/profile.d/cuda.sh"
 

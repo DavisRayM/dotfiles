@@ -15,7 +15,7 @@ shopt -s xpg_echo
 PROGRAM_DIR=$(realpath "$0" | xargs dirname)
 source "$PROGRAM_DIR/../helpers.sh"
 APPLICATIONS=(
-    "emacs-nativecomp" "kitty" "wofi" "google-chrome" "thunar" "udiskie"
+    "emacs-nativecomp" "neovim" "google-chrome" "thunar" "udiskie"
 )
 UTILITIES=(
     "pamixer" "bluez" "bluez-utils" "zsh" "man" "tldr" "zoxide" "openssh"
@@ -39,16 +39,50 @@ Available Groups:
   base        Install must-have packages (Yay, Emacs, Chrome, Rust, etc.) & setup environment.
   rog         Install Asus ROG ArchLinux packages.
   hypr        Install Hyprland environment.
+  i3          Install i3 environment.
   nvidia      Install Nvidia graphics card packages.
   amdcpu      Install AMD CPU microcode.
   intelcpu    Install Intel CPU microcode.
   amdgpu      Install AMD GPU packages.
   rust        Install and configure rust and a few rust applications
   web         Install common web dev packages; SuperHTML, Zola, Prettier
+  nord        Install NordVPN
 
 Options:
   -h          Print this help message
 EOF
+}
+
+configure_alacritty() {
+    upstream_url="https://raw.githubusercontent.com/alacritty/alacritty/refs/heads/master/"
+
+    echo "=> $(ColorBlue 'Configuring Alacritty')..."
+    SudoWebGet "${upstream_url}/extra/logo/alacritty-term.svg" /usr/share/pixmaps/
+    sudo mv /usr/share/pixmaps/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+    SudoWebGet "${upstream_url}/extra/linux/Alacritty.desktop" /opt/
+    sudo desktop-file-install /opt/Alacritty.desktop
+    sudo update-desktop-database
+
+    SudoWebGet "${upstream_url}/extra/completions/_alacritty" ~/.zsh_functions/
+    sudo chown $(whoami):$(whoami) ~/.zsh_functions/_alacritty
+}
+
+install_i3() {
+    packages=(
+        "i3-wm" "lightdm" "lightdm-gtk-greeter" "xorg-server",
+        "xf86-video-amdgpu", "xf86-input-libinput", "xorg-xinputk",
+        "xorg-xrandr", "network-manager-applet", "dex", "rofi", "dunst"
+    )
+
+    echo "=> $(ColorBlue 'Setting up i3')."
+    echo "=> $(ColorBlue 'Installing packages')..."
+    InstallPackages "${packages[@]}"
+
+    echo "=> $(ColorYellow 'Enabling service'): lightdm.service"
+    sudo systemctl enable lightdm.service
+
+    echo "=> $(ColorBlue 'Configuring i3')..."
+    UpdateCopy "${PROGRAM_DIR}/../i3" ~/.config/
 }
 
 install_required() {
@@ -90,12 +124,20 @@ install_rog() {
     EnableStartService power-profiles-daemon.service supergfxd
 }
 
+install_nord() {
+    packages=("nordvpn-bin")
+    InstallPackages "${packages[@]}"
+    EnableStartService nordvpnd
+    sudo gpasswd -a $(whoami) nordvpn
+    echo "=> NordVPN setup complete. You may need to restart!"
+}
+
 install_hypr() {
     packages=(
         "brightnessctl" "greetd" "greetd-regreet" "grim" "hyprland"
         "hyprland-qtutils" "hyprpaper" "libnotify" "lxappearance" "mako"
         "nordic-theme" "slurp" "swaylock-effects" "waybar" "wlogout"
-        "xdg-desktop-portal-hyprland" "xfce4-settings"
+        "xdg-desktop-portal-hyprland" "xfce4-settings" "wofi"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
@@ -168,11 +210,17 @@ install_base() {
     UpdateCopy "${PROGRAM_DIR}/../kitty" ~/.config/
     ~/.config/emacs/bin/doom sync >/dev/null
 
+    echo "=> $(ColorBlue 'Configuring Neovim')..."
+    UpdateCopy "${PROGRAM_DIR}/../nvim" ~/.config/
+    InstallPackages "nvim-packer-git"
+
+
     if [[ ! -d "$HOME/.zprezto" ]]; then
         echo "=> $(ColorBlue 'Installing prezto')..."
         git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto" >/dev/null 2>&1
     fi
     echo "=> $(ColorBlue 'Configuring Zsh')..."
+    CreateDir "$HOME/.zsh_functions"
     UpdateCopy "${PROGRAM_DIR}/../.zshrc" ~/
     UpdateCopy "${PROGRAM_DIR}/../.zlogin" ~/
     UpdateCopy "${PROGRAM_DIR}/../.zlogout" ~/
@@ -233,9 +281,14 @@ main() {
             cargo install ripgrep --locked
             cargo install bottom --locked
             cargo install bacon --locked
+            cargo install alacritty --locked
+            configure_alacritty
             ;;
         web)
             InstallPackages zola prettier superhtml
+            ;;
+        nord)
+            install_nord
             ;;
         *)
             echo "$(ColorRed 'Unknown option'): $option"

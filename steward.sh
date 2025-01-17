@@ -19,9 +19,12 @@ CONFIGS=(
     "kitty"
     "waybar"
     "doom"
+    "nvim"
+    "i3"
 )
 # Files/Folders that reside in "$HOME".
 DOTFILES=(
+    ".alacritty.toml"
     ".zshrc"
     ".zlogin"
     ".zlogout"
