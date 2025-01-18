@@ -69,9 +69,10 @@ configure_alacritty() {
 
 install_i3() {
     packages=(
-        "i3-wm" "lightdm" "lightdm-gtk-greeter" "xorg-server",
-        "xf86-video-amdgpu", "xf86-input-libinput", "xorg-xinputk",
-        "xorg-xrandr", "network-manager-applet", "dex", "rofi", "dunst"
+        "i3-wm" "lightdm" "lightdm-gtk-greeter" "xorg-server"
+        "xf86-video-amdgpu" "xf86-input-libinput" "xorg-xinput"
+        "xorg-xrandr" "network-manager-applet" "dex" "rofi" "dunst"
+        "i3status"
     )
 
     echo "=> $(ColorBlue 'Setting up i3')."
@@ -286,6 +287,9 @@ main() {
             ;;
         web)
             InstallPackages zola prettier superhtml
+            ;;
+        i3)
+            install_i3
             ;;
         nord)
             install_nord
