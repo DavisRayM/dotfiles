@@ -32,6 +32,7 @@ DOTFILES=(
     ".zprofile"
     ".zshenv"
     ".p10k.zsh"
+    ".tmux.conf"
 )
 
 source "${PROGRAM_DIR}/helpers.sh"
