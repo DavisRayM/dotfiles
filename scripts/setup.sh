@@ -137,7 +137,8 @@ install_hypr() {
     packages=(
         "brightnessctl" "grim" "hyprland" "hyprland-qtutils" "hyprpaper"
         "libnotify" "lxappearance" "mako" "slurp" "xdg-desktop-portal-hyprland"
-        "xfce4-settings" "rofi" "pavucontrol" "playerctl"
+        "xfce4-settings" "rofi" "pavucontrol" "playerctl" "gnome-keyring"
+        "gcr-4"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."

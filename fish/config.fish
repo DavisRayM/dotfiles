@@ -58,4 +58,3 @@ zoxide init fish | source
 
 # GPG
 gpg-connect-agent updatestartuptty /bye >/dev/null
-set SSH_AUTH_SOCK "/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
