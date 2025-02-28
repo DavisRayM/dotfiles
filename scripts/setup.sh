@@ -15,7 +15,7 @@ shopt -s xpg_echo
 PROGRAM_DIR=$(realpath "$0" | xargs dirname)
 source "$PROGRAM_DIR/../helpers.sh"
 APPLICATIONS=(
-    "emacs-nativecomp" "neovim" "google-chrome" "thunar" "udiskie"
+    "emacs-nativecomp" "neovim" "google-chrome" "thunar" "udiskie" "tmux"
 )
 UTILITIES=(
     "pamixer" "bluez" "bluez-utils" "zsh" "man" "tldr" "zoxide" "openssh"
