@@ -150,6 +150,8 @@ install_hypr() {
     UpdateCopy "${PROGRAM_DIR}/../mako" ~/.config/
     chmod +x ~/.config/hypr/xdg-portal-hyprland
     chmod +x ~/.config/hypr/battery_notification.sh
+
+    EnableUserService gcr-ssh-agent.socket
 }
 
 install_base() {

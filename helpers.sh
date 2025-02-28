@@ -70,6 +70,11 @@ EnableStartService() {
     sudo systemctl enable "$@"
 }
 
+EnableUserService() {
+    echo "=> $(ColorYellow 'Starting & enabling service(s)'): $*"
+    sudo systemctl --user enable "$@"
+}
+
 UpdateCopy() {
     echo "$(ColorBlue 'Copy'): $(ColorRed "$1 -> $2")"
     cp --update=all -R "$1" "$2"
