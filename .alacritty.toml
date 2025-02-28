@@ -5,4 +5,5 @@ live_config_reload = true
 opacity = 0.8
 
 [font]
-size = 14
+size = 11
+normal = { family = "Noto Sans Mono" }

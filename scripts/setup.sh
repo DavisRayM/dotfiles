@@ -26,7 +26,7 @@ UTILITIES=(
     "fzf" "texlive-binextra"
 )
 FONTS=(
-    "noto-fonts-emoji" "ttf-noto-fonts-symbols" "apple-fonts"
+    "noto-fonts-emoji" "ttf-noto-fonts-symbols" "noto-fonts"
 )
 
 # Prints out usage information
