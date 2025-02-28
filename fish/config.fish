@@ -22,7 +22,7 @@ end
 # Environment variables
 set PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
 set EDITOR nvim
-set GPG_TTY (tty)
+set -gx GPG_TTY (tty)
 
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'

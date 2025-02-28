@@ -5,5 +5,4 @@ live_config_reload = true
 opacity = 0.8
 
 [font]
-normal = { family = "MesloLGS NF", style = "Regular" }
-size = 11
+size = 14

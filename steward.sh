@@ -12,26 +12,14 @@ VERSION=0.0.1
 
 # Files/Folders that reside in "$HOME/.config/".
 CONFIGS=(
+    "nvim"
     "hypr"
     "mako"
-    "wlogout"
-    "swaylock"
-    "kitty"
-    "waybar"
-    "doom"
-    "nvim"
-    "i3"
+    "fish"
 )
 # Files/Folders that reside in "$HOME".
 DOTFILES=(
     ".alacritty.toml"
-    ".zshrc"
-    ".zlogin"
-    ".zlogout"
-    ".zpreztorc"
-    ".zprofile"
-    ".zshenv"
-    ".p10k.zsh"
     ".tmux.conf"
 )
 

@@ -15,19 +15,18 @@ shopt -s xpg_echo
 PROGRAM_DIR=$(realpath "$0" | xargs dirname)
 source "$PROGRAM_DIR/../helpers.sh"
 APPLICATIONS=(
-    "emacs-nativecomp" "neovim" "google-chrome" "thunar" "udiskie" "tmux"
+    "neovim" "firefox" "thunar" "tmux"
 )
 UTILITIES=(
-    "pamixer" "bluez" "bluez-utils" "zsh" "man" "tldr" "zoxide" "openssh"
-    "ispell" "cmake" "nvm" "clang" "shellcheck" "shfmt" "gcc" "python-pip"
-    "inetutils" "gnu-netcat" "net-tools" "bind" "wget" "dotnet-sdk"
+    "pamixer" "bluez" "bluez-utils" "fish" "man-db" "man-pages" "tldr" "zoxide" "openssh"
+    "ispell" "cmake" "nvm" "clang" "shellcheck" "shfmt" "gcc"
+    "inetutils" "gnu-netcat" "net-tools" "bind" "wget"
     "texlive-basic" "texlive-latex" "texlive-latexrecommended"
-    "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3" "keychain"
+    "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3"
     "fzf" "texlive-binextra"
 )
 FONTS=(
-    "ttf-meslo-nerd-font-powerlevel10k" "noto-fonts-emoji"
-    "ttf-noto-fonts-symbols" "apple-fonts"
+    "noto-fonts-emoji" "ttf-noto-fonts-symbols" "apple-fonts"
 )
 
 # Prints out usage information
@@ -108,6 +107,7 @@ install_required() {
 install_rog() {
     packages=(
         "asusctl" "power-profiles-daemon" "supergfxctl" "rog-control-center"
+        "linux-g14" "linux-g14-headers"
     )
     if pacman-conf --repo-list | grep -q 'g14'; then
         echo "=> $(ColorGreen 'g14 repository already configured')."
@@ -135,33 +135,18 @@ install_nord() {
 
 install_hypr() {
     packages=(
-        "brightnessctl" "greetd" "greetd-regreet" "grim" "hyprland"
-        "hyprland-qtutils" "hyprpaper" "libnotify" "lxappearance" "mako"
-        "nordic-theme" "slurp" "swaylock-effects" "waybar" "wlogout"
-        "xdg-desktop-portal-hyprland" "xfce4-settings" "wofi"
+        "brightnessctl" "grim" "hyprland" "hyprland-qtutils" "hyprpaper"
+        "libnotify" "lxappearance" "mako" "slurp" "xdg-desktop-portal-hyprland"
+        "xfce4-settings" "rofi" "pavucontrol" "playerctl"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
     echo "=> $(ColorBlue 'Installing packages')..."
     InstallPackages "${packages[@]}"
 
-    echo "=> $(ColorBlue 'Configuring greeter'); You get all the info :).."
-    set -x
-    sudo sed -i 's/agreety --cmd .*/Hyprland --config \/etc\/greetd\/hyprland.conf"/' /etc/greetd/config.toml
-    echo "preload = /opt/ign_mountains.png\nwallpaper = , /opt/ign_mountains.png" | sudo tee /etc/greetd/hyprpaper.conf
-    echo "monitor = , preferred, auto, 1\nexec-once = hyprpaper --config /etc/greetd/hyprpaper.conf\nexec-once = regreet --config /etc/greetd/regreet.toml; hyprctl dispatch exit" | sudo tee /etc/greetd/hyprland.conf
-    sudo cp "${PROGRAM_DIR}/../regreet/ign_mountains.png" /opt/
-    sudo cp --update=all "${PROGRAM_DIR}/../regreet/regreet.toml" /etc/greetd/
-    set +x
-    echo "=> $(ColorYellow 'Enabling service'): greetd.service"
-    sudo systemctl enable greetd.service
-
     echo "=> $(ColorBlue 'Configuring Hyprland, Mako, WLogout, SwayLock & WayBar')..."
     UpdateCopy "${PROGRAM_DIR}/../hypr" ~/.config/
     UpdateCopy "${PROGRAM_DIR}/../mako" ~/.config/
-    UpdateCopy "${PROGRAM_DIR}/../wlogout" ~/.config/
-    UpdateCopy "${PROGRAM_DIR}/../swaylock" ~/.config/
-    UpdateCopy "${PROGRAM_DIR}/../waybar" ~/.config/
     chmod +x ~/.config/hypr/xdg-portal-hyprland
     chmod +x ~/.config/hypr/battery_notification.sh
 }
@@ -175,20 +160,13 @@ install_base() {
     echo "=> $(ColorBlue 'Installing fonts')..."
     InstallPackages "${FONTS[@]}"
 
-    if [[ ! -x "$HOME/.config/emacs/bin/doom" ]]; then
-        echo "=> $(ColorBlue 'Installing doomemacs')..."
-        git clone --depth 1 https://github.com/doomemacs/doomemacs.git ~/.config/emacs >/dev/null 2>&1
-        ~/.config/emacs/bin/doom install
-        ~/.config/emacs/bin/doom sync >/dev/null
-    fi
-
     echo "=> $(ColorBlue 'Installing latest stable node version')..."
     source /usr/share/nvm/init-nvm.sh
     nvm install stable
 
-    echo "=> $(ColorBlue 'Setting zsh as default shell')..."
+    echo "=> $(ColorBlue 'Setting fish as default shell')..."
     set +e
-    chsh --shell /usr/bin/zsh
+    chsh --shell /usr/bin/fish
     success=$?
     while [[ $success -ne 0 ]]; do
         read -n1 -rp "$(ColorRed 'Failed to change shell'). Skip[Y|N]? " SKIP
@@ -196,7 +174,7 @@ install_base() {
         if [[ $SKIP == "Y" ]] || [[ $SKIP == "y" ]]; then
             break
         fi
-        chsh --shell /usr/bin/zsh
+        chsh --shell /usr/bin/fish
         success=$?
     done
     set -e
@@ -206,33 +184,11 @@ install_base() {
     git config --global user.name "Davis Muro"
     git config --global init.defaultBranch main
 
-    echo "=> $(ColorBlue 'Configuring Emacs & Kitty')..."
-    UpdateCopy "${PROGRAM_DIR}/../doom" ~/.config/
-    UpdateCopy "${PROGRAM_DIR}/../kitty" ~/.config/
-    ~/.config/emacs/bin/doom sync >/dev/null
-
     echo "=> $(ColorBlue 'Configuring Neovim')..."
     UpdateCopy "${PROGRAM_DIR}/../nvim" ~/.config/
     InstallPackages "nvim-packer-git"
 
-
-    if [[ ! -d "$HOME/.zprezto" ]]; then
-        echo "=> $(ColorBlue 'Installing prezto')..."
-        git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto" >/dev/null 2>&1
-    fi
-    echo "=> $(ColorBlue 'Configuring Zsh')..."
-    CreateDir "$HOME/.zsh_functions"
-    UpdateCopy "${PROGRAM_DIR}/../.zshrc" ~/
-    UpdateCopy "${PROGRAM_DIR}/../.zlogin" ~/
-    UpdateCopy "${PROGRAM_DIR}/../.zlogout" ~/
-    UpdateCopy "${PROGRAM_DIR}/../.zpreztorc" ~/
-    UpdateCopy "${PROGRAM_DIR}/../.zprofile" ~/
-    UpdateCopy "${PROGRAM_DIR}/../.zshenv" ~/
-    UpdateCopy "${PROGRAM_DIR}/../.p10k.zsh" ~/
-
     EnableStartService bluetooth.service
-    echo "=> $(ColorYellow 'Starting & enabling service'): emacs.service"
-    systemctl --user enable emacs.service
 }
 
 main() {
@@ -281,8 +237,6 @@ main() {
             cargo install fd-find --locked
             cargo install ripgrep --locked
             cargo install bottom --locked
-            cargo install bacon --locked
-            cargo install alacritty --locked
             configure_alacritty
             ;;
         web)
