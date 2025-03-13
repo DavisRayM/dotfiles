@@ -52,12 +52,13 @@ vim.keymap.set('n', '*', '*zz', { silent = true })
 vim.keymap.set('n', '#', '#zz', { silent = true })
 vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
 
--- Wild country; I dont remember
-vim.keymap.set("x", "p", "\"_dp")
-
+-- Yank to system clipboard
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
+
+-- Wild country; I dont remember
+vim.keymap.set("x", "p", "\"_dp")
 
 vim.keymap.set("n", "gl", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
