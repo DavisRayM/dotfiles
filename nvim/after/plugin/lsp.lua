@@ -28,7 +28,8 @@ lspconfig.ccls.setup {
         clang = {
             excludeArgs = { "-frounding-math"} ;
         };
-    }
+    },
+    root_dir = require('lspconfig.util').root_pattern('.git', 'Makefile'),
 }
 
 -- Pyright
