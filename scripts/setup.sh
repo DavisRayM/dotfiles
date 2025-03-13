@@ -23,7 +23,7 @@ UTILITIES=(
     "inetutils" "gnu-netcat" "net-tools" "bind" "wget"
     "texlive-basic" "texlive-latex" "texlive-latexrecommended"
     "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3"
-    "fzf" "texlive-binextra"
+    "fzf" "texlive-binextra" "ccls"
 )
 FONTS=(
     "noto-fonts-emoji" "ttf-noto-fonts-symbols" "noto-fonts"
@@ -138,7 +138,7 @@ install_hypr() {
         "brightnessctl" "grim" "hyprland" "hyprland-qtutils" "hyprpaper"
         "libnotify" "lxappearance" "mako" "slurp" "xdg-desktop-portal-hyprland"
         "xfce4-settings" "rofi" "pavucontrol" "playerctl" "gnome-keyring"
-        "gcr-4"
+        "gcr-4" "yambar" "yambar-hyprland-wses alsa-utils"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."

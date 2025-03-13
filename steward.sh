@@ -16,6 +16,7 @@ CONFIGS=(
     "hypr"
     "mako"
     "fish"
+    "yambar"
 )
 # Files/Folders that reside in "$HOME".
 DOTFILES=(

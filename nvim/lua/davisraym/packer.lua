@@ -96,6 +96,7 @@ return require('packer').startup(function(use)
   }
 
   -- LSP
+  use 'elkowar/yuck.vim'
   use {
       'rust-lang/rust.vim',
       ft = { "rust" },

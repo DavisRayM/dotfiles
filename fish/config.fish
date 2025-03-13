@@ -11,7 +11,7 @@ abbr -a gst 'git status'
 if status --is-interactive
 	switch $TERM
 		case 'linux'
-			:
+			exec Hyprland
 		case '*'
 			if ! set -q TMUX
 				exec tmux
@@ -20,7 +20,8 @@ if status --is-interactive
 end
 
 # Environment variables
-set PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
+set PATH $PATH $HOME/.local/bin $HOME/.cargo/bin $HOME/go/bin
+set GOPATH $HOME/go
 set EDITOR nvim
 set -gx GPG_TTY (tty)
 

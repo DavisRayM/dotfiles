@@ -10,6 +10,10 @@ vim.keymap.set('i', '<right>', '<nop>')
 vim.keymap.set('n', '<left>', ':bp<cr>')
 vim.keymap.set('n', '<right>', ':bn<cr>')
 
+-- Quick splits
+vim.keymap.set('n', '<leader>\\', '<cmd>vs<cr>') 
+vim.keymap.set('n', '<leader>-', '<cmd>split<cr>') 
+
 -- Netrw
 vim.keymap.set("n", "<leader>pe", vim.cmd.Ex)
 

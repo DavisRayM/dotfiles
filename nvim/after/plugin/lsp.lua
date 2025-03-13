@@ -1,8 +1,38 @@
 -- Reserve a space in the gutter
 vim.opt.signcolumn = 'yes'
 
--- Rust LSP
+-- LSP
 local lspconfig = require('lspconfig')
+local configs = require('lspconfig.configs')
+
+-- Protobuf
+configs.protobuf_language_server = {
+    default_config = {
+        cmd = { '/usr/bin/protobuf-language-server'  },
+        filetypes = { 'proto' },
+        root_dir = require('lspconfig.util').root_pattern('.git'),
+        single_file_support = true,
+        settings = { }
+    }
+}
+
+lspconfig.protobuf_language_server.setup {}
+
+-- CCLS
+lspconfig.ccls.setup {}
+
+-- Pyright
+lspconfig.pyright.setup {
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "basic",
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+            },
+        }
+    }
+}
 
 -- Rust
 lspconfig.rust_analyzer.setup {
