@@ -19,7 +19,17 @@ configs.protobuf_language_server = {
 lspconfig.protobuf_language_server.setup {}
 
 -- CCLS
-lspconfig.ccls.setup {}
+lspconfig.ccls.setup {
+    init_options = {
+        compilationDatabaseDirectory = "build";
+        index = {
+            threads = 0;
+        };
+        clang = {
+            excludeArgs = { "-frounding-math"} ;
+        };
+    }
+}
 
 -- Pyright
 lspconfig.pyright.setup {

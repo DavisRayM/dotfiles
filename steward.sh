@@ -22,6 +22,7 @@ CONFIGS=(
 DOTFILES=(
     ".alacritty.toml"
     ".tmux.conf"
+    ".ccls"
 )
 
 source "${PROGRAM_DIR}/helpers.sh"
