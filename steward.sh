@@ -23,6 +23,7 @@ DOTFILES=(
     ".alacritty.toml"
     ".tmux.conf"
     ".ccls"
+    ".gitconfig"
 )
 
 source "${PROGRAM_DIR}/helpers.sh"
