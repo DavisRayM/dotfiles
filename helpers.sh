@@ -72,7 +72,7 @@ EnableStartService() {
 
 EnableUserService() {
     echo "=> $(ColorYellow 'Starting & enabling service(s)'): $*"
-    sudo systemctl --user enable "$@"
+    sudo systemctl --machine=$(whoami)@.host --user enable "$@"
 }
 
 UpdateCopy() {

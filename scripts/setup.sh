@@ -139,17 +139,20 @@ install_hypr() {
         "libnotify" "lxappearance" "mako" "slurp" "xdg-desktop-portal-hyprland"
         "xfce4-settings" "rofi" "pavucontrol" "playerctl" "gnome-keyring"
         "gcr-4" "yambar" "yambar-hyprland-wses" "alsa-utils" "wl-clipboard"
+        "hyprpicker" "jq"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
     echo "=> $(ColorBlue 'Installing packages')..."
     InstallPackages "${packages[@]}"
 
-    echo "=> $(ColorBlue 'Configuring Hyprland, Mako, WLogout, SwayLock & WayBar')..."
+    echo "=> $(ColorBlue 'Configuring Hyprland, Mako, XDG Protal & Grimblast')..."
     UpdateCopy "${PROGRAM_DIR}/../hypr" ~/.config/
     UpdateCopy "${PROGRAM_DIR}/../mako" ~/.config/
     chmod +x ~/.config/hypr/xdg-portal-hyprland
     chmod +x ~/.config/hypr/battery_notification.sh
+    sudo cp "${PROGRAM_DIR}/../third-party/grimblast" /usr/local/bin/
+    sudo chmod +x /usr/local/bin/grimblast
 
     EnableUserService gcr-ssh-agent.socket
 }
