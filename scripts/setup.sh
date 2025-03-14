@@ -23,7 +23,7 @@ UTILITIES=(
     "inetutils" "gnu-netcat" "net-tools" "bind" "wget"
     "texlive-basic" "texlive-latex" "texlive-latexrecommended"
     "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3"
-    "fzf" "texlive-binextra" "ccls"
+    "fzf" "texlive-binextra" "ccls" "gimp"
 )
 FONTS=(
     "noto-fonts-emoji" "ttf-noto-fonts-symbols" "noto-fonts"
@@ -97,9 +97,9 @@ install_required() {
         echo "=> $(ColorBlue 'Installing Yay')..."
         UpdatePacmanDB
         InstallPackages git base-devel
-        git clone https://aur.archlinux.org/yay.git ~/workspace/thirdparty/yay >/dev/null 2>&1
+        git clone https://aur.archlinux.org/yay.git ~/workspace/thirdparty/yay
         cd ~/workspace/thirdparty/yay || return 1
-        makepkg -si --noconfirm >/dev/null 2>&1
+        makepkg -si --noconfirm
         cd - || return 1
     fi
 }

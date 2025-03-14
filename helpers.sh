@@ -59,9 +59,9 @@ UpdatePacmanDB() {
 InstallPackages() {
     echo "=> $(ColorYellow 'Installing packages'): $*"
     if [[ -x $YAY ]]; then
-        $YAY -S --needed --noconfirm "$@" >/dev/null 2>&1
+        $YAY -S --needed --noconfirm "$@"
     else
-        sudo pacman -S --needed --noconfirm "$@" >/dev/null 2>&1
+        sudo pacman -S --needed --noconfirm "$@"
     fi
 }
 
