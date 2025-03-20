@@ -33,6 +33,8 @@ vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set color
 vim.g.mapleader = " "
 vim.opt.clipboard="unnamed,unnamedplus"
 
+vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
+
 require("davisraym.remap")
 require("davisraym.packer")
 require("davisraym.helpers")

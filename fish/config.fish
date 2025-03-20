@@ -26,6 +26,12 @@ set GOPATH $HOME/go
 set EDITOR nvim
 set -gx GPG_TTY (tty)
 
+# Cuda Variables: From /etc/profile.d/cuda.sh
+set CUDA_PATH /opt/cuda
+set PATH $PATH /opt/cuda/bin opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
+# This is a problem since it changes often
+set NVCC_CCBIN /usr/bin/g++-13
+
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'

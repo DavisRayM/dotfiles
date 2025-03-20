@@ -23,7 +23,7 @@ UTILITIES=(
     "inetutils" "gnu-netcat" "net-tools" "bind" "wget"
     "texlive-basic" "texlive-latex" "texlive-latexrecommended"
     "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3"
-    "fzf" "texlive-binextra" "ccls" "gimp"
+    "fzf" "texlive-binextra" "ccls" "gimp" "python-black"
 )
 FONTS=(
     "noto-fonts-emoji" "ttf-noto-fonts-symbols" "noto-fonts"

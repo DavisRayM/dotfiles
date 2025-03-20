@@ -32,7 +32,7 @@ lspconfig.ccls.setup {
     root_dir = require('lspconfig.util').root_pattern('.git', 'Makefile'),
 }
 
--- Pyright
+-- Python
 lspconfig.pyright.setup {
     settings = {
         python = {
