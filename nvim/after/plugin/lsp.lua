@@ -18,6 +18,9 @@ configs.protobuf_language_server = {
 
 lspconfig.protobuf_language_server.setup {}
 
+-- YAML
+lspconfig.yamlls.setup {}
+
 -- CCLS
 lspconfig.ccls.setup {
     init_options = {

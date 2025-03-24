@@ -7,6 +7,7 @@ abbr -a gb 'git checkout -b'
 abbr -a gsw 'git switch'
 abbr -a gst 'git status'
 abbr -a gp 'git push'
+abbr -a vdiff 'nvim -d'
 
 # Start tmux for interactive shells
 if status --is-interactive

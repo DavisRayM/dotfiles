@@ -231,7 +231,7 @@ main() {
             InstallPackages intell-ucode
             ;;
         nvidia)
-            InstallPackages nvidia nvidia-utils opencl-nvidia cuda
+            InstallPackages nvidia-dkms nvidia-utils cuda lib32-nvidia-utils
             ;;
         rog)
             install_rog
