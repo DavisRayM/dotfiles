@@ -33,6 +33,15 @@ set PATH $PATH /opt/cuda/bin opt/cuda/nsight_compute /opt/cuda/nsight_systems/bi
 # This is a problem since it changes often
 set NVCC_CCBIN /usr/bin/g++-13
 
+# OS Dev stupp
+set PATH $PATH $HOME/opt/cross/bin
+
+# Dotnet
+set PATH $PATH $HOME/.dotnet/tools
+
+# Conda
+source /opt/miniconda3/etc/fish/conf.d/conda.fish
+
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
@@ -58,8 +67,20 @@ function fish_prompt
 	set_color normal
 end
 
-# Greeting
 function fish_greeting
+end
+
+# Stuff I do often
+function single_screen
+    hyprctl keyword monitor "eDP-1, disable"
+    pkill -9 "yambar"
+    hyprctl dispatch exec yambar
+end
+
+function multi_screen
+    hyprctl keyword monitor "eDP-1, 1920x1080@60, 0x0, 1"
+    pkill -9 "yambar"
+    hyprctl dispatch exec yambar
 end
 
 # Zoxide
