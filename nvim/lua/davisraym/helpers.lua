@@ -24,3 +24,22 @@ for _, pat in ipairs({'text', 'markdown', 'gitcommit'}) do
 		command = 'setlocal spell tw=72 colorcolumn=73',
 	})
 end
+
+-- I don't like the base indent function...
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'asm',
+    callback = function()
+        vim.opt_local.indentexpr = ""
+    end,
+})
+
+-- C Styling
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'c,cpp',
+    callback = function()
+        vim.opt_local.cindent = true
+        vim.opt_local.tabstop = 2
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+    end,
+})

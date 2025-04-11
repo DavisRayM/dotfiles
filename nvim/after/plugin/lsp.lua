@@ -21,6 +21,12 @@ lspconfig.protobuf_language_server.setup {}
 -- YAML
 lspconfig.yamlls.setup {}
 
+-- ASM Lsp
+lspconfig.asm_lsp.setup {
+    cmd = { 'asm-lsp' },
+    filetypes = { 'asm', 's', 'S' },
+}
+
 -- CCLS
 lspconfig.ccls.setup {
     init_options = {

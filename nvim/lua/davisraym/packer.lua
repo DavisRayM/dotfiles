@@ -133,4 +133,7 @@ return require('packer').startup(function(use)
             "nvim-treesitter/nvim-treesitter",
         },
     }
+
+    -- Vimwiki
+    use 'vimwiki/vimwiki'
 end)

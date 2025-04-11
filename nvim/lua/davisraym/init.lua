@@ -35,6 +35,9 @@ vim.opt.clipboard="unnamed,unnamedplus"
 
 vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
 
+vim.cmd("filetype plugin on")
+vim.cmd("syntax on")
+
 require("davisraym.remap")
 require("davisraym.packer")
 require("davisraym.helpers")
