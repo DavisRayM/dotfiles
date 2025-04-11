@@ -10,6 +10,7 @@
 #  - nvidia
 #  - rog
 #  - rust
+#  - osdev
 set -e
 shopt -s xpg_echo
 PROGRAM_DIR=$(realpath "$0" | xargs dirname)
@@ -23,7 +24,8 @@ UTILITIES=(
     "inetutils" "gnu-netcat" "net-tools" "bind" "wget"
     "texlive-basic" "texlive-latex" "texlive-latexrecommended"
     "texlive-mathscience" "texlive-latexextra" "libappindicator-gtk3"
-    "fzf" "texlive-binextra" "ccls" "gimp" "python-black"
+    "fzf" "texlive-binextra" "ccls" "gimp" "python-black" "python-pip"
+    "python-virtualenv" "bluez-tools" "blueman"
 )
 FONTS=(
     "noto-fonts-emoji" "ttf-noto-fonts-symbols" "noto-fonts"
@@ -157,7 +159,7 @@ install_hypr() {
     EnableUserService gcr-ssh-agent.socket
 }
 
-install_base() {
+install_base_packages() {
     echo "=> $(ColorBlue 'Setting up base environment')."
     echo "=> $(ColorBlue 'Installing utilities')..."
     InstallPackages "${UTILITIES[@]}"
@@ -165,7 +167,9 @@ install_base() {
     InstallPackages "${APPLICATIONS[@]}"
     echo "=> $(ColorBlue 'Installing fonts')..."
     InstallPackages "${FONTS[@]}"
+}
 
+install_base() {
     echo "=> $(ColorBlue 'Installing latest stable node version')..."
     source /usr/share/nvm/init-nvm.sh
     nvm install stable
@@ -186,7 +190,7 @@ install_base() {
     set -e
 
     echo "=> $(ColorBlue 'Configuring git')..."
-    git config --global user.email "davis.ray.muro@gmail.com"
+    git config --global user.email "git@davisraym.com"
     git config --global user.name "Davis Muro"
     git config --global init.defaultBranch main
 
@@ -224,6 +228,9 @@ main() {
         base)
             install_base
             ;;
+        base-packages)
+            install_base_packages
+            ;;
         hypr)
             install_hypr
             ;;
@@ -243,6 +250,7 @@ main() {
             cargo install fd-find --locked
             cargo install ripgrep --locked
             cargo install bottom --locked
+            cargo install asm-lsp --locked
             configure_alacritty
             ;;
         web)
@@ -253,6 +261,10 @@ main() {
             ;;
         nord)
             install_nord
+            ;;
+        osdev)
+            InstallPackages base-devel gmp libmpc mpfr qemu-full
+            CreateDir "$HOME/opt/cross"
             ;;
         *)
             echo "$(ColorRed 'Unknown option'): $option"
