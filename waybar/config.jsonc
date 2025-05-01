@@ -2,124 +2,101 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 50,
-    "mode": "dock",
-    "passthrough": true,
+    "width": 1910,
+    "margin-top": 2,
+    "spacing": 5,
     "modules-left": [
-        "clock",
-        "hyprland/workspaces"
+        "hyprland/window",
     ],
-    "modules-center": [],
+    "modules-center": [
+        "hyprland/workspaces",
+    ],
     "modules-right": [
+        "clock",
+        "power-profiles-daemon",
         "network",
-        "bluetooth",
-        "temperature",
-        "custom/power_profile",
-        "battery",
-        "backlight",
         "pulseaudio",
-        "pulseaudio#microphone",
-        "tray"
+        "battery",
+        "battery#bat2",
+        "backlight",
+        "tray",
+        "custom/power"
     ],
-    "custom/power_profile": {
-        "exec": "asusctl profile -p | tail -n 1 | sed s:'Active profile is'::",
-        "interval": 30,
-        "format": "󰈐{}", 
-        "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
-        "signal": 8
-    },
-    "hyprland/window": {
-        "format": "{}"
-    },
     "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "on-click": "activate",
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
+        "format": "{id}",
+        "format-icons": {
+            "default": "",
+            "active": "l",
         }
     },
-    "temperature": {
-        "thermal-zone": 0,
-        "format": "{temperatureC}°C ",
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}°C "
-    },
     "tray": {
-        "icon-size": 18,
+        // "icon-size": 21,
         "spacing": 10
     },
     "clock": {
-        "format": " {:%I:%M  %a, %b %e}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{:%a, %d %b %Y @ %H:%M}",
         "tooltip": false,
-        "format-muted": " Muted",
-        "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
-        "scroll-step": 5,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        }
-    },
-
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": " Muted",
-        "on-click": "pamixer --default-source -t",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
-    },
-    "bluetooth": {
-        "format": " {status}",
-        "format-disabled": "", // an empty format will hide the module
-        "format-connected": "🔗 {num_connections}",
-        "tooltip-format": "{device_alias}",
-        "tooltip-format-connected": " {device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}"
     },
     "backlight": {
-        "format": "{percent}% {icon}",
+        "format": "{icon}",
+        "tooltip": false,
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
         "states": {
-            "good": 95,
             "warning": 30,
-            "critical": 20
+            "critical": 15
         },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "format": "{capacity}% {icon}",
+        "format-full": "{icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "{profile}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "󱀚",
+        "balanced": "",
+        "power-saver": ""
+      }
     },
     "network": {
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "E: {ipaddr}/{cidr}",
-        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+        "format-wifi": "{essid} {icon}",
+        "format-ethernet": "",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-disconnected": "󰤭",
+        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+    },
+    "pulseaudio": {
+        "format": "{icon} {format_source}",
+        "tooltip-format": "[Volume] {volume}%",
+        "tooltip": true,
+        "format-bluetooth": "{icon} | {format_source}",
+        "format-bluetooth-muted": "󰝟",
+        "format-muted": "󰝟",
+        "format-source": "󰍮",
+        "format-source-muted": "󰍭",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format" : "󰐦",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/power_menu.xml",
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
     }
 }

@@ -47,22 +47,9 @@ CreateDir() {
     mkdir -p "$path"
 }
 
-UpdatePacmanDB() {
-    echo "=> $(ColorGreen 'Updating local Pacman database')..."
-    if [[ -x $YAY ]]; then
-        $YAY -Sy
-    else
-        sudo pacman -Sy
-    fi
-}
-
 InstallPackages() {
     echo "=> $(ColorYellow 'Installing packages'): $*"
-    if [[ -x $YAY ]]; then
-        $YAY -S --needed --noconfirm "$@"
-    else
-        sudo pacman -S --needed --noconfirm "$@"
-    fi
+    sudo pacman -S --needed --noconfirm "$@"
 }
 
 EnableStartService() {

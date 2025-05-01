@@ -1,24 +1,19 @@
-sort=-time
-layer=overlay
+# Format
+font=NotoSansM Nerd Font Mono 10
+border-color=#2e3440
+border-size=2
 background-color=#3b4252
-width=400
-height=200
-border-size=1
-border-radius=25
-icons=0
-max-icon-size=64
-default-timeout=1500
-ignore-timeout=0
-font=monospace 12
-icon-path=/home/davis/workspace/dotfiles/icons
-icons=true
+text-color=#fdf6e3
+format=[<b>%s</b><span color="#93a1a1">(%a)</span>] %b
+width=500
+default-timeout=5000
+
+# Hidden format
+[hidden]
+format=Hidden: %h [%t]
 
 [urgency=low]
-border-color=#2e344060
-
-[urgency=normal]
-border-color=#d8dee960
+border-color=#4c566a
 
 [urgency=high]
-border-color=#eceff4aa
-default-timeout=5000
+border-color=#eceff4

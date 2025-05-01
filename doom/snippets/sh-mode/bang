@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: bang
-# key: #!
-# uuid: #!
-# --
-#!/usr/bin/env bash
-$0

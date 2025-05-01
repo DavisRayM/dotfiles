@@ -16,14 +16,12 @@ CONFIGS=(
     "hypr"
     "mako"
     "fish"
-    "yambar"
+    "waybar"
     "kitty"
 )
 # Files/Folders that reside in "$HOME".
 DOTFILES=(
-    ".alacritty.toml"
     ".tmux.conf"
-    ".ccls"
     ".gitconfig"
 )
 

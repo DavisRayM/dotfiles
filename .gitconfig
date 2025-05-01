@@ -1,7 +1,6 @@
 [user]
     email = git@davisraym.com
     name = Davis Muro
-    signingkey = 6C8FE5FEAA70A2C9
 [ui "color"]
     ui = always
 [color]
