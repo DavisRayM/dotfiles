@@ -33,6 +33,9 @@ set PATH $PATH /opt/cuda/bin opt/cuda/nsight_compute /opt/cuda/nsight_systems/bi
 # This is a problem since it changes often
 set NVCC_CCBIN /usr/bin/g++-13
 
+# NVM
+nvm use lts
+
 # OS Dev stupp
 set PATH $PATH $HOME/opt/cross/bin
 

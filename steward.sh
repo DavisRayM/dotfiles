@@ -17,6 +17,7 @@ CONFIGS=(
     "mako"
     "fish"
     "yambar"
+    "kitty"
 )
 # Files/Folders that reside in "$HOME".
 DOTFILES=(

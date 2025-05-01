@@ -28,7 +28,7 @@ UTILITIES=(
     "python-virtualenv" "bluez-tools" "blueman"
 )
 FONTS=(
-    "noto-fonts-emoji" "ttf-noto-fonts-symbols" "noto-fonts"
+    "noto-fonts-emoji" "ttf-noto-fonts-symbols" "noto-fonts" "nerd-fonts-noto-sans-mono"
 )
 
 # Prints out usage information
