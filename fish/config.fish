@@ -23,6 +23,7 @@ end
 set PATH $PATH $HOME/.local/bin $HOME/.cargo/bin $HOME/.dotnet/tools
 set EDITOR nbim
 set -gx GPG_TTY (tty)
+set CRYPTOGRAPHY_OPENSSL_NO_LEGACY 1
 
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
@@ -43,6 +44,14 @@ function fish_prompt
 	end
 	set_color green
 	printf '%s ' (fish_git_prompt)
+	if set -q VIRTUAL_ENV
+		set_color brblack
+		echo -n '('
+		set_color yellow
+		echo -n (basename "$VIRTUAL_ENV")
+		set_color brblack
+		echo -n ') '
+	end
 	set_color red
 	echo -n '| '
 	set_color normal
@@ -53,6 +62,11 @@ end
 
 # Zoxide
 zoxide init fish | source
+
+# Pyenv
+pyenv init - fish | source
+
+source /opt/miniconda3/etc/fish/conf.d/conda.fish
 
 # GPG
 gpg-connect-agent updatestartuptty /bye >/dev/null
