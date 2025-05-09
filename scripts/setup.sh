@@ -24,6 +24,7 @@ Usage: $(realpath --relative-to "$(pwd)" "$0") [GROUP] [OPTION]
 Available Groups:
   amdcpu      Install AMD CPU microcode.
   amdgpu      Install AMD GPU packages.
+  aur         Install Packages I use from Aur
   hypr        Install Hyprland environment.
   intelcpu    Install Intel CPU microcode.
   nvidia      Install Nvidia graphics card packages (NOTE: Must be after ROG if installing that too).
@@ -39,6 +40,7 @@ create_directories() {
     CreateDir "$HOME/.config"
     CreateDir "$HOME/.local/bin"
     CreateDir "$HOME/Workspace/thirdparty"
+    CreateDir "$HOME/Workspace/aur-packages"
     CreateDir "$HOME/Downloads"
     CreateDir "$HOME/Pictures"
 }
@@ -111,6 +113,27 @@ install_hypr() {
     EnableStartService bluetooth.service
 }
 
+aur_packages() {
+    presentDir="$(pwd)"
+    cd ~/Workspace/aur-packages
+
+    echo "=> $(ColorBlue 'Setting up paru')..."
+    CloneOrUpdate https://aur.archlinux.org/paru.git paru
+    cd paru
+    echo "=> $(ColorBlue 'Installing paru package')..."
+    makepkg -si
+    cd -
+
+    echo "=> $(ColorBlue 'Setting up Nordic')..."
+    CloneOrUpdate https://aur.archlinux.org/nordic-theme.git nordic-theme
+    cd nordic-theme
+    echo "=> $(ColorBlue 'Installing Nordic package')..."
+    makepkg -si
+    cd -
+
+    cd $presentDir
+}
+
 main() {
     while getopts "h" opt; do
         case $opt in
@@ -134,6 +157,9 @@ main() {
             ;;
         amdgpu)
             InstallPackages mesa
+            ;;
+        aur)
+            aur_packages
             ;;
         hypr)
             install_hypr

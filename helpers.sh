@@ -79,3 +79,18 @@ SudoWebGet() {
     echo "$(ColorBlue 'Web Get'): $(ColorRed "$url -> $dest")"
     sudo wget "$url" -P "$dest"
 }
+
+CloneOrUpdate() {
+    remoteUrl=$1
+    directory=$2
+
+    if [ -d "$directory/.git" ]; then
+        echo "=> $(ColorYellow 'Pulling latest changes')..."
+        cd "$directory"
+        git pull
+        cd -
+    else
+        echo "=> $(ColorYellow 'Cloning repository')..."
+        git clone "$remoteUrl" "$directory"
+    fi
+}
