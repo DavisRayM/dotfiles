@@ -21,7 +21,7 @@ end
 
 # Environment variables
 set PATH $PATH $HOME/.local/bin $HOME/.cargo/bin $HOME/.dotnet/tools
-set EDITOR nbim
+set EDITOR nvim
 set -gx GPG_TTY (tty)
 set CRYPTOGRAPHY_OPENSSL_NO_LEGACY 1
 
