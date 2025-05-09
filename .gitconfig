@@ -1,6 +1,7 @@
 [user]
     email = git@davisraym.com
     name = Davis Muro
+	signingkey = 43D773AF72E09C5D
 [ui "color"]
     ui = always
 [color]
@@ -10,7 +11,7 @@
 [commit]
     gpgsign = true
 [core]
-    editor = nvim
+	editor = nvim
     autocrlf = input
     safecrlf = true
 [help]
