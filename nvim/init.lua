@@ -458,7 +458,9 @@ require("lazy").setup({
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			local servers = {
-				clangd = {},
+				clangd = {
+					filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+				},
 				pyright = {},
 				rust_analyzer = {},
 				omnisharp = {
