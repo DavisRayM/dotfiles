@@ -1,18 +1,18 @@
 [user]
-    email = git@davisraym.com
-    name = Davis Muro
+	email = git@davisraym.com
+	name = Davis Muro
 	signingkey = 43D773AF72E09C5D
 [ui "color"]
-    ui = always
+	ui = always
 [color]
-    ui = true
+	ui = true
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [commit]
-    gpgsign = true
+	gpgsign = true
 [core]
 	editor = nvim
-    autocrlf = input
-    safecrlf = true
+	autocrlf = input
+	safecrlf = true
 [help]
-    autocorrect = prompt
+	autocorrect = prompt
