@@ -23,6 +23,7 @@ CONFIGS=(
 DOTFILES=(
     ".tmux.conf"
     ".gitconfig"
+    ".gnupg"
 )
 
 source "${PROGRAM_DIR}/helpers.sh"
