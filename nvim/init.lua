@@ -34,6 +34,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+-- C Specific configurations
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "c",
+	callback = function()
+		vim.opt_local.expandtab = true
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.softtabstop = 2
+	end,
+})
+
 -- Yank to system clipboard; Incase you have an independent clipboard
 -- vim.keymap.set("n", "<leader>y", '"+y')
 -- vim.keymap.set("v", "<leader>y", '"+y')
