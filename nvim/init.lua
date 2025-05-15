@@ -20,6 +20,11 @@ vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
 
+-- Vimwiki
+vim.g.vimwiki_list = {
+	{ path = "~/Notes/", syntax = "markdown", ext = "md" },
+}
+
 -- Jump to last position on file open
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = "*",
