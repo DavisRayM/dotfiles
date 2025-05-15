@@ -713,6 +713,7 @@ require("lazy").setup({
 	require("kickstart.plugins.autopairs"),
 	require("kickstart.plugins.gitsigns"), -- adds gitsigns recommend keymaps
 	require("davisraym.plugins.fugitive"),
+	require("davisraym.plugins.vimwiki"),
 
 	--
 	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
