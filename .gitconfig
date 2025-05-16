@@ -10,6 +10,7 @@
 	defaultBranch = main
 [commit]
 	gpgsign = true
+	verbose = true
 [core]
 	editor = nvim
 	autocrlf = input
