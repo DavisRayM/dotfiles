@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- C Specific configurations
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "c",
+	pattern = { "c", "cmake" },
 	callback = function()
 		vim.opt_local.expandtab = true
 		vim.opt_local.shiftwidth = 2
