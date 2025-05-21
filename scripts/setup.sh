@@ -93,7 +93,7 @@ install_hypr() {
         "net-tools" "nodejs" "npm" "openssh" "pavucontrol" "playerctl" "qt5-wayland" "rofi" "rustup"
         "slurp" "steam-native-runtime" "tldr" "tmux" "ttf-noto-nerd" "unzip"
         "waybar" "wev" "wget" "wl-clipboard" "xdg-desktop-portal-hyprland" "zoxide"
-        "bat" "seahorse" "git-delta" "hyprlock" "hypridle"
+        "bat" "seahorse" "git-delta" "hyprlock" "hypridle" "fzf"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."

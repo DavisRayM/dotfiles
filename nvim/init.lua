@@ -136,51 +136,18 @@ require("lazy").setup({
     "folke/which-key.nvim",
     event = "VimEnter", -- Sets the loading event to 'VimEnter'
     opts = {
-      -- delay between pressing a key and opening which-key (milliseconds)
-      -- this setting is independent of vim.opt.timeoutlen
       delay = 0,
       icons = {
-        -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
-        -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-        -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
-        keys = vim.g.have_nerd_font and {} or {
-          Up = "<Up> ",
-          Down = "<Down> ",
-          Left = "<Left> ",
-          Right = "<Right> ",
-          C = "<C-…> ",
-          M = "<M-…> ",
-          D = "<D-…> ",
-          S = "<S-…> ",
-          CR = "<CR> ",
-          Esc = "<Esc> ",
-          ScrollWheelDown = "<ScrollWheelDown> ",
-          ScrollWheelUp = "<ScrollWheelUp> ",
-          NL = "<NL> ",
-          BS = "<BS> ",
-          Space = "<Space> ",
-          Tab = "<Tab> ",
-          F1 = "<F1>",
-          F2 = "<F2>",
-          F3 = "<F3>",
-          F4 = "<F4>",
-          F5 = "<F5>",
-          F6 = "<F6>",
-          F7 = "<F7>",
-          F8 = "<F8>",
-          F9 = "<F9>",
-          F10 = "<F10>",
-          F11 = "<F11>",
-          F12 = "<F12>",
-        },
+        keys = {},
       },
-
-      -- Document existing key chains
       spec = {
         { "<leader>s", group = "[S]earch" },
         { "<leader>t", group = "[T]oggle" },
         { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+        { "<leader>d", group = "[D]ebug" },
+        { "<leader>w", group = "[W]iki" },
+        { "<leader>g", group = "[G]it" },
       },
     },
   },
@@ -190,22 +157,14 @@ require("lazy").setup({
     event = "VimEnter",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      { -- If encountering errors, see telescope-fzf-native README for installation instructions
+      {
         "nvim-telescope/telescope-fzf-native.nvim",
-
-        -- `build` is used to run some command when the plugin is installed/updated.
-        -- This is only run then, not every time Neovim starts up.
         build = "make",
-
-        -- `cond` is a condition used to determine whether this plugin should be
-        -- installed and loaded.
         cond = function()
           return vim.fn.executable "make" == 1
         end,
       },
       { "nvim-telescope/telescope-ui-select.nvim" },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
       { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
     },
     config = function()
@@ -232,7 +191,7 @@ require("lazy").setup({
       vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
       vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+      vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
       vim.keymap.set("n", "<leader>/", function()
         builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
@@ -249,7 +208,6 @@ require("lazy").setup({
       end, { desc = "[S]earch [/] in Open Files" })
 
       -- Shortcut for searching your Neovim configuration files
-      -- TODO: Change this to my dotfiles
       vim.keymap.set("n", "<leader>sn", function()
         builtin.find_files { cwd = vim.fn.stdpath "config" }
       end, { desc = "[S]earch [N]eovim files" })
@@ -258,13 +216,10 @@ require("lazy").setup({
 
   -- LSP Plugins
   {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {
       library = {
-        -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
       enabled = function(root_dir)
@@ -273,18 +228,12 @@ require("lazy").setup({
     },
   },
   {
-    -- Main LSP Configuration
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- Mason must be loaded before its dependents so we need to set it up here.
       { "williamboman/mason.nvim", opts = {} },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-
-      -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },
-
-      -- Allows extra capabilities provided by blink.cmp
       "saghen/blink.cmp",
     },
     config = function()
@@ -296,38 +245,17 @@ require("lazy").setup({
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
 
-          -- Rename the variable under your cursor.
           map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-          -- Execute a code action, usually your cursor needs to be on top of an error
-          -- or a suggestion from your LSP for this to activate.
           map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
-
-          -- Find references for the word under your cursor.
           map("grr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
-          -- Jump to the implementation of the word under your cursor.
           map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-
-          -- Jump to the definition of the word under your cursor.
           map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
           map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-          -- Fuzzy find all the symbols in your current document.
           map("gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
-
-          -- Fuzzy find all the symbols in your current workspace.
           map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
-
-          -- Jump to the type of the word under your cursor.
           map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-          ---@param client vim.lsp.Client
-          ---@param method vim.lsp.protocol.Method
-          ---@param bufnr? integer some lsp support methods only in specific files
-          ---@return boolean
           local function client_supports_method(client, method, bufnr)
             if vim.fn.has "nvim-0.11" == 1 then
               return client:supports_method(method, bufnr)
@@ -336,11 +264,6 @@ require("lazy").setup({
             end
           end
 
-          -- The following two autocommands are used to highlight references of the
-          -- word under your cursor when your cursor rests there for a little while.
-          --    See `:help CursorHold` for information about when this is executed
-          --
-          -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if
             client
@@ -368,14 +291,8 @@ require("lazy").setup({
             })
           end
 
-          -- The following code creates a keymap to toggle inlay hints in your
-          -- code, if the language server you are using supports them
-          --
-          -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map("<leader>th", function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, "[T]oggle Inlay [H]ints")
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
           end
         end,
       })
@@ -386,14 +303,14 @@ require("lazy").setup({
         severity_sort = true,
         float = { border = "rounded", source = "if_many" },
         underline = { severity = vim.diagnostic.severity.ERROR },
-        signs = vim.g.have_nerd_font and {
+        signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = "󰅚 ",
             [vim.diagnostic.severity.WARN] = "󰀪 ",
             [vim.diagnostic.severity.INFO] = "󰋽 ",
             [vim.diagnostic.severity.HINT] = "󰌶 ",
           },
-        } or {},
+        },
         virtual_text = {
           source = "if_many",
           spacing = 2,
@@ -409,10 +326,6 @@ require("lazy").setup({
         },
       }
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local servers = {
@@ -443,7 +356,6 @@ require("lazy").setup({
         },
       }
 
-      -- Ensure the servers and tools above are installed
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         "stylua", -- Used to format Lua code
@@ -623,6 +535,8 @@ require("lazy").setup({
         "query",
         "vim",
         "vimdoc",
+        "python",
+        "rust",
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -635,12 +549,6 @@ require("lazy").setup({
       },
       indent = { enable = true, disable = { "ruby" } },
     },
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
   -- require 'kickstart.plugins.lint',
@@ -649,12 +557,6 @@ require("lazy").setup({
   require "kickstart.plugins.gitsigns",
 
   { import = "custom.plugins" },
-
-  --
-  -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
-  -- Or use telescope!
-  -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
-  -- you can continue same window with `<space>sr` which resumes last telescope search
 }, {
   ui = {
     icons = {},

@@ -3,8 +3,9 @@ vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>", { desc = "Goto next quickfix list
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>", { desc = "Goto previous quickfix list line" })
 
 -- Lua QOL
-vim.keymap.set("v", "<space>x", ":lua<CR>", { desc = "Evaluate visually selected text (LUA)" })
-vim.keymap.set("n", "<space>x", ":.lua<CR>", { desc = "Evaluate line at cursor (LUA)" })
+vim.keymap.set("v", "<leader>x", ":lua<CR>", { desc = "Evaluate visually selected text (LUA)" })
+vim.keymap.set("n", "<leader>x", ":.lua<CR>", { desc = "Evaluate line at cursor (LUA)" })
+vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Evalute the entire file (LUA)" })
 
 -- Quick text shifting
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Shift selected text downwards" })
