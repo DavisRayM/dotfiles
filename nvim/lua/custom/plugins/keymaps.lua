@@ -19,6 +19,6 @@ vim.keymap.set("n", "#", "#zz", { silent = true })
 vim.keymap.set("n", "g*", "g*zz", { silent = true })
 
 -- Quickly Switch to Netrw
-vim.keymap.set("n", "<Leader>pe", vim.cmd.Ex, { desc = "Open [P]roject & [E]xplore in netrw" })
+-- vim.keymap.set("n", "<Leader>pe", vim.cmd.Ex, { desc = "Open [P]roject & [E]xplore in netrw" })
 
 return {}
