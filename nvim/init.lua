@@ -4,11 +4,6 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
--- Vimwiki
-vim.g.vimwiki_list = {
-  { path = "~/Notes/", syntax = "markdown", ext = "md" },
-}
-
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 vim.opt.nu = true
@@ -24,11 +19,6 @@ vim.opt.showmode = false
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
-
--- Yank to system clipboard; Incase you have an independent clipboard
--- vim.keymap.set("n", "<leader>y", '"+y')
--- vim.keymap.set("v", "<leader>y", '"+y')
--- vim.keymap.set("n", "<leader>Y", '"+Y')
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -80,12 +70,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>", { desc = "Goto next quickfix list line" })
-vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>", { desc = "Goto previous quickfix list line" })
-
--- Lua QOL
-vim.keymap.set("v", "<space>x", ":lua<CR>", { desc = "Evaluate visually selected text (LUA)" })
-vim.keymap.set("n", "<space>x", ":.lua<CR>", { desc = "Evaluate line at cursor (LUA)" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -98,9 +82,6 @@ vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
--- Buffer stuff
-vim.keymap.set("n", "<C-d>", "<cmd>bd<CR>", { desc = "Delete current buffer" })
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -109,21 +90,6 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-
--- Text-foo
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Shift selected text downwards" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Shift selected text upwards" })
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Move line below to the right of current line" })
-
--- Center search results
-vim.keymap.set("n", "n", "nzz", { silent = true })
-vim.keymap.set("n", "N", "Nzz", { silent = true })
-vim.keymap.set("n", "*", "*zz", { silent = true })
-vim.keymap.set("n", "#", "#zz", { silent = true })
-vim.keymap.set("n", "g*", "g*zz", { silent = true })
-
--- Quickly Switch to Netrw
-vim.keymap.set("n", "<Leader>pe", vim.cmd.Ex, { desc = "Open [P]roject & [E]xplore in netrw" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -135,43 +101,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank()
-  end,
-})
-
--- Terminal
-vim.api.nvim_create_autocmd("TermOpen", {
-  group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
-  callback = function()
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-    vim.opt_local.scrolloff = 0
-    vim.bo.filetype = "terminal"
-  end,
-})
-
--- Jump to last position on file open
-vim.api.nvim_create_autocmd("BufReadPost", {
-  desc = "Jump to last position on file open",
-  group = vim.api.nvim_create_augroup("custom-editor-open", { clear = true }),
-  pattern = "*",
-  callback = function(ev)
-    if vim.fn.line "'\"" > 1 and vim.fn.line "'\"" <= vim.fn.line "$" then
-      -- except for in git commit messages
-      -- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-      if not vim.fn.expand("%:p"):find(".git", 1, true) then
-        vim.cmd 'exe "normal! g\'\\""'
-      end
-    end
-  end,
-})
-
--- C Specific configurations
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cmake" },
-  callback = function()
-    vim.opt_local.expandtab = true
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.softtabstop = 2
   end,
 })
 
