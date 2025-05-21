@@ -613,7 +613,7 @@ require("lazy").setup({
 				transparent = false, -- do not set background color
 				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 				terminalColors = true, -- define vim.g.terminal_color_{0,17}
-				colors = { -- add/modify theme and palette colors
+				colors = {
 					palette = {},
 					theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
 				},
@@ -626,8 +626,10 @@ require("lazy").setup({
 					light = "lotus",
 				},
 			})
+
 			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+			vim.cmd.colorscheme("kanagawa")
 		end,
 	},
 
@@ -716,6 +718,7 @@ require("lazy").setup({
 
 	-- require 'kickstart.plugins.lint',
 	require("kickstart.plugins.autopairs"),
+	require("kickstart.plugins.debug"),
 	require("kickstart.plugins.gitsigns"), -- adds gitsigns recommend keymaps
 	require("davisraym.plugins.fugitive"),
 	require("davisraym.plugins.vimwiki"),
