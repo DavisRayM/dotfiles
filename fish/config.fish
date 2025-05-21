@@ -31,6 +31,7 @@ set __fish_git_prompt_use_informative_chars 'yes'
 set -g fish_prompt_pwd_dir_length 3
 
 function fish_prompt
+	echo
 	set_color blue
 	echo -n (hostnamectl hostname)
 	if [ $PWD != $HOME ]
@@ -49,7 +50,7 @@ function fish_prompt
 		set_color brblack
 		echo -n ') '
 	end
-	echo ''
+	echo
 	set_color red
 	echo -n '↳ '
 	set_color normal
