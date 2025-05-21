@@ -101,14 +101,6 @@ vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 -- Buffer stuff
 vim.keymap.set("n", "<C-d>", "<cmd>bd<CR>", { desc = "Delete current buffer" })
 
--- Keybinds to make terminal usage easier.
-vim.keymap.set("n", "<leader>tt", function()
-  vim.cmd.new()
-  vim.cmd.wincmd "J"
-  vim.api.nvim_win_set_height(0, 10)
-  vim.cmd.term()
-end, { desc = "[T]oggle [t]erminal" })
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -154,7 +146,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt_local.relativenumber = false
     vim.opt_local.scrolloff = 0
     vim.bo.filetype = "terminal"
-    vim.cmd "startinsert"
   end,
 })
 
