@@ -66,6 +66,22 @@ install_rog() {
     EnableStartService power-profiles-daemon.service supergfxd
 }
 
+install_neovim() {
+    prerequisites=(
+        "base-devel" "cmake" "ninja" "curl"
+    )
+    presentDir="$(pwd)"
+
+    cd "$HOME/Workspace/thirdparty"
+    CloneOrUpdate https://github.com/neovim/neovim neovim
+    cd neovim
+
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    sudo make install
+
+    cd $presentDir
+}
+
 install_hypr() {
     packages=(
         "alsa-utils" "bind" "blueman" "bluez" "bluez-utils"
@@ -73,7 +89,7 @@ install_hypr() {
         "evtest" "firefox" "fish" "fisher" "gcr-4" "gimp" "git" "gnome-keyring"
         "gnu-netcat" "grim" "hyprland" "hyprland-qtutils" "hyprlock"
         "hyprpaper" "hyprpicker" "hyprpolkitagent" "inetutils" "jq" "kitty"
-        "libnotify" "lxappearance" "mako" "man-db" "man-pages" "neovim"
+        "libnotify" "lxappearance" "mako" "man-db" "man-pages"
         "net-tools" "nodejs" "npm" "openssh" "pavucontrol" "playerctl" "qt5-wayland" "rofi" "rustup"
         "slurp" "steam-native-runtime" "tldr" "tmux" "ttf-noto-nerd" "unzip"
         "waybar" "wev" "wget" "wl-clipboard" "xdg-desktop-portal-hyprland" "zoxide"
@@ -104,6 +120,8 @@ install_hypr() {
         success=$?
     done
     set -e
+
+    install_neovim
 
     echo "=> $(ColorBlue 'Setting up latest rust version')..."
     rustup install stable
@@ -173,6 +191,9 @@ main() {
             ;;
         rog)
             install_rog
+            ;;
+        nvim)
+            install_neovim
             ;;
         *)
             echo "$(ColorRed 'Unknown option'): $option"
