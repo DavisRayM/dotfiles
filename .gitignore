@@ -1,3 +1,4 @@
 .gnupg/*
+**/dev.lua
 
 !.gnupg/gpg-agent.conf
