@@ -51,7 +51,7 @@ function fish_prompt
 	end
 	echo ''
 	set_color red
-	echo -n '; '
+	echo -n '↳ '
 	set_color normal
 end
 
