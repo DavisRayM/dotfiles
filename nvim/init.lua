@@ -630,8 +630,8 @@ require("lazy").setup({
         keywordStyle = { italic = true },
         statementStyle = { bold = true },
         typeStyle = {},
-        transparent = false, -- do not set background color
-        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+        transparent = true,
+        dimInactive = true,
         terminalColors = true, -- define vim.g.terminal_color_{0,17}
         colors = {
           palette = {},
@@ -640,15 +640,13 @@ require("lazy").setup({
         overrides = function(colors) -- add/modify highlights
           return {}
         end,
-        theme = "dragon", -- Load "wave" theme
-        background = { -- map the value of 'background' option to a theme
+        theme = "dragon",
+        background = {
           dark = "dragon",
           light = "lotus",
         },
       }
 
-      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
       vim.cmd.colorscheme "kanagawa"
     end,
   },
