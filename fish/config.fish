@@ -13,9 +13,6 @@ if status --is-interactive
 		case 'linux'
 			exec Hyprland
 		case '*'
-			if ! set -q TMUX
-				exec tmux
-			end
 	end
 end
 
