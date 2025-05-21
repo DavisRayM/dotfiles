@@ -9,28 +9,28 @@ return {
 	},
 	keys = {
 		{
-			"<F5>",
+			"<leader>dr",
 			function()
 				require("dap").continue()
 			end,
 			desc = "Debug: Start/Continue",
 		},
 		{
-			"<F1>",
+			"<leader>di",
 			function()
 				require("dap").step_into()
 			end,
 			desc = "Debug: Step Into",
 		},
 		{
-			"<F2>",
+			"<leader>ds",
 			function()
 				require("dap").step_over()
 			end,
 			desc = "Debug: Step Over",
 		},
 		{
-			"<F3>",
+			"<leader>du",
 			function()
 				require("dap").step_out()
 			end,
@@ -41,22 +41,35 @@ return {
 			function()
 				require("dap").toggle_breakpoint()
 			end,
-			desc = "Debug: Toggle Breakpoint",
+			desc = "Debug: Toggle Breakpoint.",
 		},
 		{
 			"<leader>B",
 			function()
 				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 			end,
-			desc = "Debug: Set Breakpoint",
+			desc = "Debug: Set Conditional Breakpoint.",
 		},
-		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
 		{
-			"<F7>",
+			"<leader>dR",
+			function()
+				require("dap").restart()
+			end,
+			desc = "Debug: Restart Debugger",
+		},
+		{
+			"<leader>?",
+			function()
+				require("dapui").eval(nil, { enter = true })
+			end,
+			desc = "Debug: Eval under cursor",
+		},
+		{
+			"<leader>dt",
 			function()
 				require("dapui").toggle()
 			end,
-			desc = "Debug: See last session result.",
+			desc = "Debug: Toggle DAP UI.",
 		},
 	},
 	config = function()
@@ -111,5 +124,25 @@ return {
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 		dap.listeners.before.event_exited["dapui_config"] = dapui.close
+
+		dap.adapters.codelldb = {
+			type = "server",
+			port = "${port}",
+			executable = {
+				command = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb",
+				args = { "--port", "${port}" },
+			},
+		}
+
+		dap.configurations.rust = {
+			{
+				type = "codelldb",
+				request = "launch",
+				program = function()
+					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+				end,
+				cwd = "${workspaceFolder}",
+			},
+		}
 	end,
 }
