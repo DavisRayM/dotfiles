@@ -83,6 +83,7 @@ SudoWebGet() {
 CloneOrUpdate() {
     remoteUrl=$1
     directory=$2
+    optionalArgs=${@:3}
 
     if [ -d "$directory/.git" ]; then
         echo "=> $(ColorYellow 'Pulling latest changes')..."
@@ -91,6 +92,6 @@ CloneOrUpdate() {
         cd -
     else
         echo "=> $(ColorYellow 'Cloning repository')..."
-        git clone "$remoteUrl" "$directory"
+        git clone $optionalArgs "$remoteUrl" "$directory"
     fi
 }

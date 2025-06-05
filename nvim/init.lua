@@ -329,6 +329,13 @@ require("lazy").setup({
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local servers = {
+        zls = {
+          settings = {
+            zls = {
+              semantic_tokens = "partial",
+            },
+          },
+        },
         lua_ls = {
           server_capabilities = {
             semanticTokensProvider = vim.NIL,

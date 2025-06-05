@@ -15,6 +15,7 @@ set -e
 shopt -s xpg_echo
 PROGRAM_DIR=$(realpath "$0" | xargs dirname)
 source "$PROGRAM_DIR/../helpers.sh"
+LLVM_RELEASE=release/20.x
 
 # Prints out usage information
 usage() {
@@ -72,12 +73,82 @@ install_neovim() {
     )
     presentDir="$(pwd)"
 
+    InstallPackages "${prerequisites[@]}"
+
     cd "$HOME/Workspace/thirdparty"
     CloneOrUpdate https://github.com/neovim/neovim neovim
     cd neovim
 
     make CMAKE_BUILD_TYPE=RelWithDebInfo
     sudo make install
+
+    cd $presentDir
+}
+
+install_llvm() {
+    prerequisites=(
+        "base-devel" "cmake" "ninja" "curl"
+    )
+    presentDir="$(pwd)"
+
+    InstallPackages "${prerequisites[@]}"
+
+    cd "$HOME/Workspace/thirdparty"
+    CloneOrUpdate https://github.com/llvm/llvm-project llvm-project --depth 1 --branch $LLVM_RELEASE
+    cd llvm-project
+
+    git checkout $LLVM_RELEASE
+
+    CreateDir build-release
+    cd build-release
+    cmake ../llvm \
+        -DCMAKE_INSTALL_PREFIX=$HOME/local/llvm20-assert \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DLLVM_ENABLE_PROJECTS="lld;clang" \
+        -DLLVM_ENABLE_LIBXML2=OFF \
+        -DLLVM_ENABLE_TERMINFO=OFF \
+        -DLLVM_ENABLE_LIBEDIT=OFF \
+        -DLLVM_ENABLE_ASSERTIONS=ON \
+        -DLLVM_PARALLEL_LINK_JOBS=1 \
+        -G Ninja
+    ninja install
+
+    cd $presentDir
+}
+
+install_zls() {
+    presentDir="$(pwd)"
+
+    cd "$HOME/Workspace/thirdparty"
+    CloneOrUpdate git@github.com:zigtools/zls.git zls
+
+    cd zls
+    zig build -Doptimize=ReleaseSafe
+    ln -sf $(pwd)/zig-out/bin/zls ~/.local/bin/zls
+
+    cd $presentDir
+}
+
+install_zig() {
+    prerequisites=(
+        "base-devel" "cmake" "ninja" "curl" "gcc" "clang"
+    )
+    presentDir="$(pwd)"
+
+    InstallPackages "${prerequisites[@]}"
+    install_llvm
+
+    cd "$HOME/Workspace/thirdparty"
+    CloneOrUpdate git@github.com:ziglang/zig.git zig
+    cd zig
+
+    CreateDir build
+    cd build
+    cmake .. \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_PREFIX_PATH=$HOME/local/llvm20-assert
+    make install
+    ln -sf $(pwd)/stage3/bin/zig ~/.local/bin/zig
 
     cd $presentDir
 }
@@ -194,6 +265,10 @@ main() {
             ;;
         nvim)
             install_neovim
+            ;;
+        zig)
+            install_zig
+            install_zls
             ;;
         *)
             echo "$(ColorRed 'Unknown option'): $option"
