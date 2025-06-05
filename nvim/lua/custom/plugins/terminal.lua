@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
-local function create_floating_window(opts)
+local function create_window(opts)
   opts = opts or {}
 
   -- Create/Reuse buffer
@@ -64,7 +64,7 @@ local toggle_terminal = function(opts)
   opts = opts or { floating = false }
 
   if not vim.api.nvim_win_is_valid(state.floating.win) then
-    state.floating = create_floating_window { buf = state.floating.buf, floating = opts.floating }
+    state.floating = create_window { buf = state.floating.buf, floating = opts.floating }
     if vim.bo[state.floating.buf].buftype ~= "terminal" then
       vim.cmd.term()
     end
