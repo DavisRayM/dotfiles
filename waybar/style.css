@@ -54,6 +54,7 @@ button:hover {
 
 #clock,
 #battery,
+#idle_inhibitor,
 #backlight,
 #network,
 #tray,
@@ -66,6 +67,7 @@ button:hover {
 }
 
 #power-profiles-daemon,
+#idle_inhibitor,
 #battery {
     font-size: 20px;
 }

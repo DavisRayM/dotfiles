@@ -12,6 +12,7 @@
         "hyprland/workspaces",
     ],
     "modules-right": [
+        "idle_inhibitor",
         "clock",
         "power-profiles-daemon",
         "network",
@@ -22,6 +23,13 @@
         "tray",
         "custom/power"
     ],
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
     "hyprland/workspaces": {
         "format": "{id}",
         "format-icons": {
