@@ -13,7 +13,7 @@
 	verbose = true
 [core]
 	editor = nvim
-	autocrlf = input
+	autocrlf = false
 	safecrlf = true
 	pager = delta
 [help]

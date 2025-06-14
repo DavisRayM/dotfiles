@@ -12,6 +12,9 @@ vim.opt.relativenumber = true
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+-- Disable Swap file
+vim.opt.swapfile = false
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -90,6 +93,13 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- [[ Filetypes ]]
+vim.filetype.add {
+  extension = {
+    razor = "razor",
+  },
+}
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -230,8 +240,8 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", opts = {} },
-      "williamboman/mason-lspconfig.nvim",
+      { "mason-org/mason.nvim", opts = {} },
+      "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opts = {} },
       "saghen/blink.cmp",
@@ -265,6 +275,16 @@ require("lazy").setup({
           end
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+          if client and client.name == "omnisharp" then
+            local omnisharp_extended = require "omnisharp_extended"
+
+            map("grr", omnisharp_extended.telescope_lsp_references, "[G]oto [R]eferences")
+            map("grd", omnisharp_extended.telescope_lsp_definition, "[G]oto [D]efinition")
+            map("grt", omnisharp_extended.telescope_lsp_type_definition, "[G]oto [T]ype Definition")
+            map("gri", omnisharp_extended.telescope_lsp_implementation, "[G]oto [I]mplementation")
+          end
+
           if
             client
             and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
@@ -327,43 +347,74 @@ require("lazy").setup({
       }
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local util = require "lspconfig.util"
 
       local servers = {
-        zls = {
-          settings = {
-            zls = {
-              semantic_tokens = "partial",
+        mason = {
+          zls = {
+            settings = {
+              zls = {
+                semantic_tokens = "partial",
+              },
             },
           },
-        },
-        lua_ls = {
-          server_capabilities = {
-            semanticTokensProvider = vim.NIL,
+          lua_ls = {
+            server_capabilities = {
+              semanticTokensProvider = vim.NIL,
+            },
+            settings = {
+              Lua = {
+                completion = {
+                  callSnippet = "Replace",
+                },
+              },
+            },
           },
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
+          clangd = {
+            filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+          },
+          pyright = {},
+          rust_analyzer = {},
+        },
+        others = {
+          omnisharp = {
+            cmd = {
+              "omnisharp",
+              "-z", -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
+              "--hostPID",
+              tostring(vim.fn.getpid()),
+              "DotNet:enablePackageRestore=false",
+              "--encoding",
+              "utf-8",
+              "--languageserver",
+            },
+            root_markers = { ".sln", ".csproj", "omnisharp.json", "function.json" },
+            filetypes = { "cs", "vb", "razor" },
+            settings = {
+              FormattingOptions = {
+                EnableEditorConfigSupport = true,
+                OrganizeImports = true,
+              },
+              RoslynExtensionsOptions = {
+                EnableAnalyzersSupport = true,
+                EnableImportCompletion = true,
+                AnalyzeOpenDocumentsOnly = false,
+                EnableDecompilationSupport = true,
+              },
+              RenameOptions = {
+                RenameInComments = nil,
+                RenameOverloads = nil,
+                RenameInStrings = nil,
+              },
+              Sdk = {
+                IncludePrereleases = true,
               },
             },
           },
         },
-        clangd = {
-          filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-        },
-        pyright = {},
-        rust_analyzer = {},
-        omnisharp = {
-          enable_editorconfig_support = true,
-          organize_imports_on_format = true,
-          enable_roslyn_analyzers = true,
-          enable_import_completion = true,
-          sdk_include_prereleases = true,
-          analyze_open_documents_only = false,
-        },
       }
 
-      local ensure_installed = vim.tbl_keys(servers or {})
+      local ensure_installed = vim.tbl_keys(servers.mason or {})
       vim.list_extend(ensure_installed, {
         "stylua", -- Used to format Lua code
         "black", -- Used to format Python code
@@ -371,17 +422,20 @@ require("lazy").setup({
       })
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
+      for server, config in pairs(vim.tbl_extend("keep", servers.mason, servers.others)) do
+        if not vim.tbl_isempty(config) then
+          vim.lsp.config(server, config)
+        end
+      end
+
       require("mason-lspconfig").setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
+        automatic_enable = true,
       }
+
+      if not vim.tbl_isempty(servers.others) then
+        vim.lsp.enable(vim.tbl_keys(servers.others))
+      end
     end,
   },
 
