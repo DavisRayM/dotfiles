@@ -166,8 +166,8 @@ install_hypr() {
         "waybar" "wev" "wget" "wl-clipboard" "xdg-desktop-portal-hyprland" "zoxide"
         "bat" "seahorse" "git-delta" "hyprlock" "hypridle" "fzf" "fd"
         "tree-sitter-cli" "lua-language-server" "ttf-nerd-fonts-symbols"
-        "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji" "google-chrome-stable"
-        "github-cli" "pyenv" "virtualfish" "omnisharp" "rust-analyzer"
+        "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji" "google-chrome"
+        "github-cli" "pyenv" "virtualfish" "omnisharp-roslyn" "rust-analyzer"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."

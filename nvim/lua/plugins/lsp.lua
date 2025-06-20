@@ -48,6 +48,7 @@ return {
       lua_ls = {},
       rust_analyzer = {},
       omnisharp = {},
+      zls = {},
     }
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     for svr_name, config in pairs(servers) do
