@@ -167,7 +167,7 @@ install_hypr() {
         "bat" "seahorse" "git-delta" "hyprlock" "hypridle" "fzf" "fd"
         "tree-sitter-cli" "lua-language-server" "ttf-nerd-fonts-symbols"
         "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji" "google-chrome-stable"
-        "github-cli" "pyenv"
+        "github-cli" "pyenv" "virtualfish"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
