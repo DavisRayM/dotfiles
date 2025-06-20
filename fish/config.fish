@@ -65,7 +65,5 @@ zoxide init fish | source
 # Pyenv
 pyenv init - fish | source
 
-source /opt/miniconda3/etc/fish/conf.d/conda.fish
-
 # GPG
 gpg-connect-agent updatestartuptty /bye >/dev/null
