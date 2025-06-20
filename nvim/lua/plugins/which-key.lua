@@ -10,6 +10,7 @@ return {
       { "<leader>d", group = "[D]ebug" },
       { "<leader>w", group = "[W]iki" },
       { "<leader>g", group = "[G]it" },
+      { "<leader>r", group = "[R]un" },
       { "g",         group = "[G]lobal" },
     },
   },

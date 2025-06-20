@@ -17,3 +17,9 @@ map("n", "<M-j>", "<cmd>cnext<CR>", { desc = "Move to next item in quickfix list
 map("n", "<M-k>", "<cmd>cprev<CR>", { desc = "Move to previous item in quickfix list" })
 
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open Diagnostic [Q]uickfix List" })
+
+map("n", "n", "nzz", { silent = true })
+map("n", "N", "Nzz", { silent = true })
+map("n", "*", "*zz", { silent = true })
+map("n", "#", "#zz", { silent = true })
+map("n", "g*", "g*zz", { silent = true })

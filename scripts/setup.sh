@@ -162,9 +162,11 @@ install_hypr() {
         "hyprpaper" "hyprpicker" "hyprpolkitagent" "inetutils" "jq" "kitty"
         "libnotify" "lxappearance" "mako" "man-db" "man-pages"
         "net-tools" "nodejs" "npm" "openssh" "pavucontrol" "playerctl" "qt5-wayland" "rofi" "rustup"
-        "slurp" "steam-native-runtime" "tldr" "tmux" "ttf-noto-nerd" "unzip"
+        "slurp" "steam-native-runtime" "tldr" "tmux" "ttf-sourcecodepro-nerd" "unzip"
         "waybar" "wev" "wget" "wl-clipboard" "xdg-desktop-portal-hyprland" "zoxide"
-        "bat" "seahorse" "git-delta" "hyprlock" "hypridle" "fzf"
+        "bat" "seahorse" "git-delta" "hyprlock" "hypridle" "fzf" "fd"
+        "tree-sitter-cli" "lua-language-server" "ttf-nerd-fonts-symbols"
+        "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."

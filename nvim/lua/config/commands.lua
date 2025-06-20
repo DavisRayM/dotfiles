@@ -4,6 +4,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
     vim.o.number = false
     vim.o.relativenumber = false
+    vim.o.spell = false
   end,
 })
 
