@@ -40,8 +40,8 @@ create_directories() {
     echo "=> $(ColorYellow 'Creating required directory structure')..."
     CreateDir "$HOME/.config"
     CreateDir "$HOME/.local/bin"
-    CreateDir "$HOME/Workspace/thirdparty"
-    CreateDir "$HOME/Workspace/aur-packages"
+    CreateDir "$HOME/workspace/thirdparty"
+    CreateDir "$HOME/workspace/aur-packages"
     CreateDir "$HOME/Downloads"
     CreateDir "$HOME/Pictures"
 }
@@ -75,7 +75,7 @@ install_neovim() {
 
     InstallPackages "${prerequisites[@]}"
 
-    cd "$HOME/Workspace/thirdparty"
+    cd "$HOME/workspace/thirdparty"
     CloneOrUpdate https://github.com/neovim/neovim neovim
     cd neovim
 
@@ -93,7 +93,7 @@ install_llvm() {
 
     InstallPackages "${prerequisites[@]}"
 
-    cd "$HOME/Workspace/thirdparty"
+    cd "$HOME/workspace/thirdparty"
     CloneOrUpdate https://github.com/llvm/llvm-project llvm-project --depth 1 --branch $LLVM_RELEASE
     cd llvm-project
 
@@ -119,7 +119,7 @@ install_llvm() {
 install_zls() {
     presentDir="$(pwd)"
 
-    cd "$HOME/Workspace/thirdparty"
+    cd "$HOME/workspace/thirdparty"
     CloneOrUpdate git@github.com:zigtools/zls.git zls
 
     cd zls
@@ -138,7 +138,7 @@ install_zig() {
     InstallPackages "${prerequisites[@]}"
     install_llvm
 
-    cd "$HOME/Workspace/thirdparty"
+    cd "$HOME/workspace/thirdparty"
     CloneOrUpdate git@github.com:ziglang/zig.git zig
     cd zig
 
@@ -162,11 +162,12 @@ install_hypr() {
         "hyprpaper" "hyprpicker" "hyprpolkitagent" "inetutils" "jq" "kitty"
         "libnotify" "lxappearance" "mako" "man-db" "man-pages"
         "net-tools" "nodejs" "npm" "openssh" "pavucontrol" "playerctl" "qt5-wayland" "rofi" "rustup"
-        "slurp" "steam-native-runtime" "tldr" "tmux" "ttf-sourcecodepro-nerd" "unzip"
+        "slurp" "tldr" "tmux" "ttf-sourcecodepro-nerd" "unzip"
         "waybar" "wev" "wget" "wl-clipboard" "xdg-desktop-portal-hyprland" "zoxide"
         "bat" "seahorse" "git-delta" "hyprlock" "hypridle" "fzf" "fd"
         "tree-sitter-cli" "lua-language-server" "ttf-nerd-fonts-symbols"
-        "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji"
+        "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji" "google-chrome-stable"
+        "github-cli" "pyenv"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
@@ -207,7 +208,7 @@ install_hypr() {
 
 aur_packages() {
     presentDir="$(pwd)"
-    cd ~/Workspace/aur-packages
+    cd ~/workspace/aur-packages
 
     echo "=> $(ColorBlue 'Setting up paru')..."
     CloneOrUpdate https://aur.archlinux.org/paru.git paru

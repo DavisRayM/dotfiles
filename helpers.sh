@@ -49,7 +49,11 @@ CreateDir() {
 
 InstallPackages() {
     echo "=> $(ColorYellow 'Installing packages'): $*"
-    sudo pacman -S --needed --noconfirm "$@"
+    if command -v paru >/dev/null 2>&1; then
+        paru -S --needed --noconfirm "$@"
+    else
+        sudo pacman -S --needed --noconfirm "$@"
+    fi
 }
 
 EnableStartService() {
