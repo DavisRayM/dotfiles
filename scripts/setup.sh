@@ -167,7 +167,7 @@ install_hypr() {
         "bat" "seahorse" "git-delta" "hyprlock" "hypridle" "fzf" "fd"
         "tree-sitter-cli" "lua-language-server" "ttf-nerd-fonts-symbols"
         "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji" "google-chrome-stable"
-        "github-cli" "pyenv" "virtualfish"
+        "github-cli" "pyenv" "virtualfish" "omnisharp" "rust-analyzer"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
@@ -199,7 +199,6 @@ install_hypr() {
 
     echo "=> $(ColorBlue 'Setting up latest rust version')..."
     rustup install stable
-    rustup component add rust-analyzer
 
     echo "=> $(ColorBlue 'Enabling SSH agent and Bluetooth service')..."
     EnableUserService gcr-ssh-agent.socket
