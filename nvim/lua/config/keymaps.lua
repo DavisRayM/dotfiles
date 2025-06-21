@@ -23,3 +23,7 @@ map("n", "N", "Nzz", { silent = true })
 map("n", "*", "*zz", { silent = true })
 map("n", "#", "#zz", { silent = true })
 map("n", "g*", "g*zz", { silent = true })
+
+map("n", "<leader>tc", function()
+  vim.opt.spell = not vim.opt.spell
+end, { desc = "[T]oggle Spell [C]heck" })

@@ -18,7 +18,6 @@ set.showmode = false
 set.signcolumn = "yes"
 set.smartcase = true
 set.softtabstop = -1
-set.spell = true
 set.swapfile = false
 set.termguicolors = true
 set.timeoutlen = 500
