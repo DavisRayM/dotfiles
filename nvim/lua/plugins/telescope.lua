@@ -45,7 +45,7 @@ return {
     end, { desc = "[S]earch [E]ditor Configurations" })
     vim.keymap.set("n", "<Leader>sd", function()
       builtin.find_files {
-        cwd = vim.fn.expand("~/Workspace/dotfiles"),
+        cwd = vim.fn.expand("~/workspace/dotfiles"),
       }
     end, { desc = "[S]earch [D]otfiles" })
     vim.keymap.set("n", "<Leader>sp", function()
