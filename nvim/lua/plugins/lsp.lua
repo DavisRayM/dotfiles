@@ -48,7 +48,12 @@ return {
       lua_ls = {},
       rust_analyzer = {},
       omnisharp = {},
-      zls = {},
+      zls = {
+        settings = {
+          semantic_tokens = "partial",
+        },
+      },
+      clangd = {},
     }
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     for svr_name, config in pairs(servers) do
@@ -76,8 +81,7 @@ return {
         map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-        if not client:supports_method('textDocument/willSaveWaitUntil')
-            and client:supports_method('textDocument/formatting') then
+        if client:supports_method('textDocument/formatting') then
           vim.api.nvim_create_autocmd('BufWritePre', {
             group = vim.api.nvim_create_augroup('lsp-attach', { clear = false }),
             buffer = args.buf,
