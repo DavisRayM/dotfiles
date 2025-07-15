@@ -168,6 +168,8 @@ install_hypr() {
         "tree-sitter-cli" "lua-language-server" "ttf-nerd-fonts-symbols"
         "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji" "google-chrome"
         "github-cli" "pyenv" "virtualfish" "omnisharp-roslyn" "rust-analyzer"
+        "gdb" "codelldb-bin" "minikube" "docker" "docker-compose" "docker-buildx"
+        "kubectl"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
