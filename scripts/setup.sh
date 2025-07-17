@@ -169,12 +169,16 @@ install_hypr() {
         "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji" "google-chrome"
         "github-cli" "pyenv" "virtualfish" "omnisharp-roslyn" "rust-analyzer"
         "gdb" "codelldb-bin" "minikube" "docker" "docker-compose" "docker-buildx"
-        "kubectl"
+        "kubectl" "typescript" "typescript-language-server"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
     echo "=> $(ColorBlue 'Installing packages')..."
     InstallPackages "${packages[@]}"
+
+    echo "=> $(ColorBlue 'Install vscode-langservers-extracted & tailwindcss lsp')..."
+    sudo npm install -g vscode-langservers-extracted
+    sudo npm install -g @tailwindcss/language-server
 
     echo "=> $(ColorBlue 'Configuring Hyprland & Grimblast...')..."
     UpdateCopy "${PROGRAM_DIR}/../hypr" ~/.config/

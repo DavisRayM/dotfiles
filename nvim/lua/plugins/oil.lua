@@ -4,7 +4,6 @@ return {
     require("oil").setup {
       columns = {
         "icon",
-        "permissions",
       },
       constrain_cursor = "editable",
       watch_for_changes = true,

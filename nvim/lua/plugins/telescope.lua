@@ -33,7 +33,7 @@ return {
 
     vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
     vim.keymap.set("n", "<Leader>sf", function()
-      builtin.find_files { find_command = { "rg", "--files", "--color", "never", "--hidden", "-g", "!.git/" } }
+      builtin.find_files { find_command = { "rg", "--files", "--color", "never", "--hidden", "-g", "!.git/", "-g", "!node_modules" } }
     end, { desc = "[S]each Project [F]iles" })
     vim.keymap.set("n", "<Leader>sg", function()
       require "config.pickers.multigrep".live_grep(themes.get_ivy({}))
