@@ -6,6 +6,7 @@
 }: {
   imports = [inputs.nvf.homeManagerModules.default];
 
+  # TODO: Split this into imports at some point...
   programs.nvf = {
     enable = true;
     settings = {
@@ -29,6 +30,13 @@
                 module = "lazydev.integrations.blink";
               };
             };
+          };
+        };
+
+        notes.todo-comments = {
+          enable = true;
+          setupOpts = {
+            signs = false;
           };
         };
 
@@ -223,6 +231,69 @@
             enable = true;
           };
         };
+
+        keymaps = [
+          {
+            key = "<leader>gs";
+            mode = "n";
+            action = "<cmd>Git<CR>";
+          }
+          {
+            key = "-";
+            mode = "n";
+            action = "<cmd>Oil<CR>";
+          }
+          {
+            key = "<Esc>";
+            mode = "n";
+            action = "<cmd>nohlsearch<CR>";
+          }
+          {
+            key = "<Esc><Esc>";
+            mode = "t";
+            action = "<C-\\><C-n>";
+          }
+          {
+            key = "<left>";
+            mode = "n";
+            action = "<cmd>echo 'Disabled'<CR>";
+          }
+          {
+            key = "<right>";
+            mode = "n";
+            action = "<cmd>echo 'Disabled'<CR>";
+          }
+          {
+            key = "<up>";
+            mode = "n";
+            action = "<cmd>echo 'Disabled'<CR>";
+          }
+          {
+            key = "<down>";
+            mode = "n";
+            action = "<cmd>echo 'Disabled'<CR>";
+          }
+          {
+            key = "<C-h>";
+            mode = "n";
+            action = "<C-w><C-h>";
+          }
+          {
+            key = "<C-l>";
+            mode = "n";
+            action = "<C-w><C-l>";
+          }
+          {
+            key = "<C-j>";
+            mode = "n";
+            action = "<C-w><C-j>";
+          }
+          {
+            key = "<C-k>";
+            mode = "n";
+            action = "<C-w><C-k>";
+          }
+        ];
       };
     };
   };
