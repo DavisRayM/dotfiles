@@ -1,5 +1,1 @@
-.gnupg/*
-**/dev.lua
-nvim/lazy-lock.json
-
-!.gnupg/gpg-agent.conf
+result/
