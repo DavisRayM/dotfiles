@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
