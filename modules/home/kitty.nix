@@ -4,7 +4,7 @@
   programs.kitty = {
     enable = true;
     font = {
-      package = pkgs."nerd-fonts.sauce-code-pro";
+      package = pkgs.nerd-fonts.sauce-code-pro;
       name = "SauceCodePro Nerd Font Mono";
       size = 12.0;
     };
