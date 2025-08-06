@@ -47,7 +47,6 @@ return {
     local servers = {
       lua_ls = {},
       rust_analyzer = {},
-      omnisharp = {},
       zls = {},
       clangd = {},
       gopls = {},
@@ -57,6 +56,8 @@ return {
       eslint = {},
       cssls = {},
       html = {},
+      tailwindcss = {},
+      nil_ls = {},
     }
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     for svr_name, config in pairs(servers) do
@@ -82,6 +83,7 @@ return {
         map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
         map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
         map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+        map('gsd', vim.diagnostic.open_float, '[S]how [D]iagnostic in floating window.')
 
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         if client:supports_method('textDocument/formatting') then

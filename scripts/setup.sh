@@ -157,7 +157,7 @@ install_hypr() {
     packages=(
         "alsa-utils" "bind" "blueman" "bluez" "bluez-utils"
         "bottom" "brightnessctl" "discord" "dolphin"
-        "evtest" "firefox" "fish" "fisher" "gcr-4" "gimp" "git" "gnome-keyring"
+        "evtest" "fish" "fisher" "gcr-4" "gimp" "git" "gnome-keyring"
         "gnu-netcat" "grim" "hyprland" "hyprland-qtutils" "hyprlock"
         "hyprpaper" "hyprpicker" "hyprpolkitagent" "inetutils" "jq" "kitty"
         "libnotify" "lxappearance" "mako" "man-db" "man-pages"
@@ -175,6 +175,9 @@ install_hypr() {
     echo "=> $(ColorBlue 'Setting up Hyprland')."
     echo "=> $(ColorBlue 'Installing packages')..."
     InstallPackages "${packages[@]}"
+
+    echo "=> $(ColorBlue 'Enable corepack')..."
+    sudo corepack enable
 
     echo "=> $(ColorBlue 'Install vscode-langservers-extracted & tailwindcss lsp')..."
     sudo npm install -g vscode-langservers-extracted
