@@ -8,7 +8,9 @@
   # FIX: SDDM is a bit flaky when I run the wayland
   # version... This isn't ideal but not entirely sure.
   # Enable sound with pipewire.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+  };
 
   # Audio
 

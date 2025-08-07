@@ -37,29 +37,29 @@
       set -g fish_prompt_pwd_dir_length 3
 
       function fish_prompt
-      	echo
-      	set_color blue
-      	echo -n (hostnamectl hostname)
-      	if [ $PWD != $HOME ]
-      		set_color brblack
-      		echo -n ":"
-      		set_color yellow
-      		echo -n (basename $PWD)
-      	end
-      	set_color green
-      	printf "%s " (fish_git_prompt)
-      	if set -q VIRTUAL_ENV
-      		set_color brblack
-      		echo -n "("
-      		set_color yellow
-      		echo -n (basename "$VIRTUAL_ENV")
-      		set_color brblack
-      		echo -n ") "
-      	end
-      	echo
-      	set_color red
-      	echo -n "↳ "
-      	set_color normal
+        echo
+        set_color blue
+        echo -n (hostnamectl hostname)
+        if [ $PWD != $HOME ]
+                set_color brblack
+                echo -n ":"
+                set_color yellow
+                echo -n (basename $PWD)
+        end
+        set_color green
+        printf "%s " (fish_git_prompt)
+        if set -q VIRTUAL_ENV
+                set_color brblack
+                echo -n "("
+                set_color yellow
+                echo -n (basename "$VIRTUAL_ENV")
+                set_color brblack
+                echo -n ") "
+        end
+        echo
+        set_color red
+        echo -n "↳ "
+        set_color normal
       end
 
       function fish_greeting

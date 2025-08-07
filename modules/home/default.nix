@@ -11,7 +11,6 @@
   # Stuff that probably dont need separate modules
   services.blueman-applet.enable = true;
   services.dunst.enable = true;
-  services.gnome-keyring.enable = true;
 
   programs.zoxide = {
     enable = true;

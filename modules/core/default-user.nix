@@ -28,6 +28,8 @@ in {
       extraGroups = ["networkmanager" "wheel"];
     };
 
+    programs.dconf.enable = true;
+
     home-manager = {
       useUserPackages = true;
       backupFileExtension = "backup";
@@ -40,6 +42,11 @@ in {
       };
       users.${cfg.userName} = {
         imports = [../home];
+        dconf.settings = {
+          "apps/seahorse/listing" = {
+            keyrings-selected = ["gnupg://"];
+          };
+        };
         home = {
           username = "${cfg.userName}";
           homeDirectory = "/home/${cfg.userName}";
