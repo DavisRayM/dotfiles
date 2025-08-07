@@ -2,7 +2,7 @@
   imports = [
     ./fish.nix
     ./git.nix
-    ./hyprland.nix
+    ./hyprland
     ./kitty.nix
     ./neovim.nix
     ./waybar
