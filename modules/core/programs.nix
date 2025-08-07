@@ -1,12 +1,20 @@
 {pkgs, ...}: {
-  # User Apps and Display
-  programs.firefox.enable = true;
-  programs.hyprland.enable = true;
+  programs = {
+    firefox.enable = true;
+    hyprland.enable = true;
+    dconf.enable = true;
+    seahorse.enable = true;
 
-  # System
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-curses;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
+
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
   };
-  programs.ssh.startAgent = true;
+
+  environment.systemPackages = [];
 }
