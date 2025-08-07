@@ -5,7 +5,11 @@
     ./bootloader.nix
     ./default-user.nix
     ./fonts.nix
+    ./networking.nix
+    ./programs.nix
     ./sddm.nix
+    ./services.nix
     ./stylix.nix
+    ./time.nix
   ];
 }

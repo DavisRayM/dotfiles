@@ -23,10 +23,12 @@
     nixpkgs,
     ...
   } @ inputs: let
-    username = "dave";
-    gitUsername = "davisraym";
+    timezone = "America/Los_Angeles";
     gitEmail = "git@davisraym.com";
     gitSigningKey = "B21213D4E7D60355";
+    gitUsername = "davisraym";
+    hostname = "sanguine";
+    username = "dave";
   in {
     nixosConfigurations.personal = nixpkgs.lib.nixosSystem {
       specialArgs = {
@@ -35,6 +37,8 @@
         inherit gitUsername;
         inherit gitEmail;
         inherit gitSigningKey;
+        inherit hostname;
+        inherit timezone;
       };
       modules = [
         {nix.settings.experimental-features = ["nix-command" "flakes"];}
