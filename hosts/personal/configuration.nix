@@ -34,6 +34,7 @@
   # Enable bluetooth
   hardware.bluetooth.enable = true;
 
+  services.xserver.enable = false;
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
