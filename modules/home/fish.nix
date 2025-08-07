@@ -1,6 +1,8 @@
-{ lib, pkgs, ... }:
-
 {
+  lib,
+  pkgs,
+  ...
+}: {
   # Use Bash as the Login Shell; Switch to Fish for Interactive Sessions
   programs.bash = {
     enable = true;
@@ -33,7 +35,7 @@
       set __fish_git_prompt_showupstream "none"
       set __fish_git_prompt_use_informative_chars "yes"
       set -g fish_prompt_pwd_dir_length 3
-      
+
       function fish_prompt
       	echo
       	set_color blue
@@ -59,7 +61,7 @@
       	echo -n "↳ "
       	set_color normal
       end
-      
+
       function fish_greeting
       end
     '';
