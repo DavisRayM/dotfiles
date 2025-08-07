@@ -6,11 +6,6 @@
         grace = 15;
         hide_cursor = true;
       };
-      background = [
-        {
-          blur_passes = 0;
-        }
-      ];
 
       label = [
         {
@@ -28,23 +23,6 @@
           position = "0, -150";
           halign = "center";
           valign = "top";
-        }
-      ];
-
-      input-field = [
-        {
-          size = "300, 60";
-          outline_thickness = 1;
-          dots_size = 0.2;
-          dots_spacing = 0.2;
-          dots_center = true;
-          fade_on_empty = true;
-          placeholder_text = "<span><i>󰌾 Logged in as </i><span>$USER</span></span>";
-          hide_input = false;
-          fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
-          position = "0, -47";
-          halign = "center";
-          valign = "center";
         }
       ];
     };

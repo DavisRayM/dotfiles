@@ -6,10 +6,6 @@
     fonts = {
       monospace.name = "SauceCodePro Nerd Font Mono";
       monospace.package = pkgs.nerd-fonts.sauce-code-pro;
-      packages = with pkgs; [
-        nerd-fonts.sauce-code-pro
-        nerd-fonts.symbols-only
-      ];
     };
   };
 }
