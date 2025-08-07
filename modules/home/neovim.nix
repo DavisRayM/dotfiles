@@ -211,12 +211,6 @@
         mini.pairs.enable = true;
         mini.icons.enable = true;
 
-        # theme = {
-        #   enable = true;
-        #   name = "tokyonight";
-        #   style = "night";
-        # };
-
         options = {
           breakindent = true;
           confirm = true;
