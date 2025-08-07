@@ -6,6 +6,15 @@
 }: {
   imports = [inputs.nvf.homeManagerModules.default];
 
+  programs.neovim = {
+    extraLuaConfig = ''
+      local statusline = require 'mini.statusline'
+      statusline.section_location = function()
+        return '%2l|%-2v'
+      end
+    '';
+  };
+
   # TODO: Split this into imports at some point...
   programs.nvf = {
     enable = true;
@@ -149,7 +158,12 @@
           };
         };
 
-        mini.statusline.enable = true;
+        mini.statusline = {
+          enable = true;
+          setupOpts = {
+            use_icons = true;
+          };
+        };
         mini.pairs.enable = true;
         mini.icons.enable = true;
 
