@@ -58,6 +58,7 @@
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   programs.ssh.startAgent = true;
