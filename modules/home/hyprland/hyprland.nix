@@ -39,6 +39,14 @@
         layout = "master";
       };
 
+      cursor = {
+        sync_gsettings_theme = true;
+        no_hardware_cursors = 2;
+        enable_hyprcursor = false;
+        warp_on_change_workspace = 2;
+        no_warps = true;
+      };
+
       decoration = {
         rounding = 0;
         rounding_power = 2;
