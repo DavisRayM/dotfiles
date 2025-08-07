@@ -11,19 +11,9 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      monitorv2 = [
-        {
-          output = "eDP-1";
-          mode = "1920x1080@300";
-          position = "-1920x0";
-          scale = 1;
-        }
-        {
-          output = "HDMI-A-1";
-          mode = "1920x1080@60";
-          position = "0x0";
-          scale = 1;
-        }
+      monitor = [
+        "eDP-1, 1920x1080@300, -1920x0, 1"
+        "HDMI-A-1, 1920x1080@60, 0x0, 1"
       ];
 
       "$mod" = "SUPER";
