@@ -1,8 +1,11 @@
-{ config, pkgs, inputs, username, ... }:
-
 {
-  imports =
-  [
+  config,
+  pkgs,
+  inputs,
+  username,
+  ...
+}: {
+  imports = [
     ./hardware-configuration.nix
     ../../modules/core
   ];
@@ -28,20 +31,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # Enable bluetooth
   hardware.bluetooth.enable = true;
 
@@ -62,12 +51,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-    wget
-    alacritty
-  ];
+  # environment.systemPackages = with pkgs; [];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -95,5 +79,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
