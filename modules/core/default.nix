@@ -1,7 +1,7 @@
 {inputs, ...}: {
   imports = [
     inputs.stylix.nixosModules.stylix
-    ./asus-rog.nix
+    inputs.nixos-hardware.nixosModules.asus-rog-strix-g513im
     ./bootloader.nix
     ./default-user.nix
     ./fonts.nix
