@@ -33,6 +33,9 @@
           }
         ];
 
+        # Gotta learn someway
+        binds.hardtime-nvim.enable = true;
+
         autocmds = [
           {
             enable = true;
@@ -163,7 +166,7 @@
             previousDiagnostic = "[d";
             removeWorkspaceFolder = null;
             renameSymbol = "grn";
-            signatureHelp = "K";
+            signatureHelp = null;
             toggleFormatOnSave = null;
           };
         };
