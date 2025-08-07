@@ -1,12 +1,13 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    rofi-wayland
-    kdePackages.dolphin
-    wireplumber
     brightnessctl
     grimblast
-    playerctl
+    hyprpolkitagent
+    kdePackages.dolphin
     pavucontrol
+    playerctl
+    rofi-wayland
+    wireplumber
   ];
 
   wayland.windowManager.hyprland = {
@@ -20,6 +21,7 @@
       exec-once = [
         "waybar"
         "rog-control-center"
+        "systemctl --user start hyprpolkitagent"
       ];
 
       "$mod" = "SUPER";

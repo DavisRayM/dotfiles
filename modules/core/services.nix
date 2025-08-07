@@ -20,12 +20,4 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  # ROG Strix Specific
-  services.power-profiles-daemon.enable = true;
-  services.supergfxd.enable = true;
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
-  };
 }

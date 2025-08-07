@@ -29,6 +29,7 @@
     gitUsername = "davisraym";
     hostname = "sanguine";
     username = "dave";
+    winOSUUID = "4480-965B";
   in {
     nixosConfigurations.personal = nixpkgs.lib.nixosSystem {
       specialArgs = {
@@ -39,6 +40,7 @@
         inherit gitSigningKey;
         inherit hostname;
         inherit timezone;
+        inherit winOSUUID;
       };
       modules = [
         {nix.settings.experimental-features = ["nix-command" "flakes"];}
