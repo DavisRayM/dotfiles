@@ -11,26 +11,32 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     username = "dave";
     gitUsername = "davisraym";
     gitEmail = "git@davisraym.com";
     gitSigningKey = "B21213D4E7D60355";
-  in
-  {
+  in {
     nixosConfigurations.personal = nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs;
-	inherit username;
-	inherit gitUsername;
-	inherit gitEmail;
-	inherit gitSigningKey;
+        inherit username;
+        inherit gitUsername;
+        inherit gitEmail;
+        inherit gitSigningKey;
       };
       modules = [
-        { nix.settings.experimental-features = [ "nix-command" "flakes" ]; }
+        {nix.settings.experimental-features = ["nix-command" "flakes"];}
         ./hosts/personal/configuration.nix
       ];
     };
