@@ -6,6 +6,7 @@
     brightnessctl
     grimblast
     playerctl
+    pavucontrol
   ];
 
   wayland.windowManager.hyprland = {
@@ -18,6 +19,7 @@
 
       exec-once = [
         "waybar"
+        "rog-control-center"
       ];
 
       "$mod" = "SUPER";
