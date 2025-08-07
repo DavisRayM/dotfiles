@@ -20,6 +20,50 @@
     enable = true;
     settings = {
       vim = {
+        augroups = [
+          {
+            enable = true;
+            name = "TextEventGroup";
+            clear = true;
+          }
+          {
+            enable = true;
+            name = "EditorOpenGroup";
+            clear = true;
+          }
+        ];
+
+        autocmds = [
+          {
+            enable = true;
+            event = ["TextYankPost"];
+            group = "TextEventGroup";
+            desc = "Highlight when yanking text.";
+            callback = lib.generators.mkLuaInline ''
+              function()
+                vim.highlight.on_yank()
+              end
+            '';
+          }
+          {
+            enable = true;
+            event = ["BufReadPost"];
+            group = "EditorOpenGroup";
+            desc = "Jump to last position on file open.";
+            callback = lib.generators.mkLuaInline ''
+              function(ev)
+                if vim.fn.line "'\"" > 1 and vim.fn.line "'\"" <= vim.fn.line "$" then
+                  -- except for in git commit messages
+                  -- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+                  if not vim.fn.expand("%:p"):find(".git", 1, true) then
+                    vim.cmd 'exe "normal! g\'\\""'
+                  end
+                end
+              end
+            '';
+          }
+        ];
+
         autocomplete = {
           blink-cmp = {
             enable = true;
