@@ -6,7 +6,6 @@
     ./kitty.nix
     ./neovim.nix
     ./waybar
-    ./zoxide.nix
   ];
 
   # Stuff that probably dont need separate modules
