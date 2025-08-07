@@ -5,6 +5,7 @@
     ./hyprland.nix
     ./kitty.nix
     ./neovim.nix
+    ./waybar
     ./zoxide.nix
   ];
 }

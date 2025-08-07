@@ -16,6 +16,10 @@
         "HDMI-A-1, 1920x1080@60, 0x0, 1"
       ];
 
+      exec-once = [
+        "waybar"
+      ];
+
       "$mod" = "SUPER";
       "$terminal" = "kitty";
       "$menu" = "rofi -show drun";
