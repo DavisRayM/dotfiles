@@ -34,7 +34,9 @@
   # Enable bluetooth
   hardware.bluetooth.enable = true;
 
-  services.xserver.enable = false;
+  # SDDM is a bit flaky when I run the wayland
+  # version... This isn't ideal but not entirely sure.
+  services.xserver.enable = true;
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
