@@ -54,14 +54,12 @@ button:hover {
 #clock,
 #battery,
 #idle_inhibitor,
-#backlight,
 #network,
-#tray,
-#custom-power {
+#tray {
   padding: 0px 5px;
 }
 
-#custom-power {
+#backlight {
   padding-right: 10px;
 }
 
