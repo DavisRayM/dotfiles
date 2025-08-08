@@ -188,7 +188,7 @@
             lspDocumentSymbols = "gO";
             lspImplementations = "gri";
             lspReferences = "grr";
-            lspTypeDefinitions = "grt";
+            lspTypeDefinitions = "grd";
             lspWorkspaceSymbols = "gW";
             open = null;
             resume = "<leader>sr";
