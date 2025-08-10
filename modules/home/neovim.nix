@@ -71,6 +71,15 @@
           blink-cmp = {
             enable = true;
             friendly-snippets.enable = true;
+            mappings = {
+              close = null;
+              complete = null;
+              confirm = null;
+              next = null;
+              previous = null;
+              scrollDocsDown = null;
+              scrollDocsUp = null;
+            };
             setupOpts = {
               keymap.preset = "default";
               signature = {
