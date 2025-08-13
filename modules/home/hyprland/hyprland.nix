@@ -27,7 +27,7 @@
       "$mod" = "SUPER";
       "$terminal" = "kitty";
       "$menu" = "rofi -show drun";
-      "$browser" = "firefox";
+      "$browser" = "google-chrome-stable";
       "$fileManager" = "dolphin";
 
       general = {

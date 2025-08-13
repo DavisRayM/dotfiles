@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   programs = {
-    firefox.enable = true;
     hyprland.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -17,5 +16,5 @@
     };
   };
 
-  environment.systemPackages = [];
+  environment.systemPackages = with pkgs; [google-chrome];
 }
