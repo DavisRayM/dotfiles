@@ -20,6 +20,13 @@
     enable = true;
     settings = {
       vim = {
+        extraPlugins = with pkgs.vimPlugins; {
+          leetcode = {
+            package = leetcode-nvim;
+            setup = "require('leetcode').setup {}";
+          };
+        };
+
         augroups = [
           {
             enable = true;
