@@ -222,14 +222,17 @@
           };
         };
 
-        mini.statusline = {
-          enable = true;
-          setupOpts = {
-            use_icons = true;
+        mini = {
+          statusline = {
+            enable = true;
+            setupOpts = {
+              use_icons = true;
+            };
           };
+          pairs.enable = true;
+          icons.enable = true;
+          surround.enable = true;
         };
-        mini.pairs.enable = true;
-        mini.icons.enable = true;
 
         options = {
           breakindent = true;
