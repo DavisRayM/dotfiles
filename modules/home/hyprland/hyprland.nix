@@ -175,7 +175,7 @@
 
       windowrule = [
         "opacity 1.0 override 0.8 override, class:^(kitty)$"
-        "opacity 1.0 override 1.0 override, class:^(firefox)$"
+        "opacity 1.0 override 1.0 override, class:^(google-chrome)$"
         "opacity 1.0 override 1.0 override, class:^(discord)$"
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
