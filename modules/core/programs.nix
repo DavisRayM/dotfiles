@@ -3,6 +3,7 @@
     hyprland.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
+    steam.enable = true;
 
     neovim = {
       enable = true;
