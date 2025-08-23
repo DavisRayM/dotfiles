@@ -17,5 +17,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [google-chrome];
+  environment.systemPackages = with pkgs; [google-chrome tldr];
 }
