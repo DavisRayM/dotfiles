@@ -90,7 +90,7 @@
             setupOpts = {
               keymap.preset = "default";
               signature = {
-                enable = true;
+                enabled = true;
                 window = {show_documentation = false;};
               };
               completion = {documentation = {auto_show = true;};};
