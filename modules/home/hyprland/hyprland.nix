@@ -8,6 +8,10 @@
     playerctl
     rofi-wayland
     wireplumber
+    (import (builtins.fetchGit {
+      url = "https://github.com/DavisRayM/picture-of-the-day.git";
+      rev = "6a406ea2217dac92c46815a93fcd3329d852e805";
+    }) {pkgs = pkgs;})
   ];
 
   wayland.windowManager.hyprland = {
