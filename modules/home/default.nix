@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./gh.nix
     ./fish.nix
     ./git.nix
     ./hyprland
