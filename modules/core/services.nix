@@ -22,4 +22,10 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  # Night shift
+  services.redshift = {
+    provider = "geoclue2";
+    enable = true;
+  };
 }
