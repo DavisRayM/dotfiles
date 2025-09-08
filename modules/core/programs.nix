@@ -17,5 +17,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [google-chrome tldr];
+  environment.systemPackages = with pkgs; [google-chrome tldr discord];
 }
