@@ -5,7 +5,7 @@
     ./git.nix
     ./hyprland
     ./kitty.nix
-    ./mullvad.nix
+    # ./mullvad.nix
     ./neovim.nix
     ./waybar
   ];
