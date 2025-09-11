@@ -6,8 +6,8 @@
       "ctrl+shift+l" = "next_tab";
       "ctrl+shift+h" = "previous_tab";
       "ctrl+shift+enter" = "launch --cwd=current";
-      "ctrl+l" = "next_window";
-      "ctrl+h" = "previous_window";
+      "ctrl+alt+l" = "next_window";
+      "ctrl+alt+h" = "previous_window";
     };
   };
 }
