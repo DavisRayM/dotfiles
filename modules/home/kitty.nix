@@ -9,5 +9,8 @@
       "ctrl+alt+l" = "next_window";
       "ctrl+alt+h" = "previous_window";
     };
+    settings = {
+      enabled_layouts = "tall";
+    };
   };
 }
