@@ -23,9 +23,12 @@
         notes.obsidian = {
           enable = true;
           setupOpts = {
-            daily_notes = {
-              folder = "~/Workspace/Notes";
-            };
+            workspaces = [
+              {
+                name = "personal";
+                path = "~/Workspace/notes";
+              }
+            ];
           };
         };
 
