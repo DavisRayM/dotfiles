@@ -248,6 +248,7 @@
 
         options = {
           breakindent = true;
+          conceallevel = 1;
           confirm = true;
           cursorline = true;
           expandtab = true;
