@@ -31,7 +31,7 @@ in {
     programs.dconf.enable = true;
 
     home-manager = {
-      useUserPackages = true;
+      useGlobalPkgs = true;
       backupFileExtension = "backup";
       extraSpecialArgs = with cfg; {
         inherit inputs;
