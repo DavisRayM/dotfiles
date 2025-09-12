@@ -21,6 +21,12 @@
     settings = {
       vim = {
         extraPlugins = with pkgs.vimPlugins; {
+          tabular = {
+            package = tabular;
+          };
+          polyglot = {
+            package = vim-polyglot;
+          };
           obsidian = {
             package = obsidian-nvim;
             setup = ''
