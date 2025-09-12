@@ -20,6 +20,15 @@
     enable = true;
     settings = {
       vim = {
+        notes.obsidian = {
+          enable = true;
+          setupOpts = {
+            daily_notes = {
+              folder = "~/Workspace/Notes";
+            };
+          };
+        };
+
         extraPlugins = with pkgs.vimPlugins; {
           leetcode = {
             package = leetcode-nvim;
