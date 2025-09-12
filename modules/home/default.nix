@@ -7,6 +7,7 @@
     ./kitty.nix
     # ./mullvad.nix
     ./neovim.nix
+    ./obsidian.nix
     ./waybar
   ];
 
