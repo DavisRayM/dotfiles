@@ -23,6 +23,9 @@
         notes.obsidian = {
           enable = true;
           setupOpts = {
+            completion = {
+              blink = true;
+            };
             workspaces = [
               {
                 name = "personal";
