@@ -20,22 +20,24 @@
     enable = true;
     settings = {
       vim = {
-        notes.obsidian = {
-          enable = true;
-          setupOpts = {
-            completion = {
-              blink = true;
-            };
-            workspaces = [
-              {
-                name = "personal";
-                path = "~/Workspace/notes";
-              }
-            ];
-          };
-        };
-
         extraPlugins = with pkgs.vimPlugins; {
+          obsidian = {
+            package = obsidian-nvim;
+            setup = ''
+              require('obsidian').setup {
+                legacy_commands = false,
+                workspaces = {
+                  {
+                    name = "personal",
+                    path = "~/Workspace/notes",
+                  },
+                },
+                completion = {
+                  blink = true,
+                },
+              }
+            '';
+          };
           leetcode = {
             package = leetcode-nvim;
             setup = "require('leetcode').setup {}";
@@ -321,6 +323,9 @@
         binds = {
           whichKey = {
             enable = true;
+            register = {
+              "<leader>n" = "+Notes";
+            };
           };
         };
 
@@ -384,6 +389,30 @@
             key = "<C-k>";
             mode = "n";
             action = "<C-w><C-k>";
+          }
+          {
+            key = "<leader>nn";
+            mode = "n";
+            action = "<cmd>Obsidian new<CR>";
+            desc = "Create new note";
+          }
+          {
+            key = "<leader>no";
+            mode = "n";
+            action = "<cmd>Obsidian open<CR>";
+            desc = "Open note at cursor";
+          }
+          {
+            key = "<leader>ns";
+            mode = "n";
+            action = "<cmd>Obsidian quick_switch<CR>";
+            desc = "Quick switch notes";
+          }
+          {
+            key = "<leader>ng";
+            mode = "n";
+            action = "<cmd>Obsidian search<CR>";
+            desc = "Search notes";
           }
         ];
       };
