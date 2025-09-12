@@ -18,6 +18,7 @@
     components = ["pkcs11" "secrets"];
   };
 
+  programs.ripgrep.enable = true;
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
