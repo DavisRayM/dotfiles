@@ -6,7 +6,7 @@
     kdePackages.dolphin
     pavucontrol
     playerctl
-    rofi-wayland
+    rofi
     wireplumber
     (import (builtins.fetchGit {
       url = "https://github.com/DavisRayM/picture-of-the-day.git";

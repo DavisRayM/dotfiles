@@ -1,12 +1,12 @@
 {...}: {
   imports = [
+    # ./mullvad.nix
     ./fish.nix
     ./gh.nix
     ./git.nix
     ./hyprland
     ./kitty.nix
-    # ./mullvad.nix
-    ./neovim.nix
+    ./neovim
     ./obsidian.nix
     ./waybar
   ];
