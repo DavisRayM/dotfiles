@@ -49,14 +49,12 @@ return {
       rust_analyzer = {},
       zls = {},
       clangd = {},
-      gopls = {},
       basedpyright = {},
       ts_ls = {},
       jsonls = {},
       eslint = {},
       cssls = {},
       html = {},
-      tailwindcss = {},
       nil_ls = {},
     }
     local capabilities = require('blink.cmp').get_lsp_capabilities()
