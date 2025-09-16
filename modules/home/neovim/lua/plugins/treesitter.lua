@@ -5,18 +5,6 @@ return {
   build = ":TSUpdate",
   main = "nvim-treesitter.configs",
   opts = {
-    ensure_installed = {
-      "c",
-      "c_sharp",
-      "lua",
-      "markdown",
-      "markdown_inline",
-      "python",
-      "rust",
-      "vim",
-      "vimdoc",
-      "zig",
-    },
     auto_install = true,
     highlight = {
       enable = true,
