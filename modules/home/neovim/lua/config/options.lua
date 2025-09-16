@@ -22,7 +22,6 @@ set.swapfile = false
 set.termguicolors = true
 set.timeoutlen = 500
 set.title = true
-set.titlestring = "[NVIM] %t"
 set.undofile = true
 
 vim.schedule(function()

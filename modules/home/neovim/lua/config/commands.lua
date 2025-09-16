@@ -1,13 +1,3 @@
-vim.api.nvim_create_autocmd("TermOpen", {
-  desc = "Setup terminal window",
-  group = vim.api.nvim_create_augroup("terminal-open", { clear = true }),
-  callback = function()
-    vim.o.number = false
-    vim.o.relativenumber = false
-    vim.o.spell = false
-  end,
-})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking text",
   group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
