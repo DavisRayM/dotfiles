@@ -31,7 +31,7 @@
     return {
       "nvim-mini/mini.base16",
       version = "*",
-      config = {
+      opts = {
         palette = {
           base00 = "#${config.lib.stylix.colors.base00}",
           base01 = "#${config.lib.stylix.colors.base01}",
