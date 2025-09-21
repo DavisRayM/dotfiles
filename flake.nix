@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
