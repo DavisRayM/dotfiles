@@ -3,8 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
-  imports = [inputs.nvf.homeManagerModules.default];
+}:
+{
+  imports = [ inputs.nvf.homeManagerModules.default ];
 
   programs.neovim = {
     extraLuaConfig = ''
@@ -69,7 +70,7 @@
         autocmds = [
           {
             enable = true;
-            event = ["TextYankPost"];
+            event = [ "TextYankPost" ];
             group = "TextEventGroup";
             desc = "Highlight when yanking text.";
             callback = lib.generators.mkLuaInline ''
@@ -80,7 +81,7 @@
           }
           {
             enable = true;
-            event = ["BufReadPost"];
+            event = [ "BufReadPost" ];
             group = "EditorOpenGroup";
             desc = "Jump to last position on file open.";
             callback = lib.generators.mkLuaInline ''
@@ -114,9 +115,15 @@
               keymap.preset = "default";
               signature = {
                 enabled = true;
-                window = {show_documentation = false;};
+                window = {
+                  show_documentation = false;
+                };
               };
-              completion = {documentation = {auto_show = true;};};
+              completion = {
+                documentation = {
+                  auto_show = true;
+                };
+              };
             };
             sourcePlugins = {
               lazydev = {
@@ -313,7 +320,7 @@
         utility.oil-nvim = {
           enable = true;
           setupOpts = {
-            columns = ["icon"];
+            columns = [ "icon" ];
             constrain_cursor = "editable";
             watch_for_changes = true;
             keymaps = {
