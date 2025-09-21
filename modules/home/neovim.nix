@@ -3,9 +3,8 @@
   pkgs,
   lib,
   ...
-}:
-{
-  imports = [ inputs.nvf.homeManagerModules.default ];
+}: {
+  imports = [inputs.nvf.homeManagerModules.default];
 
   programs.neovim = {
     extraLuaConfig = ''
@@ -16,34 +15,13 @@
     '';
   };
 
-  # TODO: Split this into imports at some point...
   programs.nvf = {
     enable = true;
     settings = {
       vim = {
         extraPlugins = with pkgs.vimPlugins; {
-          tabular = {
-            package = tabular;
-          };
           polyglot = {
             package = vim-polyglot;
-          };
-          obsidian = {
-            package = obsidian-nvim;
-            setup = ''
-              require('obsidian').setup {
-                legacy_commands = false,
-                workspaces = {
-                  {
-                    name = "personal",
-                    path = "~/Workspace/notes",
-                  },
-                },
-                completion = {
-                  blink = true,
-                },
-              }
-            '';
           };
           leetcode = {
             package = leetcode-nvim;
@@ -70,7 +48,7 @@
         autocmds = [
           {
             enable = true;
-            event = [ "TextYankPost" ];
+            event = ["TextYankPost"];
             group = "TextEventGroup";
             desc = "Highlight when yanking text.";
             callback = lib.generators.mkLuaInline ''
@@ -81,7 +59,7 @@
           }
           {
             enable = true;
-            event = [ "BufReadPost" ];
+            event = ["BufReadPost"];
             group = "EditorOpenGroup";
             desc = "Jump to last position on file open.";
             callback = lib.generators.mkLuaInline ''
@@ -320,7 +298,7 @@
         utility.oil-nvim = {
           enable = true;
           setupOpts = {
-            columns = [ "icon" ];
+            columns = ["icon"];
             constrain_cursor = "editable";
             watch_for_changes = true;
             keymaps = {
