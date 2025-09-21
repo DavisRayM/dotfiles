@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     # ./mullvad.nix
     ./fish.nix
@@ -6,7 +7,7 @@
     ./git.nix
     ./hyprland
     ./kitty.nix
-    ./neovim
+    ./neovim.nix
     ./obsidian.nix
     ./waybar
   ];
@@ -16,7 +17,10 @@
   services.dunst.enable = true;
   services.gnome-keyring = {
     enable = true;
-    components = ["pkcs11" "secrets"];
+    components = [
+      "pkcs11"
+      "secrets"
+    ];
   };
 
   programs.ripgrep.enable = true;
