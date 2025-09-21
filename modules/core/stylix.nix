@@ -3,7 +3,7 @@
     enable = true;
     image = ./theme/background.jpg;
     autoEnable = true;
-    polarity = "dark";
+    # polarity = "dark";
     cursor = {
       name = "BreezeX-RosePine-Linux";
       package = pkgs.rose-pine-cursor;
