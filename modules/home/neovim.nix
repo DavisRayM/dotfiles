@@ -266,7 +266,7 @@
         };
 
         languages = {
-          enableDAP = false;
+          enableDAP = true;
           enableTreesitter = true;
           enableFormat = true;
 
