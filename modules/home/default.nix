@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     # ./mullvad.nix
     ./fish.nix
@@ -21,6 +20,9 @@
       "pkcs11"
       "secrets"
     ];
+  };
+  services.podman = {
+    enable = true;
   };
 
   programs.ripgrep.enable = true;
