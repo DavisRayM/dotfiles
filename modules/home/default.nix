@@ -21,9 +21,6 @@
       "secrets"
     ];
   };
-  services.podman = {
-    enable = true;
-  };
 
   programs.ripgrep.enable = true;
   programs.zoxide = {

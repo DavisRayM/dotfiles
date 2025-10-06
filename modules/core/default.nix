@@ -24,5 +24,6 @@
     ./stylix.nix
     ./system.nix
     ./time.nix
+    ./virtualisation.nix
   ];
 }
