@@ -12,6 +12,9 @@
     enable = true;
   };
 
+  # Quirks
+  services.libinput.touchpad.disableWhileTyping = true;
+
   # Audio
 
   services.pulseaudio.enable = false;
