@@ -6,5 +6,5 @@ return {
     }
   end,
   config = false,
-  enabled = true,
+  enabled = false,
 }
