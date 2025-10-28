@@ -40,8 +40,8 @@ create_directories() {
     echo "=> $(ColorYellow 'Creating required directory structure')..."
     CreateDir "$HOME/.config"
     CreateDir "$HOME/.local/bin"
-    CreateDir "$HOME/workspace/thirdparty"
-    CreateDir "$HOME/workspace/aur-packages"
+    CreateDir "$HOME/projects"
+    CreateDir "$HOME/deps/"
     CreateDir "$HOME/Downloads"
     CreateDir "$HOME/Pictures"
 }
@@ -75,7 +75,7 @@ install_neovim() {
 
     InstallPackages "${prerequisites[@]}"
 
-    cd "$HOME/workspace/thirdparty"
+    cd "$HOME/deps"
     CloneOrUpdate https://github.com/neovim/neovim neovim
     cd neovim
 
@@ -93,7 +93,7 @@ install_llvm() {
 
     InstallPackages "${prerequisites[@]}"
 
-    cd "$HOME/workspace/thirdparty"
+    cd "$HOME/dotfiles"
     CloneOrUpdate https://github.com/llvm/llvm-project llvm-project --depth 1 --branch $LLVM_RELEASE
     cd llvm-project
 
@@ -119,7 +119,7 @@ install_llvm() {
 install_zls() {
     presentDir="$(pwd)"
 
-    cd "$HOME/workspace/thirdparty"
+    cd "$HOME/deps"
     CloneOrUpdate git@github.com:zigtools/zls.git zls
 
     cd zls
@@ -138,7 +138,7 @@ install_zig() {
     InstallPackages "${prerequisites[@]}"
     install_llvm
 
-    cd "$HOME/workspace/thirdparty"
+    cd "$HOME/deps"
     CloneOrUpdate git@github.com:ziglang/zig.git zig
     cd zig
 
@@ -157,31 +157,22 @@ install_hypr() {
     packages=(
         "alsa-utils" "bind" "blueman" "bluez" "bluez-utils"
         "bottom" "brightnessctl" "discord" "dolphin"
-        "evtest" "fish" "fisher" "gcr-4" "gimp" "git" "gnome-keyring"
-        "gnu-netcat" "grim" "hyprland" "hyprland-qtutils" "hyprlock"
+        "evtest" "gimp" "git"
+        "grim" "hyprland" "hyprland-qtutils" "hyprlock"
         "hyprpaper" "hyprpicker" "hyprpolkitagent" "inetutils" "jq" "kitty"
         "libnotify" "lxappearance" "mako" "man-db" "man-pages"
-        "net-tools" "nodejs" "npm" "openssh" "pavucontrol" "playerctl" "qt5-wayland" "rofi" "rustup"
-        "slurp" "tldr" "tmux" "ttf-sourcecodepro-nerd" "unzip"
+        "net-tools" "openssh" "pavucontrol" "playerctl" "qt5-wayland" "rofi" "rustup"
+        "slurp" "tldr" "ttf-sourcecodepro-nerd" "unzip"
         "waybar" "wev" "wget" "wl-clipboard" "xdg-desktop-portal-hyprland" "zoxide"
-        "bat" "seahorse" "git-delta" "hyprlock" "hypridle" "fzf" "fd"
-        "tree-sitter-cli" "lua-language-server" "ttf-nerd-fonts-symbols"
-        "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji" "google-chrome"
-        "github-cli" "pyenv" "virtualfish" "omnisharp-roslyn" "rust-analyzer"
-        "gdb" "codelldb-bin" "minikube" "docker" "docker-compose" "docker-buildx"
-        "kubectl" "typescript" "typescript-language-server"
+        "bat" "git-delta" "hyprlock" "hypridle" "fzf" "fd"
+        "ttf-nerd-fonts-symbols"
+        "ttf-nerd-fonts-symbols-mono" "noto-fonts-emoji"
+        "github-cli"
     )
 
     echo "=> $(ColorBlue 'Setting up Hyprland')."
     echo "=> $(ColorBlue 'Installing packages')..."
     InstallPackages "${packages[@]}"
-
-    echo "=> $(ColorBlue 'Enable corepack')..."
-    sudo corepack enable
-
-    echo "=> $(ColorBlue 'Install vscode-langservers-extracted & tailwindcss lsp')..."
-    sudo npm install -g vscode-langservers-extracted
-    sudo npm install -g @tailwindcss/language-server
 
     echo "=> $(ColorBlue 'Configuring Hyprland & Grimblast...')..."
     UpdateCopy "${PROGRAM_DIR}/../hypr" ~/.config/
@@ -189,46 +180,20 @@ install_hypr() {
     sudo cp "${PROGRAM_DIR}/../third-party/grimblast" /usr/local/bin/
     sudo chmod +x /usr/local/bin/grimblast
 
-    echo "=> $(ColorBlue 'Setting fish as default shell')..."
-    set +e
-    chsh --shell /usr/bin/fish
-    success=$?
-    while [[ $success -ne 0 ]]; do
-        read -n1 -rp "$(ColorRed 'Failed to change shell'). Skip[Y|N]? " SKIP
-        echo
-        if [[ $SKIP == "Y" ]] || [[ $SKIP == "y" ]]; then
-            break
-        fi
-        chsh --shell /usr/bin/fish
-        success=$?
-    done
-    set -e
-
     install_neovim
 
-    echo "=> $(ColorBlue 'Setting up latest rust version')..."
-    rustup install stable
-
-    echo "=> $(ColorBlue 'Enabling SSH agent and Bluetooth service')..."
-    EnableUserService gcr-ssh-agent.socket
+    echo "=> $(ColorBlue 'Enabling Bluetooth service')..."
     EnableStartService bluetooth.service
 }
 
 aur_packages() {
     presentDir="$(pwd)"
-    cd ~/workspace/aur-packages
+    cd ~/projects/aur-packages
 
     echo "=> $(ColorBlue 'Setting up paru')..."
     CloneOrUpdate https://aur.archlinux.org/paru.git paru
     cd paru
     echo "=> $(ColorBlue 'Installing paru package')..."
-    makepkg -si
-    cd -
-
-    echo "=> $(ColorBlue 'Setting up Nordic')..."
-    CloneOrUpdate https://aur.archlinux.org/nordic-theme.git nordic-theme
-    cd nordic-theme
-    echo "=> $(ColorBlue 'Installing Nordic package')..."
     makepkg -si
     cd -
 
