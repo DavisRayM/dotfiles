@@ -15,13 +15,11 @@ CONFIGS=(
     "nvim"
     "hypr"
     "mako"
-    "fish"
     "waybar"
     "kitty"
 )
 # Files/Folders that reside in "$HOME".
 DOTFILES=(
-    ".tmux.conf"
     ".gitconfig"
     ".gnupg"
 )
