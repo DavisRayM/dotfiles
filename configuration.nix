@@ -143,6 +143,7 @@
     delta
     discord
     discount
+    docker-compose
     dockfmt
     emacs-git
     emacsPackages.vterm
