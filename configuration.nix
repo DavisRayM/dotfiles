@@ -5,15 +5,15 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.grub = {
     enable = true;
-    devices = ["nodev"];
+    devices = [ "nodev" ];
     efiSupport = true;
     extraEntries = ''
       menuentry "Windows" {
@@ -78,7 +78,11 @@
   users.users.dave = {
     isNormalUser = true;
     description = "Davis Raymond Muro";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     packages = with pkgs; [
       stow
     ];
@@ -101,21 +105,26 @@
 
     fontconfig = {
       defaultFonts = {
-        sansSerif = ["IBM Plex Sans"];
+        sansSerif = [ "IBM Plex Sans" ];
         serif = [ "IBM Plex Serif" ];
-        monospace = [ "Terminess Nerd Font"  ];
-        emoji = [ "OpenMoji Color" "Noto Color Emoji" ];
+        monospace = [ "Terminess Nerd Font" ];
+        emoji = [
+          "OpenMoji Color"
+          "Noto Color Emoji"
+        ];
       };
     };
-    
+
     enableDefaultPackages = true;
   };
 
   # Use emacs overlay. Required for Emacs 28+.
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-    }))
+    (import (
+      builtins.fetchTarball {
+        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+      }
+    ))
   ];
 
   # List packages installed in system profile. To search, run:
@@ -128,6 +137,7 @@
     cmake
     coreutils
     coreutils
+    delta
     discord
     discount
     dockfmt
