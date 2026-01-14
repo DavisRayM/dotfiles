@@ -170,7 +170,14 @@
     nil
     nixfmt
     pavucontrol
+    pipenv
     playerctl
+    python312
+    python312Packages.black
+    python312Packages.isort
+    python312Packages.nose2
+    python312Packages.pyflakes
+    python312Packages.pytest
     ripgrep
     rofi
     rustup
@@ -178,6 +185,7 @@
     shfmt
     stylelint
     terraform
+    ty
     vim
     wget
     xclip
