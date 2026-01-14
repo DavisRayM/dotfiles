@@ -1,0 +1,40 @@
+[user]
+	signingkey = 0A061BF0D8195592
+	name = Davis Raymond Muro
+	email = git@davisraym.com
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
+[ui "color"]
+	ui = always
+[color]
+	ui = true
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+	verbose = true
+[core]
+	editor = emacs
+	autocrlf = false
+	safecrlf = true
+	pager = delta
+[help]
+	autocorrect = prompt
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+[merge]
+	conflictStyle = zdiff3
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[alias]
+	ignore = !gi() { local IFS=','; curl -sL https://www.toptal.com/developers/gitignore/api/\"$*\"; }; gi
+	graph = log --all --graph --decorate --oneline
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
