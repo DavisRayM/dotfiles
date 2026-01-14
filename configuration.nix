@@ -143,6 +143,7 @@
     delta
     discord
     discount
+    docker-buildx
     docker-compose
     dockfmt
     emacs-git
