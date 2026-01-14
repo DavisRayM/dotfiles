@@ -7,6 +7,9 @@
 {
   imports = [
     # Include the results of the hardware scan.
+    "${
+      builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }
+    }/asus/rog-strix/g513im"
     ./hardware-configuration.nix
   ];
 
