@@ -135,6 +135,7 @@
   environment.systemPackages = with pkgs; [
     ansible
     brave
+    brightnessctl
     clang
     clang-tools
     cmake
