@@ -24,8 +24,8 @@ bindsym $mod+F4 exec --no-startup-id flameshot gui
 font pango:monospace 8
 
 # Monitors
-workspace 1 output HDMI-1
-workspace 3 output eDP-1
+workspace 1 output HDMI-A-0
+workspace 3 output eDP
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -214,3 +214,5 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+exec_always xrandr --output HDMI-A-0 --right-of eDP
