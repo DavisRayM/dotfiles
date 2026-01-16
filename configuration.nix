@@ -94,6 +94,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Steam
+  programs.steam.enable = true;
+
   # Fonts
   fonts = {
     packages = with pkgs; [
