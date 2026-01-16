@@ -204,7 +204,6 @@
       max-cache-ttl = 7200;
     };
   };
-  programs.i3lock.enable = true;
 
   # ROG Strix Specific
   boot.kernelPackages = pkgs.linuxPackages_latest;
