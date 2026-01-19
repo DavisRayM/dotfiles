@@ -188,6 +188,7 @@
     shfmt
     stylelint
     terraform
+    terraform-ls
     ty
     vim
     wget
