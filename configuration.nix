@@ -169,6 +169,7 @@
     libtool
     libvterm
     lxappearance
+    man-pages
     material-black-colors
     networkmanagerapplet
     nil
