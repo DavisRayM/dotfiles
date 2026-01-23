@@ -34,8 +34,7 @@ battery 0 {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
-        hide_if_equals_localtime = true
+        format = "%Y-%m-%d %r"
 }
 
 memory {
