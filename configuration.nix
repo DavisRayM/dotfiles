@@ -138,6 +138,7 @@
   environment.systemPackages = with pkgs; [
     ansible
     awscli2
+    bash-language-server
     brave
     brightnessctl
     clang
