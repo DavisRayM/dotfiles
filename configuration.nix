@@ -124,15 +124,6 @@
     enableDefaultPackages = true;
   };
 
-  # Use emacs overlay. Required for Emacs 28+.
-  nixpkgs.overlays = [
-    (import (
-      builtins.fetchTarball {
-        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-      }
-    ))
-  ];
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -152,7 +143,7 @@
     docker-buildx
     docker-compose
     dockfmt
-    emacs-git
+    emacs
     emacsPackages.vterm
     fd
     flameshot
