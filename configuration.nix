@@ -136,7 +136,6 @@
     clang-tools
     cmake
     coreutils
-    coreutils
     delta
     discord
     discount
