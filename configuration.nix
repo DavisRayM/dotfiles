@@ -137,6 +137,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     ansible
+    awscli2
     brave
     brightnessctl
     clang
