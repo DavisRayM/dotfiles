@@ -195,7 +195,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-curses;
+    pinentryPackage = pkgs.pinentry-rofi;
     settings = {
       default-cache-ttl = 600;
       max-cache-ttl = 7200;
