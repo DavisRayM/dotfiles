@@ -85,6 +85,8 @@
       "networkmanager"
       "wheel"
       "docker"
+      "udev"
+      "tss"
     ];
     packages = with pkgs; [
       stow
@@ -124,6 +126,11 @@
     enableDefaultPackages = true;
   };
 
+  # Enable TPM
+  security.tpm2.enable = true;
+  # QEMU UEFI Support
+  systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -153,6 +160,7 @@
     gnumake
     html-tidy
     ispell
+    jq
     js-beautify
     kitty
     libcxx
@@ -162,11 +170,14 @@
     lxappearance
     man-pages
     material-black-colors
+    mkosi
     networkmanagerapplet
     nil
     nixfmt
+    openssl
     pavucontrol
     pipenv
+    pkg-config
     playerctl
     python312
     python312Packages.black
@@ -174,14 +185,17 @@
     python312Packages.nose2
     python312Packages.pyflakes
     python312Packages.pytest
+    qemu
     ripgrep
     rofi
     rustup
     shellcheck
     shfmt
+    sqlite
     stylelint
     terraform
     terraform-ls
+    tpm2-tss
     ty
     vim
     wget
