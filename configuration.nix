@@ -165,19 +165,17 @@
     kitty
     libcxx
     libgcc
+    libnotify
     libtool
     libvterm
     lxappearance
     man-pages
     material-black-colors
-    mkosi
     networkmanagerapplet
     nil
     nixfmt
-    openssl
     pavucontrol
     pipenv
-    pkg-config
     playerctl
     python312
     python312Packages.black
@@ -195,7 +193,6 @@
     stylelint
     terraform
     terraform-ls
-    tpm2-tss
     ty
     vim
     wget
@@ -215,6 +212,10 @@
       max-cache-ttl = 7200;
     };
   };
+
+  # Battery
+  services.upower.enable = true;
+  services.upower.ignoreLid = true;
 
   # ROG Strix Specific
   boot.kernelPackages = pkgs.linuxPackages_latest;
