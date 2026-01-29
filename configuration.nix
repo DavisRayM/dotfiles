@@ -1,9 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
+# NOTE: Going to need the unstable channel
 
-{ config, pkgs, ... }:
-
+{
+  config,
+  pkgs,
+  ...
+}:
+let
+  # Flameshot GTK issues
+  unstable-pkgs = import <nixpkgs-unstable> { };
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -152,7 +160,7 @@
     emacs
     emacsPackages.vterm
     fd
-    flameshot
+    unstable-pkgs.flameshot
     gcc
     gdb
     git
