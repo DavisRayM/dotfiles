@@ -202,7 +202,7 @@ in
     stylelint
     terraform
     terraform-ls
-    ty
+    unstable-pkgs.ty
     vim
     wget
     xclip
