@@ -166,6 +166,7 @@ in
     gcc
     gdb
     git
+    gimp
     glibc
     gnumake
     html-tidy
