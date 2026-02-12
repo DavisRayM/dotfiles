@@ -205,6 +205,7 @@ in
     terraform
     terraform-ls
     unstable-pkgs.ty
+    uv
     vim
     wget
     xclip
