@@ -79,8 +79,8 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (display-time)
-
 (use-package! python-black
   :demand t
   :after python)
 (add-hook! 'python-mode-hook #'python-black-on-save-mode)
+(add-hook! 'python-ts-mode-hook #'python-black-on-save-mode)
