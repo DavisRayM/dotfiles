@@ -41,6 +41,11 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
+(setq doom-modeline-time t)
+(setq doom-modeline-time-icon t)
+
+(setq projectile-project-search-path '("~/Projects/DavisRayM" "~/Projects/seattleu-projectcenter/" "~/Projects/seattle-university-cs-cloud-computing/"))
+(setq confirm-kill-emacs nil)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -73,5 +78,9 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(setq projectile-project-search-path '("~/Projects/" "~/Playground/"))
-(setq confirm-kill-emacs nil)
+(display-time)
+
+(use-package! python-black
+  :demand t
+  :after python)
+(add-hook! 'python-mode-hook #'python-black-on-save-mode)
