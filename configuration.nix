@@ -185,8 +185,10 @@ in
     networkmanagerapplet
     nil
     nixfmt
+    openssl_3
     pavucontrol
     pipenv
+    pkg-config
     playerctl
     python312
     python312Packages.black
