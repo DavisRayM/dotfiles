@@ -223,3 +223,5 @@ bar {
 }
 
 exec_always xrandr --output HDMI-A-0 --right-of eDP
+
+for_window [class="^Emacs$"] fullscreen enable
