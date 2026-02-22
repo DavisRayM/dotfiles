@@ -207,6 +207,7 @@ in
     terraform
     terraform-ls
     unstable-pkgs.ty
+    unstable-pkgs.rpi-imager
     uv
     vim
     wget
