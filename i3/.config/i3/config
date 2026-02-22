@@ -222,6 +222,6 @@ bar {
         status_command i3status
 }
 
-exec_always xrandr --output HDMI-A-0 --right-of eDP
+exec_always xrandr --output HDMI-A-0 --above eDP
 
 for_window [class="^Emacs$"] fullscreen enable
