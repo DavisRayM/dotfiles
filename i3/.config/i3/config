@@ -86,7 +86,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+b exec brave
 
 # start emacs
-bindsym $mod+t exec emacs
+bindsym $mod+t exec emacsclient -c
 
 # kill focused window
 bindsym $mod+Shift+q kill
