@@ -208,6 +208,9 @@ in
     terraform-ls
     unstable-pkgs.ty
     unstable-pkgs.rpi-imager
+    emacs-lsp-booster
+    go-grip
+    graphviz
     uv
     vim
     wget

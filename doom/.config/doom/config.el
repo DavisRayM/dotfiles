@@ -84,3 +84,4 @@
   :after python)
 (add-hook! 'python-mode-hook #'python-black-on-save-mode)
 (add-hook! 'python-ts-mode-hook #'python-black-on-save-mode)
+(setq corfu-preview-current t)
