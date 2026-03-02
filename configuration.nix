@@ -136,9 +136,9 @@ in
   };
 
   # Enable TPM
-  security.tpm2.enable = true;
+  # security.tpm2.enable = true;
   # QEMU UEFI Support
-  systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
+  # systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -236,7 +236,7 @@ in
   services.upower.ignoreLid = true;
 
   # ROG Strix Specific
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   services.power-profiles-daemon.enable = true;
   services.supergfxd.enable = true;
   services.asusd = {

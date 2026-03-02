@@ -80,5 +80,5 @@
 ;; they are implemented.
 (display-time)
 (setq corfu-preview-current t)
-(setq-hook! 'python-mode-hook +format-with 'black)
-(setq-hook! 'python-ts-mode-hook +format-with 'black)
+(with-eval-after-load 'python
+  (set-formatter! 'ruff :modes '(python-mode python-ts-mode)))
