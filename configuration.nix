@@ -160,15 +160,18 @@ in
     docker-compose
     dockfmt
     emacs
+    emacs-lsp-booster
     emacsPackages.vterm
     fd
-    unstable-pkgs.flameshot
     gcc
     gdb
-    git
     gimp
+    git
     glibc
     gnumake
+    go-grip
+    google-cloud-sdk
+    graphviz
     html-tidy
     ispell
     jq
@@ -206,11 +209,9 @@ in
     stylelint
     terraform
     terraform-ls
-    unstable-pkgs.ty
+    unstable-pkgs.flameshot
     unstable-pkgs.rpi-imager
-    emacs-lsp-booster
-    go-grip
-    graphviz
+    unstable-pkgs.ty
     uv
     vim
     wget
