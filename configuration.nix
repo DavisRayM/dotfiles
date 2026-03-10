@@ -1,24 +1,11 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-#
-# NOTE: Going to need the unstable channel
-
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
-let
-  # Flameshot GTK issues
-  unstable-pkgs = import <nixpkgs-unstable> { };
-in
 {
   imports = [
-    # Include the results of the hardware scan.
-    "${
-      builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }
-    }/asus/rog-strix/g513im"
     ./hardware-configuration.nix
   ];
 
@@ -43,16 +30,11 @@ in
     efiSysMountPoint = "/boot";
   };
 
-  networking.hostName = "nixhost"; # Define your hostname.
-  # Enable networking
   networking.networkmanager.enable = true;
+  networking.hostName = "blaze";
 
-  # Set your time zone.
   time.timeZone = "America/Los_Angeles";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -86,7 +68,6 @@ in
   services.displayManager.defaultSession = "xfce+i3";
   programs.dconf.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dave = {
     isNormalUser = true;
     description = "Davis Raymond Muro";
@@ -95,20 +76,14 @@ in
       "wheel"
       "docker"
       "udev"
-      "tss"
     ];
     packages = with pkgs; [
       stow
     ];
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Steam
   programs.steam.enable = true;
-
-  # Fonts
   fonts = {
     packages = with pkgs; [
       nerd-fonts.terminess-ttf
@@ -116,10 +91,8 @@ in
       nerd-fonts.symbols-only
       ibm-plex
       openmoji-color
-      # Emacs fallback
       symbola
     ];
-
     fontconfig = {
       defaultFonts = {
         sansSerif = [ "IBM Plex Sans" ];
@@ -131,22 +104,11 @@ in
         ];
       };
     };
-
     enableDefaultPackages = true;
   };
 
-  # Enable TPM
-  # security.tpm2.enable = true;
-  # QEMU UEFI Support
-  # systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    ansible
-    awscli2
     bash-language-server
-    brave
     brightnessctl
     clang
     clang-tools
@@ -158,7 +120,6 @@ in
     discount
     docker-buildx
     docker-compose
-    dockfmt
     emacs
     emacs-lsp-booster
     emacsPackages.vterm
@@ -170,6 +131,7 @@ in
     glibc
     gnumake
     go-grip
+    google-chrome
     google-cloud-sdk
     graphviz
     html-tidy
@@ -184,21 +146,12 @@ in
     libvterm
     lxappearance
     man-pages
-    material-black-colors
     networkmanagerapplet
     nil
     nixfmt
-    openssl_3
     pavucontrol
-    pipenv
     pkg-config
     playerctl
-    python312
-    python312Packages.black
-    python312Packages.isort
-    python312Packages.nose2
-    python312Packages.pyflakes
-    python312Packages.pytest
     qemu
     ripgrep
     rofi
@@ -209,19 +162,14 @@ in
     stylelint
     terraform
     terraform-ls
-    unstable-pkgs.flameshot
-    unstable-pkgs.rpi-imager
-    unstable-pkgs.ty
+    inputs.nixpkgs.legacyPackages.${stdenv.hostPlatform.system}.flameshot
+    inputs.nixpkgs.legacyPackages.${stdenv.hostPlatform.system}.rpi-imager
+    inputs.nixpkgs.legacyPackages.${stdenv.hostPlatform.system}.ty
     uv
-    vim
     wget
-    xclip
     xss-lock
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -237,12 +185,10 @@ in
   services.upower.ignoreLid = true;
 
   # ROG Strix Specific
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
   services.power-profiles-daemon.enable = true;
   services.supergfxd.enable = true;
   services.asusd = {
     enable = true;
-    enableUserService = true;
   };
 
   # Security
@@ -258,6 +204,7 @@ in
 
   # List services that you want to enable:
   hardware.bluetooth.enable = true;
+  hardware.graphics.enable = true;
   services.blueman.enable = true;
   services.libinput.touchpad.disableWhileTyping = true;
   services.pulseaudio.enable = false;
@@ -267,15 +214,6 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # Nix
   nix.settings.download-buffer-size = 250000000;
