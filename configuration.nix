@@ -66,7 +66,24 @@
     windowManager.i3.enable = true;
   };
   services.displayManager.defaultSession = "xfce+i3";
+
+  # Programs
+  programs.steam.enable = true;
   programs.dconf.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-rofi;
+    settings = {
+      default-cache-ttl = 600;
+      max-cache-ttl = 7200;
+    };
+  };
+  programs.bash = {
+    shellAliases = {
+      git = "git --no-pager";
+    };
+  };
 
   users.users.dave = {
     isNormalUser = true;
@@ -83,7 +100,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  programs.steam.enable = true;
   fonts = {
     packages = with pkgs; [
       nerd-fonts.terminess-ttf
@@ -169,15 +185,8 @@
     wget
     xss-lock
   ];
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-rofi;
-    settings = {
-      default-cache-ttl = 600;
-      max-cache-ttl = 7200;
-    };
+  environment.variables = {
+    PATH = "$PATH:~/.config/emacs/bin";
   };
 
   # Battery
