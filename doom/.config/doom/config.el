@@ -86,3 +86,5 @@
 (setq +format-on-save-disabled-modes
       '(dockerfile-mode
         dockerfile-ts-mode))
+
+(map! :leader :desc "Ammend" :n "g c a" #'magit-commit-amend)

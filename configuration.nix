@@ -1,7 +1,7 @@
 {
-  config,
   pkgs,
-  inputs,
+  nixpkgs,
+  system,
   ...
 }:
 {
@@ -66,8 +66,16 @@
     windowManager.i3.enable = true;
   };
   services.displayManager.defaultSession = "xfce+i3";
+  # services.displayManager.ly.enable = true;
 
   # Programs
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-gnome
+    gnome-keyring
+  ];
+
   programs.steam.enable = true;
   programs.dconf.enable = true;
   programs.gnupg.agent = {
@@ -124,6 +132,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # google-cloud-sdk
+    # pkgs.rpi-imager
+    # xss-lock
     bash-language-server
     brightnessctl
     clang
@@ -136,10 +147,11 @@
     discount
     docker-buildx
     docker-compose
-    emacs
     emacs-lsp-booster
+    emacs-pgtk
     emacsPackages.vterm
     fd
+    fuzzel
     gcc
     gdb
     gimp
@@ -148,7 +160,6 @@
     gnumake
     go-grip
     google-chrome
-    google-cloud-sdk
     graphviz
     html-tidy
     ispell
@@ -160,15 +171,13 @@
     libnotify
     libtool
     libvterm
-    lxappearance
+    mako
     man-pages
     networkmanagerapplet
     nil
     nixfmt
     pavucontrol
     pkg-config
-    playerctl
-    qemu
     ripgrep
     rofi
     rustup
@@ -178,12 +187,14 @@
     stylelint
     terraform
     terraform-ls
-    inputs.nixpkgs.legacyPackages.${stdenv.hostPlatform.system}.flameshot
-    inputs.nixpkgs.legacyPackages.${stdenv.hostPlatform.system}.rpi-imager
-    inputs.nixpkgs.legacyPackages.${stdenv.hostPlatform.system}.ty
+    ty
     uv
+    vim
+    waybar
+    wayland-utils
     wget
-    xss-lock
+    wl-clipboard
+    xwayland-satellite
   ];
   environment.variables = {
     PATH = "$PATH:~/.config/emacs/bin";
