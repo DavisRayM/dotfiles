@@ -1,7 +1,5 @@
 {
   pkgs,
-  nixpkgs,
-  system,
   ...
 }:
 {
@@ -48,25 +46,29 @@
   };
 
   # Display & Window Manager
-  services.xserver = {
-    enable = true;
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
-    };
-    # Configure keymap in X11
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-    windowManager.i3.enable = true;
-  };
-  services.displayManager.defaultSession = "xfce+i3";
-  # services.displayManager.ly.enable = true;
+  # services.xserver = {
+  #   enable = true;
+  #   desktopManager = {
+  #     xterm.enable = false;
+  #     xfce = {
+  #       enable = true;
+  #       noDesktop = true;
+  #       enableXfwm = false;
+  #     };
+  #   };
+  #   # Configure keymap in X11
+  #   xkb = {
+  #     layout = "us";
+  #     variant = "";
+  #   };
+  #   windowManager.i3.enable = true;
+  # };
+  # services.displayManager.defaultSession = "xfce+i3";
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+  # Niri
+  programs.niri.enable = true;
 
   # Programs
   xdg.portal.enable = true;
@@ -148,7 +150,7 @@
     docker-buildx
     docker-compose
     emacs-lsp-booster
-    emacs-pgtk
+    emacs
     emacsPackages.vterm
     fd
     fuzzel
@@ -185,6 +187,7 @@
     shfmt
     sqlite
     stylelint
+    swaybg
     terraform
     terraform-ls
     ty
@@ -192,12 +195,40 @@
     vim
     waybar
     wayland-utils
+    wev
     wget
     wl-clipboard
     xwayland-satellite
   ];
   environment.variables = {
     PATH = "$PATH:~/.config/emacs/bin";
+  };
+
+  # Stylix
+  stylix = {
+    enable = true;
+    image = ./wallpaper/wallpaper.jpg;
+
+    polarity = "dark";
+
+    fonts = {
+      serif = {
+        package = pkgs.ibm-plex;
+        name = "IBM Plex Serif";
+      };
+      sansSerif = {
+        package = pkgs.ibm-plex;
+        name = "IBM Plex Sans";
+      };
+      monospace = {
+        package = pkgs.ibm-plex;
+        name = "IBM Plex Mono";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
   };
 
   # Battery
