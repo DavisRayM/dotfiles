@@ -30,9 +30,10 @@
     {
       nixosConfigurations.blaze = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit system nixpkgs; };
+        system = system;
         modules = [
-          stylix.nixosModules.stylix
           nixos-hardware.nixosModules.asus-rog-strix-g513im
+          stylix.nixosModules.stylix
           ./configuration.nix
           nix-index-database.nixosModules.default
         ];

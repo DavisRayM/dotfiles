@@ -75,7 +75,6 @@
   xdg.portal.extraPortals = with pkgs; [
     xdg-desktop-portal-gtk
     xdg-desktop-portal-gnome
-    gnome-keyring
   ];
 
   programs.steam.enable = true;
@@ -162,6 +161,7 @@
     gnumake
     go-grip
     google-chrome
+    gnome-keyring
     graphviz
     html-tidy
     ispell
@@ -208,6 +208,7 @@
   stylix = {
     enable = true;
     image = ./wallpaper/wallpaper.jpg;
+    autoEnable = true;
 
     polarity = "dark";
 

@@ -4,7 +4,7 @@ COLOR_RESET="\033[0m"
 
 main() {
     echo -e "${COLOR_BLUE}[INFO] Switching OS version${COLOR_RESET}"
-    sudo nixos-rebuild switch --flake .#blaze
+    sudo nixos-rebuild switch --flake .#blaze --upgrade
 }
 
 main "$@"
