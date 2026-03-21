@@ -149,8 +149,8 @@
     discount
     docker-buildx
     docker-compose
-    emacs-lsp-booster
     emacs
+    emacs-lsp-booster
     emacsPackages.vterm
     fd
     fuzzel
@@ -159,10 +159,10 @@
     gimp
     git
     glibc
+    gnome-keyring
     gnumake
     go-grip
     google-chrome
-    gnome-keyring
     graphviz
     html-tidy
     ispell
@@ -183,6 +183,7 @@
     pkg-config
     ripgrep
     rofi
+    ruff
     rustup
     shellcheck
     shfmt
