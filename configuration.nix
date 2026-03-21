@@ -171,6 +171,7 @@
     kitty
     libcxx
     libgcc
+    libgccjit
     libnotify
     libtool
     libvterm
