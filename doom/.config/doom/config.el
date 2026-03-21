@@ -82,6 +82,8 @@
 (setq corfu-preview-current t)
 (with-eval-after-load 'python
   (set-formatter! 'ruff :modes '(python-mode python-ts-mode)))
+(setq-hook! 'python-mode-hook +format-with 'ruff)
+(setq-hook! 'python-ts-mode-hook +format-with 'ruff)
 
 (setq +format-on-save-disabled-modes
       '(dockerfile-mode
