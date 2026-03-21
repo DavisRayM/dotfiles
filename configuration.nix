@@ -27,6 +27,7 @@
     canTouchEfiVariables = true;
     efiSysMountPoint = "/boot";
   };
+  time.hardwareClockInLocalTime = true;
 
   networking.networkmanager.enable = true;
   networking.hostName = "blaze";
