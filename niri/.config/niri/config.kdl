@@ -41,9 +41,7 @@ binds {
     Mod+Return { spawn "kitty"; }
     Mod+D { spawn "rofi" "-show" "drun"; }
     Mod+B { spawn "google-chrome-stable"; }
-    Mod+E { spawn "emacs"; }
-
-    Super+Alt+L { spawn "swaylock"; }
+    Mod+E { spawn "emacsclient" "-c"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
