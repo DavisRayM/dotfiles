@@ -67,6 +67,7 @@
   # services.displayManager.defaultSession = "xfce+i3";
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+  services.lorri.enable = true;
 
   # Niri
   programs.niri.enable = true;

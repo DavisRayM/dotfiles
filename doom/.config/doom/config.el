@@ -90,3 +90,9 @@
         dockerfile-ts-mode))
 
 (map! :leader :desc "Ammend" :n "g c a" #'magit-commit-amend)
+(after! eglot
+  (add-to-list 'eglot-server-programs
+               '((c++-mode c-mode)
+                 . ("clangd"
+                    "--background-index"
+                    "--query-driver=/nix/store/*/bin/clang++,/nix/store/*/bin/clang"))))
