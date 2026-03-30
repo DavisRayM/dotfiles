@@ -145,6 +145,7 @@
     coreutils
     delta
     dig
+    direnv
     discord
     discount
     docker-buildx
