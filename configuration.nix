@@ -93,6 +93,7 @@
   programs.bash = {
     shellAliases = {
       git = "git --no-pager";
+      ft = "file-traveler";
     };
   };
 
