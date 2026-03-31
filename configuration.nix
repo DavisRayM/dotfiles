@@ -206,7 +206,7 @@
     xwayland-satellite
   ];
   environment.variables = {
-    PATH = "$PATH:~/.config/emacs/bin";
+    PATH = "$PATH:~/.config/emacs/bin:~/.cargo/bin";
   };
 
   # Stylix
