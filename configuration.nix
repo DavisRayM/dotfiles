@@ -205,6 +205,7 @@
     wget
     wl-clipboard
     xwayland-satellite
+    zoom-us
   ];
   environment.variables = {
     PATH = "$PATH:~/.config/emacs/bin:~/.cargo/bin";
