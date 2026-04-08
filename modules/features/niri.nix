@@ -120,8 +120,9 @@
 
           binds = {
             "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
-            "Mod+S".spawn-sh =
-              "niri msg action set-dynamic-cast-window --id $(niri msg -j focused-window | ${lib.getExe pkgs.jq} .id)";
+            "Mod+S".set-dynamic-cast-window = _: { };
+            "Mod+Shift+S".set-dynamic-cast-monitor = _: { };
+            "Mod+Ctrl+Shift+S".clear-dynamic-cast-target = _: { };
             "Mod+B".spawn-sh = "google-chrome-stable";
             "Mod+E".spawn-sh = "${lib.getExe' pkgs.emacs "emacsclient"} -c";
             "Mod+D".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
