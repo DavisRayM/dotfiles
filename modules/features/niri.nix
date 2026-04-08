@@ -65,6 +65,33 @@
               matches = [
                 {
                   app-id = "^google-chrome$";
+                  title = "Picture-in-Picture|picture-in-picture|Meet";
+                }
+              ];
+              open-floating = true;
+            }
+            {
+              matches = [
+                {
+                  app-id = "teams|^microsoft-teams$|^com\\.microsoft\\.teams$|^google-chrome$";
+                  title = "Microsoft Teams|Teams|Caption|Captions|Meeting options";
+                }
+              ];
+              open-floating = true;
+            }
+            {
+              matches = [
+                {
+                  app-id = "zoom|^Zoom Workplace$|^google-chrome$";
+                  title = "Zoom|Picture-in-Picture|Meeting|Chat";
+                }
+              ];
+              open-floating = true;
+            }
+            {
+              matches = [
+                {
+                  app-id = "^google-chrome$";
                   title = "^Bitwarden.*";
                 }
               ];
@@ -166,6 +193,14 @@
 
             "Mod+Shift+Escape".quit = _: { };
             "Mod+Shift+Slash".show-hotkey-overlay = _: { };
+
+            "Mod+R".switch-preset-column-width = _: { };
+            "Mod+Shift+R".switch-preset-window-height = _: { };
+            "Mod+Minus".set-column-width = "-10%";
+            "Mod+Equal".set-column-width = "+10%";
+            "Mod+Shift+Minus".set-window-height = "-10%";
+            "Mod+Shift+Equal".set-window-height = "+10%";
+            "Mod+Ctrl+R".reset-window-height = _: { };
           };
         };
       };
