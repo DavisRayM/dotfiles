@@ -182,6 +182,7 @@
 
             "Mod+F".fullscreen-window = _: { };
             "Mod+Shift+F".expand-column-to-available-width = _: { };
+            "Mod+Ctrl+Shift+F".toggle-windowed-fullscreen = _: { };
             "Mod+M".maximize-window-to-edges = _: { };
 
             "Mod+V".toggle-window-floating = _: { };
