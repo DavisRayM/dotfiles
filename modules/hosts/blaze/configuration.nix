@@ -144,9 +144,15 @@
         alsa.support32Bit = true;
         pulse.enable = true;
       };
-      services.displayManager.sddm.enable = true;
-      services.displayManager.sddm.wayland.enable = true;
       services.lorri.enable = true;
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${lib.getExe pkgs.tuigreet} -c niri-session";
+          };
+        };
+      };
 
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions
