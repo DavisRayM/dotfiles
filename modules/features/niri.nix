@@ -82,8 +82,8 @@
             {
               matches = [
                 {
-                  app-id = "zoom|^Zoom Workplace$|^google-chrome$";
-                  title = "Zoom|Picture-in-Picture|Meeting|Chat";
+                  app-id = "^zoom$";
+                  title = "as_toolbar";
                 }
               ];
               open-floating = true;
