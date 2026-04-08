@@ -1,0 +1,37 @@
+{ inputs, ... }:
+{
+  flake.nixosModules.nix =
+    { pkgs, ... }:
+    {
+      imports = [
+        inputs.nix-index-database.nixosModules.nix-index
+      ];
+      programs.nix-index-database.comma.enable = true;
+
+      programs.direnv = {
+        enable = true;
+        silent = false;
+        loadInNixShell = true;
+        direnvrcExtra = "";
+        nix-direnv = {
+          enable = true;
+        };
+      };
+
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      nix.settings.download-buffer-size = 250000000;
+      nixpkgs.config.allowUnfree = true;
+
+      environment.systemPackages = with pkgs; [
+        nil
+        nixd
+        statix
+        alejandra
+        manix
+        nix-inspect
+      ];
+    };
+}

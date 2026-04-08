@@ -12,31 +12,11 @@
     stylix.url = "github:/nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
-    wrappers.url = "github:Lassulus/wrappers";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
 
-  outputs =
-    {
-      stylix,
-      nixpkgs,
-      nixos-hardware,
-      nix-index-database,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      nixosConfigurations.blaze = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit system nixpkgs; };
-        system = system;
-        modules = [
-          nixos-hardware.nixosModules.asus-rog-strix-g513im
-          stylix.nixosModules.stylix
-          ./configuration.nix
-          nix-index-database.nixosModules.default
-        ];
-      };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
