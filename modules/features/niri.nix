@@ -88,15 +88,16 @@
               ];
               open-floating = true;
             }
-            {
-              matches = [
-                {
-                  app-id = "^google-chrome$";
-                  title = "^Bitwarden.*";
-                }
-              ];
-              open-floating = true;
-            }
+            # {
+            #   matches = [
+            #     {
+            #       title = "Bitwarden";
+            #       app-id = "^chrome-.*";
+            #     }
+            #   ];
+            #   open-floating = true;
+            #   block-out-from = "screencast";
+            # }
             {
               matches = [
                 {
