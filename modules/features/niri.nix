@@ -64,12 +64,30 @@
             {
               matches = [
                 {
+                  app-id = "^google-chrome$";
+                  title = "^Bitwarden.*";
+                }
+              ];
+              open-floating = true;
+            }
+            {
+              matches = [
+                {
                   is-window-cast-target = true;
                 }
               ];
               focus-ring = {
                 active-color = "#f38ba8";
               };
+            }
+            {
+              matches = [
+                {
+                  app-id = "^rofi$";
+                  title = "pinentry|Pinentry|GPG";
+                }
+              ];
+              block-out-from = "screencast";
             }
           ];
 
