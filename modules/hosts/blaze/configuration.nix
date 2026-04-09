@@ -9,6 +9,7 @@
         self.nixosModules.nix
         self.nixosModules.niri
         self.nixosModules.fonts
+        self.nixosModules.docker
       ];
 
       boot.loader.grub = {
