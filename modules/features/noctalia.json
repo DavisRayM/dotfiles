@@ -239,7 +239,7 @@
       "boxBorderEnabled": false
     },
     "location": {
-      "name": "Tokyo",
+      "name": "Seattle, WA",
       "weatherEnabled": true,
       "weatherShowEffects": true,
       "useFahrenheit": false,
@@ -592,7 +592,12 @@
     "barVisible": true,
     "openedPanel": "",
     "lockScreenActive": false,
-    "wallpapers": {},
+    "wallpapers": {
+      "": "/home/dave/dotfiles/wallpaper/wallpaper.jpg",
+      "DP-2": "/home/dave/dotfiles/wallpaper/wallpaper.jpg",
+      "HDMI-A-1": "/home/dave/dotfiles/wallpaper/wallpaper.jpg",
+      "eDP-1": "/home/dave/dotfiles/wallpaper/wallpaper.jpg"
+    },
     "desktopWidgetsEditMode": false,
     "display": {
       "eDP-1": {
@@ -612,7 +617,7 @@
       }
     },
     "notificationsState": {
-      "lastSeenTs": 0
+      "lastSeenTs": 1775634083000
     },
     "changelogState": {
       "lastSeenVersion": "v4.5.0"
