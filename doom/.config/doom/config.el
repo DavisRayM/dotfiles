@@ -85,6 +85,12 @@
 (setq-hook! 'python-mode-hook +format-with 'ruff)
 (setq-hook! 'python-ts-mode-hook +format-with 'ruff)
 
+(setq-default
+ gptel-post-response-functions #'gptel-end-of-response
+ gptel-model 'claude-opus-4-6
+ gptel-backend (gptel-make-anthropic "Claude"
+                 :stream t :key (gptel-api-key-from-auth-source "api.anthropic.com")))
+
 (setq +format-on-save-disabled-modes
       '(dockerfile-mode
         dockerfile-ts-mode))
