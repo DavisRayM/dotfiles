@@ -87,9 +87,27 @@
 
 (setq-default
  gptel-post-response-functions #'gptel-end-of-response
- gptel-model 'claude-opus-4-6
+ gptel-model 'claude-haiku-4-5-20251001
  gptel-backend (gptel-make-anthropic "Claude"
-                 :stream t :key (gptel-api-key-from-auth-source "api.anthropic.com")))
+                 :stream t :key (gptel-api-key-from-auth-source "api.anthropic.com"))
+ gptel-max-tokens 1024
+ gptel-directives '(
+                    (default . "You are a helpful assistant. Be concise.")
+                    (code    . "You are an expert programmer. Reply with code only, no explanation unless asked.")
+                    (explain . "Explain the following clearly and briefly."))
+ )
+
+(defun my/gptel-use-sonnet ()
+  "Switch current buffer to Claude Sonnet for complex tasks."
+  (interactive)
+  (setq-local gptel-model 'claude-sonnet-4-6)
+  (message "gptel: switched to Sonnet 4.6"))
+
+(defun my/gptel-use-haiku ()
+  "Switch current buffer back to Haiku for lightweight tasks."
+  (interactive)
+  (setq-local gptel-model 'claude-haiku-4-5-20251001)
+  (message "gptel: switched to Haiku 4.5"))
 
 (setq +format-on-save-disabled-modes
       '(dockerfile-mode
@@ -102,3 +120,8 @@
                  . ("clangd"
                     "--background-index"
                     "--query-driver=/nix/store/*/bin/clang++,/nix/store/*/bin/clang"))))
+
+(map! :leader
+      :prefix ("o l" . "llm")
+      :desc "Use Haiku (fast)"   "h" #'my/gptel-use-haiku
+      :desc "Use Sonnet (smart)" "S" #'my/gptel-use-sonnet)
