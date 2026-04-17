@@ -86,7 +86,6 @@
 (setq-hook! 'python-ts-mode-hook +format-with 'ruff)
 
 (setq-default
- gptel-post-response-functions #'gptel-end-of-response
  gptel-model 'claude-haiku-4-5-20251001
  gptel-backend (gptel-make-anthropic "Claude"
                  :stream t :key (gptel-api-key-from-auth-source "api.anthropic.com"))
@@ -96,6 +95,9 @@
                     (code    . "You are an expert programmer. Reply with code only, no explanation unless asked.")
                     (explain . "Explain the following clearly and briefly."))
  )
+
+(add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
+(add-hook 'gptel-post-response-functions 'gptel-end-of-response)
 
 (defun my/gptel-use-sonnet ()
   "Switch current buffer to Claude Sonnet for complex tasks."

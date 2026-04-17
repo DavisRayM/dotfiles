@@ -132,7 +132,7 @@
             "Mod+Ctrl+Shift+F".toggle-windowed-fullscreen = _: { };
             "Mod+Ctrl+Shift+S".clear-dynamic-cast-target = _: { };
             "Mod+D".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
-            "Mod+E".spawn-sh = "${lib.getExe' pkgs.emacs "emacsclient"} -c";
+            "Mod+E".spawn-sh = lib.getExe pkgs.kitty;
             "Mod+Equal".set-column-width = "+10%";
             "Mod+F".fullscreen-window = _: { };
             "Mod+H".focus-column-left = _: { };
@@ -144,7 +144,7 @@
             "Mod+O".open-overview = _: { };
             "Mod+Q".close-window = _: { };
             "Mod+R".switch-preset-column-width = _: { };
-            "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
+            "Mod+Return".spawn-sh = "${lib.getExe' pkgs.emacs "emacsclient"} -c";
             "Mod+S".set-dynamic-cast-window = _: { };
             "Mod+Shift+Ctrl+Down".move-column-to-monitor-down = _: { };
             "Mod+Shift+Ctrl+H".move-column-to-monitor-left = _: { };
