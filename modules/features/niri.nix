@@ -35,7 +35,6 @@
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
           input.keyboard.xkb.layout = "us";
-          input.focus-follows-mouse = _: { };
 
           layout = {
             gaps = 8;
