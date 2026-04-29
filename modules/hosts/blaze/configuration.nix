@@ -78,6 +78,7 @@
         rustup
         shellcheck
         shfmt
+        terraform
         vim
         wayland-utils
         wev
@@ -85,6 +86,13 @@
         wl-clipboard
         zoom-us
         git
+        go
+        gopls
+        gomodifytags
+        gotests
+        gore
+        gotools
+        godef
         vim
       ];
 
@@ -111,11 +119,19 @@
         };
       };
       programs.bash = {
+        enable = true;
+        completion.enable = true;
+        enableLsColors = true;
         shellAliases = {
           git = "git --no-pager";
           ft = "file-traveler";
         };
       };
+      programs.nix-ld.enable = true;
+      programs.nix-ld.libraries = with pkgs; [
+        stdenv.cc.cc
+        zlib
+      ];
 
       users.users.dave = {
         isNormalUser = true;
@@ -131,11 +147,12 @@
         ];
       };
       environment.variables = {
-        PATH = "$PATH:~/.config/emacs/bin:~/.cargo/bin";
+        PATH = "$PATH:~/.config/emacs/bin:~/.cargo/bin:~/dotfiles/scripts:/usr/local/go/bin:~/go/bin";
       };
 
       hardware.bluetooth.enable = true;
       hardware.graphics.enable = true;
+      programs.xwayland.enable = true;
       services.blueman.enable = true;
       services.libinput.touchpad.disableWhileTyping = true;
       services.pulseaudio.enable = false;

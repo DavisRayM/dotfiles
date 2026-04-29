@@ -86,10 +86,6 @@
 (setq-hook! 'python-ts-mode-hook +format-with 'ruff)
 
 (setq-default
- gptel-model 'claude-haiku-4-5-20251001
- gptel-backend (gptel-make-anthropic "Claude"
-                 :stream t :key (gptel-api-key-from-auth-source "api.anthropic.com"))
- gptel-max-tokens 1024
  gptel-directives '(
                     (default . "You are a helpful assistant. Be concise.")
                     (code    . "You are an expert programmer. Reply with code only, no explanation unless asked.")
