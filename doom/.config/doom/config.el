@@ -82,30 +82,20 @@
 (setq corfu-preview-current t)
 (with-eval-after-load 'python
   (set-formatter! 'ruff :modes '(python-mode python-ts-mode)))
+(with-eval-after-load 'python
+  (set-formatter! 'asmfmt :modes '(asm-mode nasm-mode)))
+(add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
+
 (setq-hook! 'python-mode-hook +format-with 'ruff)
 (setq-hook! 'python-ts-mode-hook +format-with 'ruff)
 
 (setq-default
- gptel-directives '(
-                    (default . "You are a helpful assistant. Be concise.")
-                    (code    . "You are an expert programmer. Reply with code only, no explanation unless asked.")
-                    (explain . "Explain the following clearly and briefly."))
+ gptel-model 'gpt-5.5
+ gptel-backend (gptel-make-openai "ChatGPT"
+                 :stream t :key (gptel-api-key-from-auth-source "api.openai.com"))
  )
 
 (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
-(add-hook 'gptel-post-response-functions 'gptel-end-of-response)
-
-(defun my/gptel-use-sonnet ()
-  "Switch current buffer to Claude Sonnet for complex tasks."
-  (interactive)
-  (setq-local gptel-model 'claude-sonnet-4-6)
-  (message "gptel: switched to Sonnet 4.6"))
-
-(defun my/gptel-use-haiku ()
-  "Switch current buffer back to Haiku for lightweight tasks."
-  (interactive)
-  (setq-local gptel-model 'claude-haiku-4-5-20251001)
-  (message "gptel: switched to Haiku 4.5"))
 
 (setq +format-on-save-disabled-modes
       '(dockerfile-mode
@@ -114,12 +104,35 @@
 (map! :leader :desc "Ammend" :n "g c a" #'magit-commit-amend)
 (after! eglot
   (add-to-list 'eglot-server-programs
-               '((c++-mode c-mode)
+               '((c++-mode c-mode c++-ts-mode c-ts-mode)
                  . ("clangd"
                     "--background-index"
-                    "--query-driver=/nix/store/*/bin/clang++,/nix/store/*/bin/clang"))))
-
-(map! :leader
-      :prefix ("o l" . "llm")
-      :desc "Use Haiku (fast)"   "h" #'my/gptel-use-haiku
-      :desc "Use Sonnet (smart)" "S" #'my/gptel-use-sonnet)
+                    "--query-driver=/nix/store/*/bin/clang,/nix/store/*/bin/clang++,/nix/store/*/bin/gcc,/nix/store/*/bin/g++")))
+  (add-hook 'rust-mode-hook
+            (lambda ()
+              (setq-default eglot-workspace-configuration
+                            '(:rust-analyzer
+                              (:assist
+                               (:preferSelf t)
+                               :completion
+                               (:fullFunctionSignature (:enabled t)
+                                :hideDeprecated t)
+                               :imports
+                               (:granularity (:enforce t))
+                               :inlayHints
+                               (:bindingModeHints (:enable t)
+                                :chainingHints (:enable t)
+                                :closingBraceHints (:minLines 50)
+                                :closureReturnTypeHints (:enable "always")
+                                :expressionAdjustmentHints (:enable "reborrow"
+                                                            :hideOutsideUnsafe t)
+                                :lifetimeElisionHints (:enable "skip_trivial"
+                                                       :useParameterNames t)
+                                :maxLength nil
+                                :typing (:triggerChars "=.{(><)}")
+                                )
+                               )
+                              )
+                            ))
+            )
+  )

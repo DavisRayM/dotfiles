@@ -76,6 +76,7 @@
         pkg-config
         ripgrep
         rustup
+        ruff
         shellcheck
         shfmt
         terraform
@@ -126,6 +127,9 @@
           git = "git --no-pager";
           ft = "file-traveler";
         };
+        shellInit = ''
+          eval "$(direnv hook bash)"
+        '';
       };
       programs.nix-ld.enable = true;
       programs.nix-ld.libraries = with pkgs; [
