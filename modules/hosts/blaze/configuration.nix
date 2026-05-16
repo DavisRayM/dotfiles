@@ -51,6 +51,8 @@
       };
 
       environment.systemPackages = with pkgs; [
+        clang
+        clang-tools
         delta
         discord
         emacs
@@ -59,10 +61,19 @@
         fd
         gcc
         gdb
+        gh
         gimp
+        git
         glibc
         gnome-keyring
         gnumake
+        go
+        godef
+        gomodifytags
+        gopls
+        gore
+        gotests
+        gotools
         ispell
         jq
         libcxx
@@ -75,26 +86,18 @@
         pavucontrol
         pkg-config
         ripgrep
-        rustup
         ruff
+        rustup
         shellcheck
         shfmt
         terraform
+        vim
         vim
         wayland-utils
         wev
         wget
         wl-clipboard
         zoom-us
-        git
-        go
-        gopls
-        gomodifytags
-        gotests
-        gore
-        gotools
-        godef
-        vim
       ];
 
       # Battery
@@ -126,6 +129,7 @@
         shellAliases = {
           git = "git --no-pager";
           ft = "file-traveler";
+          project = "cd ~/Projects/DavisRayM/";
         };
         shellInit = ''
           eval "$(direnv hook bash)"

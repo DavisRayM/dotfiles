@@ -175,7 +175,7 @@
       "boxRadiusRatio": 1,
       "screenRadiusRatio": 1,
       "animationSpeed": 1,
-      "animationDisabled": false,
+      "animationDisabled": true,
       "compactLockScreen": false,
       "lockScreenAnimations": false,
       "lockOnSuspend": true,
@@ -187,9 +187,9 @@
       "shadowOffsetY": 3,
       "language": "",
       "allowPanelsOnScreenWithoutBar": true,
-      "showChangelogOnStartup": true,
+      "showChangelogOnStartup": false,
       "telemetryEnabled": false,
-      "enableLockScreenCountdown": true,
+      "enableLockScreenCountdown": false,
       "lockScreenCountdownDuration": 10000,
       "autoStartAuth": false,
       "allowPasswordWithFprintd": false,
@@ -416,7 +416,7 @@
       "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor"
     },
     "dock": {
-      "enabled": true,
+      "enabled": false,
       "position": "bottom",
       "displayMode": "auto_hide",
       "dockType": "floating",
@@ -558,7 +558,7 @@
       "enableUserTheming": false
     },
     "nightLight": {
-      "enabled": false,
+      "enabled": true,
       "forced": false,
       "autoSchedule": true,
       "nightTemp": "4000",
@@ -587,8 +587,8 @@
     }
   },
   "state": {
-    "doNotDisturb": false,
-    "noctaliaPerformanceMode": false,
+    "doNotDisturb": true,
+    "noctaliaPerformanceMode": true,
     "barVisible": true,
     "openedPanel": "",
     "lockScreenActive": false,

@@ -87,6 +87,22 @@
               ];
               open-floating = true;
             }
+            {
+              matches = [
+                {
+                  title = "Bochs*";
+                }
+              ];
+              open-floating = true;
+            }
+            {
+              matches = [
+                {
+                  app-id = "\.$";
+                }
+              ];
+              open-floating = true;
+            }
             # {
             #   matches = [
             #     {
