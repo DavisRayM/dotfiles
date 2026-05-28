@@ -11,6 +11,7 @@
         self.nixosModules.fonts
         self.nixosModules.docker
         self.nixosModules.emacs
+        self.nixosModules.workspace
       ];
 
       boot.loader.grub = {
@@ -51,53 +52,6 @@
         LC_TIME = "en_US.UTF-8";
       };
 
-      environment.systemPackages = with pkgs; [
-        # Tools / Utilities
-        fd
-        gimp
-        gnome-keyring
-        jq
-        kubectl
-        man-pages
-        minikube
-        pavucontrol
-        ripgrep
-        rustup
-        terraform
-        vim
-
-        # Git
-        git
-        delta
-
-        # C++
-        clang
-        clang-tools
-
-        # Socials
-        discord
-        gh
-
-        # Go
-        go
-        godef
-        gomodifytags
-        gopls
-        gore
-        gotests
-        gotools
-
-        # Python
-        ruff
-
-        # Markdown
-        python313Packages.grip
-
-        # Shell script
-        shfmt
-        shellcheck
-      ];
-
       # Battery
       services.upower.enable = true;
       services.upower.ignoreLid = true;
@@ -111,50 +65,11 @@
 
       programs.steam.enable = true;
       programs.dconf.enable = true;
-      programs.gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
-        pinentryPackage = pkgs.pinentry-rofi;
-        settings = {
-          default-cache-ttl = 600;
-          max-cache-ttl = 7200;
-        };
-      };
-      programs.bash = {
-        enable = true;
-        completion.enable = true;
-        enableLsColors = true;
-        shellAliases = {
-          git = "git --no-pager";
-          ft = "file-traveler";
-          project = "cd ~/Projects/DavisRayM/";
-        };
-        shellInit = ''
-          eval "$(direnv hook bash)"
-        '';
-      };
       programs.nix-ld.enable = true;
       programs.nix-ld.libraries = with pkgs; [
         stdenv.cc.cc
         zlib
       ];
-
-      users.users.dave = {
-        isNormalUser = true;
-        description = "Davis Raymond Muro";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "docker"
-          "udev"
-        ];
-        packages = with pkgs; [
-          stow
-        ];
-      };
-      environment.extraInit = ''
-        export PATH="$PATH:$HOME/.cargo/bin:$HOME/dotfiles/scripts:/usr/local/go/bin:$HOME/go/bin"
-      '';
 
       hardware.bluetooth.enable = true;
       hardware.graphics.enable = true;
@@ -167,7 +82,6 @@
         alsa.support32Bit = true;
         pulse.enable = true;
       };
-      services.lorri.enable = true;
       services.greetd = {
         enable = true;
         settings = {
