@@ -55,3 +55,4 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 (package! gptel-agent)
+(package! protobuf-mode)

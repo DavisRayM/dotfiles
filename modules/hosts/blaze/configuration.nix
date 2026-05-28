@@ -76,6 +76,7 @@
         gotools
         ispell
         jq
+        kubectl
         libcxx
         libgcc
         libgccjit
@@ -83,8 +84,10 @@
         libtool
         libvterm
         man-pages
+        minikube
         pavucontrol
         pkg-config
+        python313Packages.grip
         ripgrep
         ruff
         rustup

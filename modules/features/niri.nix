@@ -95,14 +95,6 @@
               ];
               open-floating = true;
             }
-            {
-              matches = [
-                {
-                  app-id = "\.$";
-                }
-              ];
-              open-floating = true;
-            }
             # {
             #   matches = [
             #     {

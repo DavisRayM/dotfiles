@@ -85,6 +85,7 @@
 (with-eval-after-load 'python
   (set-formatter! 'asmfmt :modes '(asm-mode nasm-mode)))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
+(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 
 (setq-hook! 'python-mode-hook +format-with 'ruff)
 (setq-hook! 'python-ts-mode-hook +format-with 'ruff)
@@ -99,7 +100,8 @@
 
 (setq +format-on-save-disabled-modes
       '(dockerfile-mode
-        dockerfile-ts-mode))
+        dockerfile-ts-mode
+        protobuf-mode))
 
 (map! :leader :desc "Ammend" :n "g c a" #'magit-commit-amend)
 (after! eglot
