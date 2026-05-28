@@ -52,15 +52,33 @@
       };
 
       environment.systemPackages = with pkgs; [
+        # Tools / Utilities
+        fd
+        gimp
+        gnome-keyring
+        jq
+        kubectl
+        man-pages
+        minikube
+        pavucontrol
+        ripgrep
+        rustup
+        terraform
+        vim
+
+        # Git
+        git
+        delta
+
+        # C++
         clang
         clang-tools
-        delta
+
+        # Socials
         discord
-        fd
         gh
-        gimp
-        git
-        gnome-keyring
+
+        # Go
         go
         godef
         gomodifytags
@@ -68,27 +86,16 @@
         gore
         gotests
         gotools
-        jq
-        kubectl
-        libnotify
-        libvterm
-        man-pages
-        minikube
-        pavucontrol
-        pkg-config
-        python313Packages.grip
-        ripgrep
+
+        # Python
         ruff
-        rustup
-        shellcheck
+
+        # Markdown
+        python313Packages.grip
+
+        # Shell script
         shfmt
-        terraform
-        vim
-        wayland-utils
-        wev
-        wget
-        wl-clipboard
-        zoom-us
+        shellcheck
       ];
 
       # Battery
@@ -151,7 +158,6 @@
 
       hardware.bluetooth.enable = true;
       hardware.graphics.enable = true;
-      programs.xwayland.enable = true;
       services.blueman.enable = true;
       services.libinput.touchpad.disableWhileTyping = true;
       services.pulseaudio.enable = false;

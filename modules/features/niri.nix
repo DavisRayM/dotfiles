@@ -3,6 +3,7 @@
   flake.nixosModules.niri =
     { pkgs, lib, ... }:
     {
+      programs.xwayland.enable = true;
       programs.niri = {
         enable = true;
         package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
@@ -10,7 +11,12 @@
 
       environment.systemPackages = with pkgs; [
         google-chrome
+        libnotify
         networkmanagerapplet
+        wayland-utils
+        wev
+        wget
+        wl-clipboard
       ];
 
       xdg.portal.enable = true;
