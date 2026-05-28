@@ -12,6 +12,7 @@
         self.nixosModules.docker
         self.nixosModules.emacs
         self.nixosModules.workspace
+        self.nixosModules.neovim
       ];
 
       boot.loader.grub = {
