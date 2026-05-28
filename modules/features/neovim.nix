@@ -6,6 +6,9 @@
     {
       environment.systemPackages = with pkgs; [
         neovim
+        unzip
+        tree-sitter
+        fzf
       ];
     };
 }
