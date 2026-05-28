@@ -16,7 +16,7 @@
 	gpgsign = true
 	verbose = true
 [core]
-	editor = emacs
+	editor = nvim
 	autocrlf = false
 	safecrlf = true
 	pager = delta

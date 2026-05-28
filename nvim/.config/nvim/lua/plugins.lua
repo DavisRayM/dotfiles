@@ -40,6 +40,8 @@ require("which-key").setup({
 		{ "<leader>f", group = "[F]ile" },
 		{ "<leader>s", group = "[S]earch" },
 		{ "<leader>c", group = "[C]ode" },
+		{ "<leader>g", group = "[G]it" },
+		{ "<leader>w", group = "[W]indow" },
 		{ "gr", group = "LSP Actions", mode = { "n" } },
 	},
 })
