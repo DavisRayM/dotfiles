@@ -10,6 +10,7 @@
         self.nixosModules.niri
         self.nixosModules.fonts
         self.nixosModules.docker
+        self.nixosModules.emacs
       ];
 
       boot.loader.grub = {
@@ -55,18 +56,11 @@
         clang-tools
         delta
         discord
-        emacs
-        emacs-lsp-booster
-        emacsPackages.vterm
         fd
-        gcc
-        gdb
         gh
         gimp
         git
-        glibc
         gnome-keyring
-        gnumake
         go
         godef
         gomodifytags
@@ -74,14 +68,9 @@
         gore
         gotests
         gotools
-        ispell
         jq
         kubectl
-        libcxx
-        libgcc
-        libgccjit
         libnotify
-        libtool
         libvterm
         man-pages
         minikube
@@ -94,7 +83,6 @@
         shellcheck
         shfmt
         terraform
-        vim
         vim
         wayland-utils
         wev
@@ -157,9 +145,9 @@
           stow
         ];
       };
-      environment.variables = {
-        PATH = "$PATH:~/.config/emacs/bin:~/.cargo/bin:~/dotfiles/scripts:/usr/local/go/bin:~/go/bin";
-      };
+      environment.extraInit = ''
+        export PATH="$PATH:$HOME/.cargo/bin:$HOME/dotfiles/scripts:/usr/local/go/bin:$HOME/go/bin"
+      '';
 
       hardware.bluetooth.enable = true;
       hardware.graphics.enable = true;
