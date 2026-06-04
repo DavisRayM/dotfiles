@@ -232,3 +232,5 @@ require("blink.cmp").setup({
 	fuzzy = { implementation = "lua" },
 	signature = { enabled = true },
 })
+
+vim.pack.add { gh("tommcdo/vim-lion") }

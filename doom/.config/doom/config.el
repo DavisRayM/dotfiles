@@ -44,7 +44,7 @@
 (setq doom-modeline-time t)
 (setq doom-modeline-time-icon t)
 
-(setq projectile-project-search-path '("~/Projects/DavisRayM" "~/Projects/seattleu-projectcenter/" "~/Projects/seattle-university-cs-cloud-computing/"))
+(setq projectile-project-search-path '("~/Projects/DavisRayM" "~/Projects/seattleu-projectcenter/"))
 (setq confirm-kill-emacs nil)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
