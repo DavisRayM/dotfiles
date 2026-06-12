@@ -13,6 +13,7 @@
         self.nixosModules.emacs
         self.nixosModules.workspace
         self.nixosModules.neovim
+        self.nixosModules.dolphin
       ];
 
       boot.loader.grub = {
