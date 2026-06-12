@@ -96,6 +96,11 @@
                  :stream t :key (gptel-api-key-from-auth-source "api.openai.com"))
  )
 
+(setq-default
+ org-roam-directory "~/Notes"
+ org-startup-with-inline-images t
+ )
+
 (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
 
 (setq +format-on-save-disabled-modes

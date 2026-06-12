@@ -13,13 +13,15 @@
         gdb
         glibc
         gnumake
+        graphviz
         ispell
         libcxx
         libgcc
         libgccjit
         libtool
         libvterm
-        graphviz
+        maim
+        texlive.combined.scheme-medium
       ];
 
       environment.extraInit = ''

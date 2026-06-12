@@ -144,7 +144,7 @@
             "Mod+Ctrl+Shift+F".toggle-windowed-fullscreen = _: { };
             "Mod+Ctrl+Shift+S".clear-dynamic-cast-target = _: { };
             "Mod+D".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
-            # "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
+            "Mod+E".spawn-sh = lib.getExe pkgs.kitty;
             "Mod+Equal".set-column-width = "+10%";
             "Mod+F".fullscreen-window = _: { };
             "Mod+H".focus-column-left = _: { };
