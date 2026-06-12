@@ -19,6 +19,7 @@
         libgccjit
         libtool
         libvterm
+        graphviz
       ];
 
       environment.extraInit = ''
