@@ -41,6 +41,7 @@
         gotools
 
         # Python
+        python3Minimal
         ruff
 
         # Markdown
