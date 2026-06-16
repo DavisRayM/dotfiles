@@ -85,6 +85,8 @@
         };
       };
 
+      services.mullvad-vpn.enable = true;
+
       users.users.dave = {
         isNormalUser = true;
         description = "Davis Raymond Muro";
