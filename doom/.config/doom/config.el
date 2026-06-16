@@ -44,7 +44,7 @@
 (setq doom-modeline-time t)
 (setq doom-modeline-time-icon t)
 
-(setq projectile-project-search-path '("~/Projects/DavisRayM" "~/Projects/seattleu-projectcenter/"))
+(setq projectile-project-search-path '("~/Projects/DavisRayM"))
 (setq confirm-kill-emacs nil)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -79,16 +79,21 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (display-time)
+
 (setq corfu-preview-current t)
+
+(map! :leader :desc "Ammend" :n "g c a" #'magit-commit-amend)
+
 (with-eval-after-load 'python
   (set-formatter! 'ruff :modes '(python-mode python-ts-mode)))
-(with-eval-after-load 'python
-  (set-formatter! 'asmfmt :modes '(asm-mode nasm-mode)))
-(add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
-(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
-
 (setq-hook! 'python-mode-hook +format-with 'ruff)
 (setq-hook! 'python-ts-mode-hook +format-with 'ruff)
+
+(with-eval-after-load 'asm
+  (set-formatter! 'asmfmt :modes '(asm-mode nasm-mode)))
+
+(add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
+(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 
 (setq-default
  gptel-model 'gpt-5.5
@@ -101,14 +106,11 @@
  org-startup-with-inline-images t
  )
 
-(add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
-
 (setq +format-on-save-disabled-modes
       '(dockerfile-mode
         dockerfile-ts-mode
         protobuf-mode))
 
-(map! :leader :desc "Ammend" :n "g c a" #'magit-commit-amend)
 (after! eglot
   (add-to-list 'eglot-server-programs
                '((c++-mode c-mode c++-ts-mode c-ts-mode)

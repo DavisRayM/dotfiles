@@ -70,6 +70,11 @@
         '';
       };
 
+      programs.zoxide = {
+        enable = true;
+        enableBashIntegration = true;
+      };
+
       programs.gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
