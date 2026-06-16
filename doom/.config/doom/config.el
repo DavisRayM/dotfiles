@@ -101,7 +101,7 @@
                  :stream t :key (gptel-api-key-from-auth-source "api.openai.com"))
  )
 
-(setq-default
+(setq
  org-roam-directory "~/Notes"
  org-startup-with-inline-images t
  )
