@@ -54,6 +54,17 @@
         LC_TIME = "en_US.UTF-8";
       };
 
+      # Keychron Launcher
+      environment.systemPackages = with pkgs; [
+        qmk
+        via
+        qmk-udev-rules
+        qmk_hid
+        vial
+      ];
+      hardware.keyboard.qmk.enable = true;
+      services.udev.packages = [ pkgs.via ];
+
       # Battery
       services.upower.enable = true;
       services.upower.ignoreLid = true;
