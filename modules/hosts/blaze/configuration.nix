@@ -62,7 +62,6 @@
         qmk_hid
         vial
       ];
-      hardware.keyboard.qmk.enable = true;
       services.udev.packages = [ pkgs.via ];
 
       # Battery
@@ -84,6 +83,8 @@
         zlib
       ];
 
+      hardware.nvidia.dynamicBoost.enable = true;
+      hardware.keyboard.qmk.enable = true;
       hardware.bluetooth.enable = true;
       hardware.graphics.enable = true;
       services.blueman.enable = true;
