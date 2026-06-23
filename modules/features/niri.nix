@@ -158,6 +158,8 @@
             "Mod+R".switch-preset-column-width = _: { };
             "Mod+Return".spawn-sh = "${lib.getExe' pkgs.emacs "emacsclient"} -c";
             "Mod+S".set-dynamic-cast-window = _: { };
+            "Mod+Up".focus-workspace-up = _: { };
+            "Mod+Down".focus-workspace-down = _: { };
             "Mod+Shift+Ctrl+Down".move-column-to-monitor-down = _: { };
             "Mod+Shift+Ctrl+H".move-column-to-monitor-left = _: { };
             "Mod+Shift+Ctrl+J".move-column-to-monitor-down = _: { };
