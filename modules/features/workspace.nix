@@ -7,6 +7,7 @@
       environment.systemPackages = with pkgs; [
         # Tools / Utilities
         fd
+        firefox
         gimp
         gnome-keyring
         jq
