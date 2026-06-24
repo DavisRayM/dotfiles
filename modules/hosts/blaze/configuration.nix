@@ -14,6 +14,7 @@
         self.nixosModules.workspace
         self.nixosModules.neovim
         self.nixosModules.dolphin
+        self.nixosModules.raspi
       ];
 
       boot.loader.grub = {
