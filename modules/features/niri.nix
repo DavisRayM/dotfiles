@@ -42,6 +42,25 @@
 
           input.keyboard.xkb.layout = "us";
 
+          outputs = {
+            "eDP-1" = {
+              position = _: {
+                props = {
+                  x = 0;
+                  y = 0;
+                };
+              };
+            };
+            "DP-2" = {
+              position = _: {
+                props = {
+                  x = 1920;
+                  y = 0;
+                };
+              };
+            };
+          };
+
           layout = {
             gaps = 8;
             focus-ring = {
