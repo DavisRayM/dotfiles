@@ -96,9 +96,9 @@
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 
 (setq-default
- gptel-model 'gpt-5.5
- gptel-backend (gptel-make-openai "ChatGPT"
-                 :stream t :key (gptel-api-key-from-auth-source "api.openai.com"))
+ gptel-model 'claude-opus-4-8
+ gptel-cache '(system message)
+ gptel-backend (gptel-make-anthropic "Claude" :stream t :key (gptel-api-key-from-auth-source "api.anthropic.com"))
  )
 
 (setq
