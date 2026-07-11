@@ -96,9 +96,15 @@
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 
 (setq-default
- gptel-model 'claude-opus-4-8
+ gptel-model 'qwen2.5-coder:7b
+ gptel-backend
+ (gptel-make-ollama "Ollama"
+   :host "localhost:11434"
+   :stream t
+   :models '(qwen2.5-coder:7b
+             deepseek-r1:8b
+             llama3.2:3b))
  gptel-cache '(system message)
- gptel-backend (gptel-make-anthropic "Claude" :stream t :key (gptel-api-key-from-auth-source "api.anthropic.com"))
  )
 
 (setq

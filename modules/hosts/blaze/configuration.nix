@@ -15,6 +15,7 @@
         self.nixosModules.neovim
         self.nixosModules.dolphin
         self.nixosModules.raspi
+        self.nixosModules.llm
       ];
 
       boot.loader.grub = {
@@ -57,6 +58,7 @@
 
       # Keychron Launcher
       environment.systemPackages = with pkgs; [
+        brave
         qmk
         via
         qmk-udev-rules
@@ -84,7 +86,10 @@
         zlib
       ];
 
-      hardware.nvidia.dynamicBoost.enable = true;
+      hardware.nvidia = {
+        dynamicBoost.enable = true;
+        nvidiaSettings = true;
+      };
       hardware.keyboard.qmk.enable = true;
       hardware.bluetooth.enable = true;
       hardware.graphics.enable = true;
