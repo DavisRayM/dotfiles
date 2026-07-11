@@ -24,6 +24,10 @@
         texliveSmall
       ];
 
+      services.emacs = {
+        defaultEditor = true;
+        enable = true;
+      };
       environment.extraInit = ''
         export PATH="$PATH:$HOME/.config/emacs/bin"
       '';
