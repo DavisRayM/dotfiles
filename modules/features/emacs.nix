@@ -21,7 +21,7 @@
         libtool
         libvterm
         maim
-        texlive.combined.scheme-medium
+        texliveSmall
       ];
 
       environment.extraInit = ''
