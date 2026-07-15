@@ -120,12 +120,26 @@
         alsa.support32Bit = true;
         pulse.enable = true;
       };
+
+      # Greeter
       services.greetd = {
         enable = true;
         settings = {
           default_session = {
             command = "${lib.getExe pkgs.tuigreet} -c niri-session";
           };
+        };
+      };
+
+      systemd.services.greetd = {
+        serviceConfig = {
+          Type = "idle";
+          StandardInput = "tty";
+          StandardOutput = "tty";
+          StandardError = "journal";
+          TTYReset = true;
+          TTYVHangup = true;
+          TTYVTDisallocate = true;
         };
       };
 
