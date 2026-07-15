@@ -12,8 +12,8 @@
           "deepseek-r1:8b"
         ];
         environmentVariables = {
-          OLLAMA_KEEP_ALIVE = "-1";
-          OLLAMA_CONTEXT_LENGTH = "8192";
+          OLLAMA_KEEP_ALIVE = "30m";
+          OLLAMA_CONTEXT_LENGTH = "32768";
         };
         package = pkgs.ollama-cuda;
       };
