@@ -11,6 +11,9 @@
           "qwen2.5-coder:7b"
           "deepseek-r1:8b"
         ];
+        environmentVariables = {
+          OLLAMA_KEEP_ALIVE = "-1";
+        };
       };
     };
 }
