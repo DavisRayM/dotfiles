@@ -43,7 +43,6 @@
 
         # Python
         python3Minimal
-        ruff
 
         # Markdown
         python313Packages.grip

@@ -12,6 +12,7 @@
       environment.systemPackages = with pkgs; [
         google-chrome
         libnotify
+        libdisplay-info
         networkmanagerapplet
         wayland-utils
         wev
@@ -62,7 +63,7 @@
           };
 
           layout = {
-            gaps = 8;
+            gaps = 2;
             focus-ring = {
               width = 2;
               active-color = "#8ec07c";
@@ -154,7 +155,7 @@
           binds = {
             "Alt+Print".screenshot-window = _: { };
             "Ctrl+Print".screenshot-screen = _: { };
-            "Mod+B".spawn-sh = "google-chrome-stable";
+            "Mod+B".spawn-sh = lib.getExe pkgs.firefox;
             "Mod+Ctrl+H".move-column-left = _: { };
             "Mod+Ctrl+J".move-window-down = _: { };
             "Mod+Ctrl+K".move-window-up = _: { };
@@ -164,14 +165,14 @@
             "Mod+Ctrl+Shift+S".clear-dynamic-cast-target = _: { };
             "Mod+D".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
             "Mod+E".spawn-sh = lib.getExe pkgs.kitty;
-            "Mod+Equal".set-column-width = "+10%";
+            "Mod+Equal".set-column-width = "+2%";
             "Mod+F".fullscreen-window = _: { };
-            "Mod+H".focus-column-left = _: { };
-            "Mod+J".focus-window-down = _: { };
-            "Mod+K".focus-window-up = _: { };
-            "Mod+L".focus-column-right = _: { };
+            "Mod+Shift+H".focus-column-left = _: { };
+            "Mod+Shift+J".focus-window-down = _: { };
+            "Mod+Shift+K".focus-window-up = _: { };
+            "Mod+Shift+L".focus-column-right = _: { };
             "Mod+M".maximize-window-to-edges = _: { };
-            "Mod+Minus".set-column-width = "-10%";
+            "Mod+Minus".set-column-width = "-2%";
             "Mod+O".open-overview = _: { };
             "Mod+Q".close-window = _: { };
             "Mod+R".switch-preset-column-width = _: { };
@@ -190,10 +191,10 @@
             "Mod+Shift+Equal".set-window-height = "+10%";
             "Mod+Shift+Escape".quit = _: { };
             "Mod+Shift+F".expand-column-to-available-width = _: { };
-            "Mod+Shift+H".focus-monitor-left = _: { };
-            "Mod+Shift+J".focus-monitor-down = _: { };
-            "Mod+Shift+K".focus-monitor-up = _: { };
-            "Mod+Shift+L".focus-monitor-right = _: { };
+            "Mod+H".focus-monitor-left = _: { };
+            "Mod+J".focus-monitor-down = _: { };
+            "Mod+K".focus-monitor-up = _: { };
+            "Mod+L".focus-monitor-right = _: { };
             "Mod+Shift+Minus".set-window-height = "-10%";
             "Mod+Shift+R".switch-preset-window-height = _: { };
             "Mod+Shift+S".set-dynamic-cast-monitor = _: { };
