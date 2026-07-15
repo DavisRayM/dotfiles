@@ -18,6 +18,24 @@
         self.nixosModules.llm
       ];
 
+      # OS Maintenance
+      nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 14d";
+      };
+
+      system.autoUpgrade = {
+        enable = true;
+        flake = "/home/dave/dotfiles"; # NOTE: Specific setup; not automated...
+        flags = [
+          "--print-build-logs"
+          "--recreate-lock-file"
+        ];
+        dates = "02:00";
+        randomizedDelaySec = "45min";
+      };
+
       boot.loader.grub = {
         enable = true;
         devices = [ "nodev" ];
