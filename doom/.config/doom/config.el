@@ -117,6 +117,9 @@
         dockerfile-ts-mode
         protobuf-mode))
 
+(set-frame-parameter nil 'alpha-background 85)
+(add-to-list 'default-frame-alist '(alpha-background . 85))
+
 (after! eglot
   (add-to-list 'eglot-server-programs
                '((c++-mode c-mode c++-ts-mode c-ts-mode)
