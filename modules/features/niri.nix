@@ -63,10 +63,10 @@
           };
 
           layout = {
-            gaps = 2;
+            gaps = 0;
             focus-ring = {
-              width = 2;
-              active-color = "#8ec07c";
+              width = 1;
+              active-color = "#5017b3";
             };
           };
 
