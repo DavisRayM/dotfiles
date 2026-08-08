@@ -2,7 +2,7 @@
   description = "Dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=26.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
