@@ -15,7 +15,7 @@
         self.nixosModules.neovim
         self.nixosModules.dolphin
         self.nixosModules.raspi
-        self.nixosModules.llm
+        # self.nixosModules.llm
       ];
 
       # OS Maintenance
