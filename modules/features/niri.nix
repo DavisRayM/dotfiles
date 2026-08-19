@@ -52,7 +52,7 @@
                 };
               };
             };
-            "DP-2" = {
+            "HDMI-A-1" = {
               position = _: {
                 props = {
                   x = 0;
