@@ -7,17 +7,13 @@
       environment.systemPackages = with pkgs; [
         # Tools / Utilities
         fd
-        firefox
         gimp
         gnome-keyring
         jq
-        kubectl
         man-pages
-        minikube
         pavucontrol
         ripgrep
         rustup
-        terraform
         vim
 
         # Git
