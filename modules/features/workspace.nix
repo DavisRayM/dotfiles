@@ -21,6 +21,7 @@
         delta
 
         # C++
+        gcc
         clang
         clang-tools
 
