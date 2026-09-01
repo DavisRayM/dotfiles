@@ -15,6 +15,7 @@
         self.nixosModules.neovim
         self.nixosModules.dolphin
         self.nixosModules.raspi
+        self.nixosModules.ios
         # self.nixosModules.llm
       ];
 
