@@ -57,3 +57,4 @@
 (package! gptel-agent)
 (package! protobuf-mode)
 (package! org-pomodoro)
+(package! meson-mode)
