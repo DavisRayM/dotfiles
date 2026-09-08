@@ -95,17 +95,16 @@
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 
-(setq-default
- gptel-model 'qwen2.5-coder:7b
- gptel-backend
- (gptel-make-ollama "Ollama"
-   :host "localhost:11434"
-   :stream t
-   :models '(qwen2.5-coder:7b
-             deepseek-r1:8b
-             llama3.2:3b))
- gptel-cache '(system message)
- )
+(setq gptel-model   'tencent/hy4-preview
+      gptel-backend
+      (gptel-make-openai "OpenRouter"
+        :host "openrouter.ai"
+        :endpoint "/api/v1/chat/completions"
+        :stream t
+        :key (gptel-api-key-from-auth-source "openrouter.ai")
+        :models '(tencent/hy4-preview
+                  openai/gpt-5.6-luna
+                  google/gemini-3.7-flash)))
 
 (setq
  org-roam-directory "~/Notes"
