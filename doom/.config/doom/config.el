@@ -104,7 +104,8 @@
         :key (gptel-api-key-from-auth-source "openrouter.ai")
         :models '(tencent/hy4-preview
                   openai/gpt-5.6-luna
-                  google/gemini-3.7-flash)))
+                  google/gemini-3.7-flash
+                  openai/gpt-sol-latest)))
 
 (setq
  org-roam-directory "~/Notes"
