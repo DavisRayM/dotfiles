@@ -29,6 +29,9 @@
         discord
         gh
 
+        # Ruby
+        ruby
+
         # Go
         go
         godef
