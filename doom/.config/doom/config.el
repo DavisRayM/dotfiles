@@ -95,6 +95,12 @@
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 
+(setq +lookup-provider-url-alist
+      '(("DuckDuckGo" +lookup--online-backend-duckduckgo "https://duckduckgo.com/?q=%s")
+        ("Rust Docs" "https://doc.rust-lang.org/std/?search=%s")
+        ("Github" "https://github.com/search?ref=simplesearch&q=%s")
+        ))
+
 (setq gptel-model   'tencent/hy4-preview
       gptel-backend
       (gptel-make-openai "OpenRouter"
