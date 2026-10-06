@@ -11,11 +11,7 @@
         self.nixosModules.docker
         self.nixosModules.emacs
         self.nixosModules.workspace
-        self.nixosModules.neovim
-        self.nixosModules.dolphin
-        self.nixosModules.raspi
         self.nixosModules.ios
-        # self.nixosModules.llm
       ];
 
       # OS Maintenance

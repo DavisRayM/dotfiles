@@ -23,6 +23,8 @@
         # Tools / Utilities
         jq
         vim
+        kdePackages.dolphin
+        kdePackages.qtsvg
 
         # Git
         git
