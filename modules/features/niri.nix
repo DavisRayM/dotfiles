@@ -182,7 +182,7 @@
             "Mod+B".spawn-sh = lib.getExe pkgs.firefox;
             "Mod+D".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
             "Mod+E".spawn-sh = lib.getExe pkgs.kitty;
-            "Mod+Return".spawn-sh = "${lib.getExe' pkgs.emacs "emacsclient"} -c";
+            "Mod+Return".spawn-sh = lib.getExe pkgs.emacs;
 
             # Audio & Video
             "XF86AudioLowerVolume".spawn-sh =
