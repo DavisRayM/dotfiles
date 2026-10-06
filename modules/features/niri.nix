@@ -48,6 +48,8 @@
 
           input.keyboard.xkb.layout = "us";
 
+          gestures.hot-corners = false;
+
           outputs = {
             "eDP-1" = {
               position = _: {
