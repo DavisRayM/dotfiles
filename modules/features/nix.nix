@@ -26,12 +26,11 @@
       nixpkgs.config.allowUnfree = true;
 
       environment.systemPackages = with pkgs; [
-        nil
         nixd
         statix
         alejandra
         manix
-        nix-inspect
+        inputs.nix-inspect.packages.default
       ];
     };
 }
