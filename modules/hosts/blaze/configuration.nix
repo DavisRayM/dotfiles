@@ -8,7 +8,6 @@
         self.nixosModules.blazeHardware
         self.nixosModules.nix
         self.nixosModules.niri
-        self.nixosModules.fonts
         self.nixosModules.docker
         self.nixosModules.emacs
         self.nixosModules.workspace

@@ -10,14 +10,19 @@
       };
 
       environment.systemPackages = with pkgs; [
+        pavucontrol
+
         firefox
-        libnotify
-        libdisplay-info
+
         networkmanagerapplet
-        wayland-utils
         wev
         wget
         wl-clipboard
+        man-pages
+
+        libnotify
+        libdisplay-info
+        wayland-utils
       ];
 
       xdg.portal.enable = true;

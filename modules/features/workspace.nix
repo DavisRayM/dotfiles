@@ -4,48 +4,36 @@
   flake.nixosModules.workspace =
     { pkgs, lib, ... }:
     {
+
+      users.users.dave = {
+        isNormalUser = true;
+        description = "Davis Raymond Muro";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "docker"
+          "udev"
+        ];
+        packages = with pkgs; [
+          stow
+        ];
+      };
+
       environment.systemPackages = with pkgs; [
         # Tools / Utilities
-        fd
-        gimp
-        gnome-keyring
         jq
-        man-pages
-        pavucontrol
-        ripgrep
-        rustup
         vim
 
         # Git
         git
         delta
 
-        # C++
-        gcc
-        clang
-        clang-tools
-
         # Socials
         discord
         gh
 
-        # Ruby
-        ruby
-
-        # Go
-        go
-        godef
-        gomodifytags
-        gopls
-        gore
-        gotests
-        gotools
-
         # Python
         python3Minimal
-
-        # Markdown
-        python313Packages.grip
 
         # Shell script
         shfmt
@@ -53,7 +41,7 @@
       ];
 
       environment.extraInit = ''
-        export PATH="$PATH:$HOME/.cargo/bin:$HOME/dotfiles/scripts:/usr/local/go/bin:$HOME/go/bin"
+        export PATH="$PATH:$HOME/dotfiles/scripts"
       '';
 
       programs.bash = {
@@ -62,12 +50,7 @@
         enableLsColors = true;
         shellAliases = {
           git = "git --no-pager";
-          ft = "file-traveler";
-          project = "cd ~/Projects/DavisRayM/";
         };
-        shellInit = ''
-          eval "$(direnv hook bash)"
-        '';
       };
 
       programs.zoxide = {
@@ -85,20 +68,27 @@
         };
       };
 
-      services.mullvad-vpn.enable = true;
-
-      users.users.dave = {
-        isNormalUser = true;
-        description = "Davis Raymond Muro";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "docker"
-          "udev"
-        ];
+      fonts = {
         packages = with pkgs; [
-          stow
+          nerd-fonts.terminess-ttf
+          nerd-fonts.blex-mono
+          nerd-fonts.symbols-only
+          ibm-plex
+          openmoji-color
+          symbola
         ];
+        fontconfig = {
+          defaultFonts = {
+            sansSerif = [ "IBM Plex Sans" ];
+            serif = [ "IBM Plex Serif" ];
+            monospace = [ "Terminess Nerd Font" ];
+            emoji = [
+              "OpenMoji Color"
+              "Noto Color Emoji"
+            ];
+          };
+        };
+        enableDefaultPackages = true;
       };
     };
 }
