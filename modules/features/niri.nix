@@ -48,7 +48,7 @@
 
           input.keyboard.xkb.layout = "us";
 
-          gestures.hot-corners = "off";
+          gestures.hot-corners.off = _: { };
 
           outputs = {
             "eDP-1" = {

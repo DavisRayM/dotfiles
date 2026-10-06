@@ -72,7 +72,7 @@
 
       # Keychron Launcher
       environment.systemPackages = with pkgs; [
-        brave
+        firefox
         qmk
         via
         qmk-udev-rules
