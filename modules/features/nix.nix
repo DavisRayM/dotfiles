@@ -30,7 +30,6 @@
         statix
         alejandra
         manix
-        inputs.nix-inspect.packages.default
       ];
     };
 }
