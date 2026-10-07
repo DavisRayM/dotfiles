@@ -179,3 +179,16 @@
   :config
   (setq completion-preview-minimum-symbol-length 2)
   (global-completion-preview-mode))
+
+(use-package nix-mode
+  :mode "\\.nix\\'")
+
+(use-package rust-mode
+  :mode "\\.rs\\'")
+
+(use-package vterm
+  :bind
+  (("C-c t" . vterm-other-window)))
+
+(provide 'init)
+;;; init.el ends here
