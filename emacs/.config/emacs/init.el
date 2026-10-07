@@ -15,7 +15,6 @@
 	("elpa" . "https://elpa.gnu.org/packages/")
 	("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 (setq package-archive-priorities '(("elpa" . 10) ("nongnu" . 5) ("melpa" . 0)))
-(global-set-key (kbd "<escape>") #'keyboard-quit)
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -31,11 +30,6 @@
 		    :family "Terminess Nerd Font Mono"
 		    :height 120
 		    :weight 'regular)
-
-(dolist (mode '(term-mode-hook
-		eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-(add-hook 'prog-mode-hook #'auto-fill-mode)
 
 ;; Packages
 (use-package minibuffer
