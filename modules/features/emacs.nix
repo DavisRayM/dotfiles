@@ -7,6 +7,7 @@
       environment.systemPackages = with pkgs; [
         emacs
         emacsPackages.vterm
+        ispell
         gcc
         gdb
         glibc
