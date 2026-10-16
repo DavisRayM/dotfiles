@@ -25,27 +25,28 @@
 (setq inhibit-startup-message t)
 (setq display-line-numbers-type 'relative)
 (setq visible-bell t)
+(setq make-backup-files nil)
 
 (set-face-attribute 'default nil
 		    :family "Terminess Nerd Font Mono"
 		    :height 120
 		    :weight 'regular)
 
+(dolist (dir '("~/dotfiles/"
+               "~/Projects/DavisRayM/"))
+  (add-to-list 'trusted-content dir))
+
+;; Hooks
+(dolist (mode '(c-mode-hook
+                c++-mode-hook
+                nix-mode-hook
+                rust-mode-hook))
+  (add-hook mode #'eglot-ensure))
+
 ;; Packages
-(use-package minibuffer
-  :ensure nil
+(use-package vertico
   :config
-  (setq completion-show-help nil)
-  (setq completion-show-inline-help nil)
-  (setq completions-detailed t)
-  (setq completions-format 'one-column)
-  (setq completions-max-height 12)
-  (setq completions-sort 'historical)
-  (setq completion-auto-help t)
-  (setq completion-auto-select nil
-        minibuffer-visible-completions t)
-  (setq completion-eager-display t)
-  (setq completion-eager-update t))
+  (vertico-mode))
 
 (use-package consult
   :bind (;; C-c bindings in `mode-specific-map'
@@ -166,19 +167,9 @@
   (setq org-directory "~/org")
   (setq org-agenda-files (list org-directory)))
 
-(use-package completion-preview
-  :ensure nil
-  :demand t
-  :bind
-  (:map completion-preview-active-mode-map
-	("M-i" . completion-preview-insert-word)
-	("M-n" . completion-preview-next-candidate)
-	("M-p" . completion-preview-prev-candidate)
-	("M-<return>". completion-preview-insert)
-	("<tab>" . completion-preview-complete))
-  :config
-  (setq completion-preview-minimum-symbol-length 2)
-  (global-completion-preview-mode))
+(use-package corfu
+  :init
+  (global-corfu-mode))
 
 (use-package nix-mode
   :mode "\\.nix\\'")
@@ -186,9 +177,30 @@
 (use-package rust-mode
   :mode "\\.rs\\'")
 
+(use-package cc-mode)
+
 (use-package vterm
   :bind
-  (("C-c t" . vterm-other-window)))
+  (("C-c t" . vterm-other-window)
+   ("C-c T" . vterm)))
+
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
+
+(use-package eglot
+  :ensure nil
+  :custom
+  (eglot-autoshutdown t)
+  :bind (:map eglot-mode-map
+         ("C-c l r" . eglot-rename)
+         ("C-c l a" . eglot-code-actions)
+         ("C-c l f" . eglot-format)
+         ("C-c l i" . eglot-find-implementation)
+         ("C-c l t" . eglot-find-typeDefinition)
+         ("C-c l d" . eldoc-doc-buffer))
+  :config
+  (add-hook 'eglot-managed-mode-hook
+            (lambda () (add-hook 'before-save-hook #'eglot-format-buffer -10 t))))
 
 (provide 'init)
 ;;; init.el ends here
