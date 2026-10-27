@@ -78,8 +78,14 @@
           };
 
           spawn-at-startup = [
-            (lib.getExe self'.packages.myNoctalia)
+            "noctalia"
             (lib.getExe pkgs.networkmanagerapplet)
+          ];
+
+          switch-events = [
+            {
+              lid-close.spawn = "noctalia msg session lock-and-suspend";
+            }
           ];
 
           layer-rules = [
@@ -93,6 +99,38 @@
             }
           ];
           window-rules = [
+            {
+              geometry-corner-radius = 0;
+              clip-to-geometry = true;
+              background-effect = {
+                blur = true;
+              };
+            }
+            {
+              matches = [
+                {
+                  app-id = "Emacs";
+                }
+              ];
+              opacity = 0.85;
+            }
+            {
+              matches = [
+                {
+                  app-id = "Emacs";
+                  is-active = false;
+                }
+              ];
+              opacity = 1.0;
+            }
+            {
+              matches = [
+                {
+                  app-id = "dev.noctalia.Noctalia";
+                }
+              ];
+              open-floating = true;
+            }
             {
               matches = [
                 {
@@ -180,28 +218,27 @@
 
             # Spawn Bindings
             "Mod+B".spawn-sh = lib.getExe pkgs.firefox;
-            "Mod+D".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
+            "Mod+D".spawn-sh = "noctalia msg panel-toggle launcher";
             "Mod+E".spawn-sh = lib.getExe pkgs.kitty;
             "Mod+Return".spawn-sh = lib.getExe pkgs.emacs;
+            "Alt+Tab".spawn-sh = "noctalia msg window-switcher hold";
+            "Mod+Shift+Comma".spawn-sh = "noctalia msg settings-toggle";
 
             # Audio & Video
-            "XF86AudioLowerVolume".spawn-sh =
-              "${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+            "XF86AudioLowerVolume".spawn-sh = "noctalia msg volume-down";
             "XF86AudioMicMute".spawn-sh =
               "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-            "XF86AudioMute".spawn-sh =
-              "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            "XF86AudioMute".spawn-sh = "noctali msg volume-mute";
             "XF86AudioNext".spawn-sh = "${lib.getExe pkgs.playerctl} next";
             "XF86AudioPause".spawn-sh = "${lib.getExe pkgs.playerctl} pause";
             "XF86AudioPlay".spawn-sh = "${lib.getExe pkgs.playerctl} play-pause";
             "XF86AudioPrev".spawn-sh = "${lib.getExe pkgs.playerctl} previous";
-            "XF86AudioRaiseVolume".spawn-sh =
-              "${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+            "XF86AudioRaiseVolume".spawn-sh = "noctalia msg volume-up";
             "XF86KbdBrightnessDown".spawn-sh =
               "${lib.getExe pkgs.brightnessctl} -d asus::kbd_backlight set 5%-";
             "XF86KbdBrightnessUp".spawn-sh = "${lib.getExe pkgs.brightnessctl} -d asus::kbd_backlight set 5%+";
-            "XF86MonBrightnessDown".spawn-sh = "${lib.getExe pkgs.brightnessctl} --class=backlight set 10%-";
-            "XF86MonBrightnessUp".spawn-sh = "${lib.getExe pkgs.brightnessctl} --class=backlight set +10%";
+            "XF86MonBrightnessDown".spawn-sh = "noctalia msg brightness-down";
+            "XF86MonBrightnessUp".spawn-sh = "noctalia msg brightness-up";
           };
         };
       };

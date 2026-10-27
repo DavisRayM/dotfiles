@@ -42,9 +42,12 @@
         shellcheck
       ];
 
-      environment.extraInit = ''
-        export PATH="$PATH:$HOME/dotfiles/scripts"
-      '';
+      environment.sessionVariables = rec {
+        PATH = [
+          "$HOME/dotfiles/scripts"
+          "$HOME/.config/emacs/bin"
+        ];
+      };
 
       programs.bash = {
         enable = true;

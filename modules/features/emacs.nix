@@ -17,6 +17,23 @@
         libgccjit
         libtool
         libvterm
+        ripgrep
+        languagetool
+        nil
+        nixfmt
+        cmake
+        fd
+
+        zig
+        zls
+
+        js-beautify
+        stylelint
+        html-tidy
+
+        rustup
+
+        clang-tools
       ];
 
       services.emacs = {

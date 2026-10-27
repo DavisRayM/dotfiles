@@ -12,6 +12,7 @@
         self.nixosModules.emacs
         self.nixosModules.workspace
         self.nixosModules.ios
+        self.nixosModules.noctalia
       ];
 
       # OS Maintenance
